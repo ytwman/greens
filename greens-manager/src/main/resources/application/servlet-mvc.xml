@@ -49,7 +49,7 @@
         <!-- 统一权限管理系统 -->
         <mvc:interceptor>
             <mvc:mapping path="/**/"/>
-            <bean class="com.ytwman.greens.ups.PermissionInterceptor"/>
+            <bean class="com.ytwman.greens.ups.support.PermissionInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

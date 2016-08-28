@@ -4,7 +4,7 @@
  * Date:    16/8/28 下午5:08
  * Description: 
  */
-package com.ytwman.greens.ups;
+package com.ytwman.greens.ups.support;
 
 /**
  * @author 忽忽(huhu)

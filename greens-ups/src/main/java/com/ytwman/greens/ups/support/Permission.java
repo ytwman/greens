@@ -4,7 +4,7 @@
  * Date:    16/8/28 下午4:12
  * Description: 
  */
-package com.ytwman.greens.ups.annotation;
+package com.ytwman.greens.ups.support;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

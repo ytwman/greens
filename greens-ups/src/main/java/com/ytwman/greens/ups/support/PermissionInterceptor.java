@@ -4,9 +4,8 @@
  * Date:    16/8/28 下午4:15
  * Description: 
  */
-package com.ytwman.greens.ups;
+package com.ytwman.greens.ups.support;
 
-import com.ytwman.greens.ups.annotation.Permission;
 import com.ytwman.greens.ups.entity.UpsPermission;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.service.UpsOperationLogService;

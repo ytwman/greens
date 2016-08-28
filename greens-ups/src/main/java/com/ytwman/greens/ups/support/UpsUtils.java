@@ -4,7 +4,7 @@
  * Date:    16/8/28 下午5:26
  * Description: 
  */
-package com.ytwman.greens.ups;
+package com.ytwman.greens.ups.support;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

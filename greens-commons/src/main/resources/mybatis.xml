@@ -18,6 +18,6 @@
         比如 model.blog.Author 的别名为 author；若有注解，则别名为其注解值。@Alias("author")
     -->
     <typeAliases>
-        <package name="com.ytwman.broker.entity"/>
+        <package name="com.ytwman.greens.commons.entity"/>
     </typeAliases>
 </configuration>

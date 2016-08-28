@@ -12,9 +12,9 @@
 
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>../logs/broker-server.log</File>
+        <File>../logs/greens-html5.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>../logs/broker-log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>../logs/greens-html5.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <maxHistory>10</maxHistory>
             <!-- 日志文件rolling触发策略 -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

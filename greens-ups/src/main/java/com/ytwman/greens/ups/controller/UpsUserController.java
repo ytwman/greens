@@ -6,8 +6,8 @@
  */
 package com.ytwman.greens.ups.controller;
 
-import com.ytwman.greens.ups.UpsUtils;
-import com.ytwman.greens.ups.annotation.Permission;
+import com.ytwman.greens.ups.support.UpsUtils;
+import com.ytwman.greens.ups.support.Permission;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.service.UpsUserService;
 import org.springframework.stereotype.Controller;
