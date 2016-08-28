@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>greens-pom</artifactId>
+        <groupId>com.ytwman</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../greens-pom/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>greens-ups</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <mybatis.generator.artifactId>greens-ups</mybatis.generator.artifactId>
+        <mybatis.generator.version>1.0-SNAPSHOT</mybatis.generator.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>
