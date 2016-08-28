@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:redis="http://www.springframework.org/schema/redis"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd
+       ">
+
+    <!-- 连接池 -->
+    <bean id="redisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+    </bean>
+
+
+    <!-- 连接工厂 -->
+    <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          destroy-method="destroy">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="poolConfig" ref="redisPoolConfig"/>
+    </bean>
+
+
+    <!-- spring redis 模板 -->
+    <bean id="jsonRedisSerializer"
+          class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="redisConnectionFactory"/>
+        <property name="valueSerializer" ref="jsonRedisSerializer"/>
+        <property name="hashValueSerializer" ref="jsonRedisSerializer"/>
+    </bean>
+
+
+    <!-- redis 消息订阅简单实现 -->
+    <!-- https://spring.io/guides/gs/messaging-redis/ -->
+    <bean id="messageListener" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <!--<property name="delegate" ref=""/>-->
+        <property name="serializer" ref="jsonRedisSerializer"/>
+    </bean>
+
+    <redis:listener-container>
+        <redis:listener ref="messageListener" method="handleMessage" serializer="jsonRedisSerializer" topic="java"/>
+    </redis:listener-container>
+
+</beans>

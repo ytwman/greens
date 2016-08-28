@@ -53,6 +53,8 @@
         </javaClientGenerator>
 
         <!-- 如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式。 -->
+        <table schema="greens" tableName="supplier_business" domainObjectName="SupplierBusiness"/>
+
 
     </context>
 </generatorConfiguration>
