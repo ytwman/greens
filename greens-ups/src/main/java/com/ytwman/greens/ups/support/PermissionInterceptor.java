@@ -8,8 +8,12 @@ package com.ytwman.greens.ups.support;
 
 import com.ytwman.greens.ups.entity.UpsPermission;
 import com.ytwman.greens.ups.entity.UpsUser;
+import com.ytwman.greens.ups.entity.UpsUserRole;
 import com.ytwman.greens.ups.service.UpsOperationLogService;
+import com.ytwman.greens.ups.service.UpsUserService;
+import com.ytwman.greens.ups.service.model.UpsPermissionExtend;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -28,6 +32,9 @@ import java.util.List;
  * @since [产品/模块版本] （可选）
  */
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
+
+    @Resource
+    UpsUserService upsUserService;
 
     @Resource
     UpsOperationLogService upsOperationLogService;
@@ -60,7 +67,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 不需要登录直接跳过
-        if (!permission.login()) {
+        if (permission == null || !permission.login()) {
             return true;
         }
 
@@ -79,7 +86,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         UpsUser upsUser = null;
         UpsPermission upsPermission = null;
         String clientIp = UpsUtils.getClientIp(request);
-        String serverIp = UpsUtils.getServerIp(request);
+        String serverIp = UpsUtils.getServerIp();
 
         upsOperationLogService.logger(upsUser, upsPermission, clientIp, serverIp);
 
@@ -93,7 +100,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      * @return
      */
     public boolean doLogin(HttpSession httpSession) {
-        return false;
+        return UpsUtils.getUserId(httpSession) != null;
     }
 
     /**
@@ -104,9 +111,26 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      */
     public boolean doPermission(HttpServletRequest request) {
 
-        String path = null;
+        String path = request.getContextPath();
         if (doFilter(path)) {
             return true;
+        }
+
+        // 验证权限
+        Long userId = UpsUtils.getUserId(request.getSession());
+        List<UpsUserRole> upsUserRoles = upsUserService.getUpsUserRole(userId);
+        if (CollectionUtils.isEmpty(upsUserRoles)) {
+            throw new RuntimeException("当前登录用户未设置角色");
+        }
+
+        List<UpsPermissionExtend> upsPermissionExtends = upsUserService.allRoleAndPermission();
+        for (UpsUserRole upsUserRole : upsUserRoles) {
+            for (UpsPermissionExtend upsPermission : upsPermissionExtends) {
+                if (upsPermission.getRoleId().equals(upsUserRole.getRoleId())
+                        && upsPermission.getPath().equals(path)) {
+                    return true;
+                }
+            }
         }
 
         return false;

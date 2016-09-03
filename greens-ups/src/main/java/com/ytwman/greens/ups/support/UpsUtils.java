@@ -6,10 +6,12 @@
  */
 package com.ytwman.greens.ups.support;
 
+import com.ytwman.greens.ups.entity.UpsUser;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @author 忽忽(huhu)
@@ -17,19 +19,8 @@ import java.util.List;
  * @since [产品/模块版本] （可选）
  */
 public class UpsUtils {
-
-    /**
-     * 返回用户角色
-     * @return
-     */
-    public static List<Object> getUserRoles(HttpSession httpSession) {
-        List<Object> userRoles = (List<Object>) httpSession.getAttribute(HttpExtend.Session.UpsUserRole);
-        return userRoles == null ? new ArrayList<>() : userRoles;
-    }
-
     /**
      * 获取用户主键
-     * @return
      */
     public static Long getUserId(HttpSession httpSession) {
         return (Long) httpSession.getAttribute(HttpExtend.Session.UserId);
@@ -37,11 +28,21 @@ public class UpsUtils {
 
     /**
      * 返回服务端 IP
-     *
-     * @param request
-     * @return
      */
-    public static String getServerIp(HttpServletRequest request) {
+    public static String getServerIp() {
+        String ip = null;
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return ip;
+    }
+
+    /**
+     * 返回客户端 IP
+     */
+    public static String getClientIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -56,18 +57,18 @@ public class UpsUtils {
     }
 
     /**
-     * 返回客户端 IP
-     *
-     * @param request
-     * @return
+     * 清空所有用户 session
      */
-    public static String getClientIp(HttpServletRequest request) {
-        return null;
-    }
-
     public static void cleanSession(HttpSession httpSession) {
         httpSession.removeAttribute(HttpExtend.Session.UserId);
         httpSession.removeAttribute(HttpExtend.Session.OpenId);
         httpSession.removeAttribute(HttpExtend.Session.UpsUserRole);
+    }
+
+    /**
+     * 是否管理员
+     */
+    public static boolean isAdmin(UpsUser upsUser) {
+        return UpsUser.Type.Admin.getCode().equals(upsUser.getType());
     }
 }

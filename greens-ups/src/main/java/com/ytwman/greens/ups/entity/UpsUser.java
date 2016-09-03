@@ -20,6 +20,8 @@ public class UpsUser implements Serializable {
 
     private String password;
 
+    private Integer type;
+
     private Date createdTime;
 
     private Date updatedTime;
@@ -92,6 +94,14 @@ public class UpsUser implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -135,5 +145,30 @@ public class UpsUser implements Serializable {
         sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
+    }
+
+    public enum Type {
+        Admin(1, "系统管理员"),
+        Normal(2, "普通用户");
+
+        Integer code;
+        String description;
+
+        Type(Integer code, String description) {
+            this.code = code;
+            this.description = description;
+        }
+
+        public static Type getEnum(Integer code) {
+            for (Type type : Type.values()) {
+                if (type.code.equals(code))
+                    return type;
+            }
+            return null;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
     }
 }

@@ -98,6 +98,7 @@
         <property name="order" value="1"/>
         <property name="cache" value="true"/>
         <property name="suffix" value=".html"/>
+        <!-- http://blog.csdn.net/wlingfeng/article/details/6602468 -->
         <property name="requestContextAttribute" value="request"/>
         <property name="contentType" value="text/html;charset=utf-8"/>
     </bean>

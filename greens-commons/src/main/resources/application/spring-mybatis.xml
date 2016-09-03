@@ -11,7 +11,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 当SqlSessionFactoryBean提供的配置不能满足使用时，你可以使用mybatis-config.xml配置文件配置其他属性，
         然后通过 configLocation 属性指定该配置的路径，SqlSessionFactoryBean会使用该配置文件创建Configuration。 -->
-        <property name="configLocation" value="classpath*:/mybatis.xml"/>
+        <property name="configLocation" value="classpath:/mybatis.xml"/>
         <!--指定实体类映射文件，可以指定同时指定某一包以及子包下面的所有配置文件，
         mapperLocations和configLocation有一个即可，当需要为实体类指定别名时，可指定configLocation属性，
         再在mybatis总配置文件中采用mapper引入实体类映射文件 -->
@@ -24,7 +24,7 @@
 
     <!-- 扫描指定包下的 Mapper 类文件, 可以加载到 Spring Bean 容器中,并且 从 sqlSession 种拿到该类的实例 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ytwman.broker.entity"/>
+        <property name="basePackage" value="com.ytwman.greens.*.entity"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

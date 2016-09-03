@@ -6,15 +6,22 @@
  */
 package com.ytwman.greens.ups.controller;
 
-import com.ytwman.greens.ups.support.UpsUtils;
-import com.ytwman.greens.ups.support.Permission;
+import com.ytwman.greens.ups.entity.UpsPermission;
 import com.ytwman.greens.ups.entity.UpsUser;
+import com.ytwman.greens.ups.model.UpdatePassword;
+import com.ytwman.greens.ups.service.UpsOperationLogService;
 import com.ytwman.greens.ups.service.UpsUserService;
+import com.ytwman.greens.ups.support.HttpExtend;
+import com.ytwman.greens.ups.support.Permission;
+import com.ytwman.greens.ups.support.UpsUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * UPS 账号操作
@@ -27,14 +34,44 @@ import javax.servlet.http.HttpServletRequest;
 public class UpsUserController {
 
     @Resource
-    UpsUserService upsService;
+    UpsUserService upsUserService;
 
-    @RequestMapping("/login")
-    public void login() {
+    @Resource
+    UpsOperationLogService upsOperationLogService;
 
+    /**
+     * 登录页面
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public Object login() {
+        return new ModelMap();
     }
 
-    @RequestMapping("/logout")
+    /**
+     * 账号登录
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
+    public Object login(String account, String password, HttpServletRequest request) {
+        UpsUser upsUser = upsUserService.login(account, password);
+        if (upsUser != null) {
+            // 保存 Session 状态
+            HttpSession httpSession = request.getSession();
+            httpSession.setAttribute(HttpExtend.Session.UserId, upsUser.getId());
+
+            // 记录登录日志
+            String serverIp = UpsUtils.getServerIp();
+            String clientIp = UpsUtils.getClientIp(request);
+            UpsPermission upsPermission = upsUserService.getLoginPermission();
+            upsOperationLogService.logger(upsUser, upsPermission, clientIp, serverIp);
+            return "redirect:/login";
+        }
+        return "redirect:/";
+    }
+
+    /**
+     * 退出系统
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/logout")
     public String logout(HttpServletRequest request) {
         // 先清除所有用户的 session
         UpsUtils.cleanSession(request.getSession());
@@ -42,32 +79,18 @@ public class UpsUserController {
     }
 
     /**
-     * 重置密码,仅限管理员和当前用户
-     */
-    @RequestMapping("/password/reset")
-    public String reset() {
-        return null;
-    }
-
-    /**
      * 修改账号密码, 本人登录修改或者管理员登录修改
      */
     @RequestMapping("/password/update")
-    public String passwordUpdate(HttpServletRequest request) {
-        Long userId = UpsUtils.getUserId(request.getSession());
-        String password = request.getParameter("password");
-        String newPassword = request.getParameter("newPassword");
-
-        upsService.passwordUpdate(userId, password, newPassword);
+    public String updatePassword(UpdatePassword updatePassword, HttpSession httpSession) {
+        Long userId = UpsUtils.getUserId(httpSession);
+        upsUserService.passwordUpdate(userId, updatePassword);
 
         return null;
     }
 
     /**
      * 添加用户,仅限管理员操作
-     *
-     * @param upsUser
-     * @return
      */
     @Permission
     @RequestMapping("/account/create")
