@@ -45,6 +45,10 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <mvc:resources mapping="/javascripts/**" location="/javascripts/"/>
+    <mvc:resources mapping="/stylesheets/**" location="/stylesheets/"/>
+    <mvc:resources mapping="/vendor/**"      location="/vendor/"/>
+
     <mvc:interceptors>
         <!-- 统一权限管理系统 -->
         <mvc:interceptor>

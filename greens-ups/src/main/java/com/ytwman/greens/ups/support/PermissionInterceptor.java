@@ -15,6 +15,7 @@ import com.ytwman.greens.ups.service.model.UpsPermissionExtend;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
@@ -73,14 +74,22 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
         HttpSession httpSession = request.getSession();
 
+        // 需要登录访问, 如果未登录先登录
         if (!doLogin(httpSession)) {
             return redirectLogin(request, response);
         }
 
-        // 如果设置为不需要权限直接跳过
+        // 需要授权访问, 如果没有权限访问抛出异常提醒用户
         if (permission.auth() && !doPermission(request)) {
             throw new Exception("没有足够权限访问");
         }
+
+        return super.preHandle(request, response, handler);
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        super.postHandle(request, response, handler, modelAndView);
 
         // 记录操作日志
         UpsUser upsUser = null;
@@ -89,8 +98,6 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         String serverIp = UpsUtils.getServerIp();
 
         upsOperationLogService.logger(upsUser, upsPermission, clientIp, serverIp);
-
-        return super.preHandle(request, response, handler);
     }
 
     /**

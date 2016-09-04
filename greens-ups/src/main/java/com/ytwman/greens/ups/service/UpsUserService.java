@@ -43,9 +43,9 @@ public class UpsUserService {
     @Resource
     UpsRolePermissionMapper upsRolePermissionMapper;
 
-    public UpsUser login(String account, String password) {
+    public UpsUser login(String username, String password) {
         UpsUserExample example = new UpsUserExample();
-        example.or().andAccountEqualTo(account)
+        example.or().andUsernameEqualTo(username)
                 .andPasswordEqualTo(DigestUtils.sha1Hex(password));
 
         List<UpsUser> upsUsers = upsUserMapper.selectByExample(example);

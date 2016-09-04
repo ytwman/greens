@@ -16,7 +16,7 @@ public class UpsUser implements Serializable {
 
     private String linkphone;
 
-    private String account;
+    private String username;
 
     private String password;
 
@@ -78,12 +78,12 @@ public class UpsUser implements Serializable {
         this.linkphone = linkphone == null ? null : linkphone.trim();
     }
 
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -138,8 +138,9 @@ public class UpsUser implements Serializable {
         sb.append(", gender=").append(gender);
         sb.append(", birthday=").append(birthday);
         sb.append(", linkphone=").append(linkphone);
-        sb.append(", account=").append(account);
+        sb.append(", username=").append(username);
         sb.append(", password=").append(password);
+        sb.append(", type=").append(type);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);

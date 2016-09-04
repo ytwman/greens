@@ -6,7 +6,6 @@
  */
 package com.ytwman.greens.ups.controller;
 
-import com.ytwman.greens.ups.entity.UpsPermission;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.model.UpdatePassword;
 import com.ytwman.greens.ups.service.UpsOperationLogService;
@@ -51,21 +50,15 @@ public class UpsUserController {
      * 账号登录
      */
     @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public Object login(String account, String password, HttpServletRequest request) {
-        UpsUser upsUser = upsUserService.login(account, password);
+    public Object login(String username, String password, HttpServletRequest request) {
+        UpsUser upsUser = upsUserService.login(username, password);
         if (upsUser != null) {
             // 保存 Session 状态
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute(HttpExtend.Session.UserId, upsUser.getId());
-
-            // 记录登录日志
-            String serverIp = UpsUtils.getServerIp();
-            String clientIp = UpsUtils.getClientIp(request);
-            UpsPermission upsPermission = upsUserService.getLoginPermission();
-            upsOperationLogService.logger(upsUser, upsPermission, clientIp, serverIp);
-            return "redirect:/login";
+            return "redirect:/";
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     /**

@@ -8,8 +8,9 @@
     <result column="gender" property="gender" jdbcType="INTEGER" />
     <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="linkphone" property="linkphone" jdbcType="VARCHAR" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, nickname, name, gender, birthday, linkphone, account, password, created_time, 
+    id, nickname, name, gender, birthday, linkphone, username, password, type, created_time, 
     updated_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.ups.entity.UpsUserExample" >
@@ -109,12 +110,14 @@
   <insert id="insert" parameterType="com.ytwman.greens.ups.entity.UpsUser" >
     insert into ups_user (id, nickname, name, 
       gender, birthday, linkphone, 
-      account, password, created_time, 
-      updated_time, is_delete)
+      username, password, type, 
+      created_time, updated_time, is_delete
+      )
     values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{linkphone,jdbcType=VARCHAR}, 
-      #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.ups.entity.UpsUser" >
     insert into ups_user
@@ -137,11 +140,14 @@
       <if test="linkphone != null" >
         linkphone,
       </if>
-      <if test="account != null" >
-        account,
+      <if test="username != null" >
+        username,
       </if>
       <if test="password != null" >
         password,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -172,11 +178,14 @@
       <if test="linkphone != null" >
         #{linkphone,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
-        #{account,jdbcType=VARCHAR},
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -216,11 +225,14 @@
       <if test="record.linkphone != null" >
         linkphone = #{record.linkphone,jdbcType=VARCHAR},
       </if>
-      <if test="record.account != null" >
-        account = #{record.account,jdbcType=VARCHAR},
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -244,8 +256,9 @@
       gender = #{record.gender,jdbcType=INTEGER},
       birthday = #{record.birthday,jdbcType=DATE},
       linkphone = #{record.linkphone,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
@@ -271,11 +284,14 @@
       <if test="linkphone != null" >
         linkphone = #{linkphone,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
-        account = #{account,jdbcType=VARCHAR},
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -296,8 +312,9 @@
       gender = #{gender,jdbcType=INTEGER},
       birthday = #{birthday,jdbcType=DATE},
       linkphone = #{linkphone,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}

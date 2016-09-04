@@ -522,73 +522,73 @@ public class UpsUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountIsNull() {
-            addCriterion("account is null");
+        public Criteria andUsernameIsNull() {
+            addCriterion("username is null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIsNotNull() {
-            addCriterion("account is not null");
+        public Criteria andUsernameIsNotNull() {
+            addCriterion("username is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountEqualTo(String value) {
-            addCriterion("account =", value, "account");
+        public Criteria andUsernameEqualTo(String value) {
+            addCriterion("username =", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotEqualTo(String value) {
-            addCriterion("account <>", value, "account");
+        public Criteria andUsernameNotEqualTo(String value) {
+            addCriterion("username <>", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThan(String value) {
-            addCriterion("account >", value, "account");
+        public Criteria andUsernameGreaterThan(String value) {
+            addCriterion("username >", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThanOrEqualTo(String value) {
-            addCriterion("account >=", value, "account");
+        public Criteria andUsernameGreaterThanOrEqualTo(String value) {
+            addCriterion("username >=", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThan(String value) {
-            addCriterion("account <", value, "account");
+        public Criteria andUsernameLessThan(String value) {
+            addCriterion("username <", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThanOrEqualTo(String value) {
-            addCriterion("account <=", value, "account");
+        public Criteria andUsernameLessThanOrEqualTo(String value) {
+            addCriterion("username <=", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLike(String value) {
-            addCriterion("account like", value, "account");
+        public Criteria andUsernameLike(String value) {
+            addCriterion("username like", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotLike(String value) {
-            addCriterion("account not like", value, "account");
+        public Criteria andUsernameNotLike(String value) {
+            addCriterion("username not like", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIn(List<String> values) {
-            addCriterion("account in", values, "account");
+        public Criteria andUsernameIn(List<String> values) {
+            addCriterion("username in", values, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotIn(List<String> values) {
-            addCriterion("account not in", values, "account");
+        public Criteria andUsernameNotIn(List<String> values) {
+            addCriterion("username not in", values, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountBetween(String value1, String value2) {
-            addCriterion("account between", value1, value2, "account");
+        public Criteria andUsernameBetween(String value1, String value2) {
+            addCriterion("username between", value1, value2, "username");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotBetween(String value1, String value2) {
-            addCriterion("account not between", value1, value2, "account");
+        public Criteria andUsernameNotBetween(String value1, String value2) {
+            addCriterion("username not between", value1, value2, "username");
             return (Criteria) this;
         }
 
@@ -659,6 +659,66 @@ public class UpsUserExample {
 
         public Criteria andPasswordNotBetween(String value1, String value2) {
             addCriterion("password not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Integer value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Integer value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Integer value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Integer value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Integer> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Integer> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Integer value1, Integer value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
 
@@ -857,8 +917,8 @@ public class UpsUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountLikeInsensitive(String value) {
-            addCriterion("upper(account) like", value.toUpperCase(), "account");
+        public Criteria andUsernameLikeInsensitive(String value) {
+            addCriterion("upper(username) like", value.toUpperCase(), "username");
             return (Criteria) this;
         }
 
