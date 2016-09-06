@@ -10,9 +10,13 @@ public class UpsPermission implements Serializable {
 
     private Long parentId;
 
+    private String action;
+
     private String path;
 
     private String description;
+
+    private Integer sortby;
 
     private Date createdTime;
 
@@ -46,6 +50,14 @@ public class UpsPermission implements Serializable {
         this.parentId = parentId;
     }
 
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action == null ? null : action.trim();
+    }
+
     public String getPath() {
         return path;
     }
@@ -60,6 +72,14 @@ public class UpsPermission implements Serializable {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getSortby() {
+        return sortby;
+    }
+
+    public void setSortby(Integer sortby) {
+        this.sortby = sortby;
     }
 
     public Date getCreatedTime() {
@@ -95,8 +115,10 @@ public class UpsPermission implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", parentId=").append(parentId);
+        sb.append(", action=").append(action);
         sb.append(", path=").append(path);
         sb.append(", description=").append(description);
+        sb.append(", sortby=").append(sortby);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);

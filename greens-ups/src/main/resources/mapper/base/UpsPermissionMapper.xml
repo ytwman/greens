@@ -5,8 +5,10 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sortby" property="sortby" jdbcType="INTEGER" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, parent_id, path, description, created_time, updated_time, is_delete
+    id, name, parent_id, action, path, description, sortby, created_time, updated_time, 
+    is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.ups.entity.UpsPermissionExample" >
     select
@@ -104,11 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.ytwman.greens.ups.entity.UpsPermission" >
     insert into ups_permission (id, name, parent_id, 
-      path, description, created_time, 
-      updated_time, is_delete)
+      action, path, description, 
+      sortby, created_time, updated_time, 
+      is_delete)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
-      #{path,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+      #{action,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{sortby,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.ups.entity.UpsPermission" >
     insert into ups_permission
@@ -122,11 +127,17 @@
       <if test="parentId != null" >
         parent_id,
       </if>
+      <if test="action != null" >
+        action,
+      </if>
       <if test="path != null" >
         path,
       </if>
       <if test="description != null" >
         description,
+      </if>
+      <if test="sortby != null" >
+        sortby,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -148,11 +159,17 @@
       <if test="parentId != null" >
         #{parentId,jdbcType=BIGINT},
       </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
       <if test="path != null" >
         #{path,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortby != null" >
+        #{sortby,jdbcType=INTEGER},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -183,11 +200,17 @@
       <if test="record.parentId != null" >
         parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
+      <if test="record.action != null" >
+        action = #{record.action,jdbcType=VARCHAR},
+      </if>
       <if test="record.path != null" >
         path = #{record.path,jdbcType=VARCHAR},
       </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortby != null" >
+        sortby = #{record.sortby,jdbcType=INTEGER},
       </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -208,8 +231,10 @@
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=BIGINT},
+      action = #{record.action,jdbcType=VARCHAR},
       path = #{record.path,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
+      sortby = #{record.sortby,jdbcType=INTEGER},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
@@ -226,11 +251,17 @@
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
       <if test="path != null" >
         path = #{path,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortby != null" >
+        sortby = #{sortby,jdbcType=INTEGER},
       </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -248,8 +279,10 @@
     update ups_permission
     set name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
+      action = #{action,jdbcType=VARCHAR},
       path = #{path,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
+      sortby = #{sortby,jdbcType=INTEGER},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}

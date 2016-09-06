@@ -10,6 +10,7 @@ import com.ytwman.greens.ups.entity.UpsPermission;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.entity.UpsUserRole;
 import com.ytwman.greens.ups.service.UpsOperationLogService;
+import com.ytwman.greens.ups.service.UpsRoleService;
 import com.ytwman.greens.ups.service.UpsUserService;
 import com.ytwman.greens.ups.service.model.UpsPermissionExtend;
 import org.apache.commons.lang3.StringUtils;
@@ -38,12 +39,17 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     UpsUserService upsUserService;
 
     @Resource
+    UpsRoleService upsRoleService;
+
+    @Resource
     UpsOperationLogService upsOperationLogService;
 
     /**
      * 不拦截的 path 地址
      */
     private List<String> filterPath;
+
+    private boolean enable;
 
     public PermissionInterceptor() {
         this.filterPath = new ArrayList<>();
@@ -56,6 +62,10 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+
+        if (enable) {
             return true;
         }
 
@@ -84,20 +94,53 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             throw new Exception("没有足够权限访问");
         }
 
+        loggerOperator(request);
+
         return super.preHandle(request, response, handler);
     }
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
+    public void loggerOperator(HttpServletRequest request) throws Exception {
 
-        // 记录操作日志
-        UpsUser upsUser = null;
+        Long userId = UpsUtils.getUserId(request.getSession());
+        if (userId == null) {
+            return;
+        }
+
+        UpsUser upsUser = upsUserService.getUpsUser(userId);
+
         UpsPermission upsPermission = null;
+        String path = request.getServletPath();
+
+        List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
+        for (UpsPermissionExtend upsPermissionExtend : upsPermissionExtends) {
+            if (path.startsWith(upsPermissionExtend.getPath())) {
+                upsPermission = upsPermissionExtend;
+            }
+        }
+
+        if (upsPermission == null) {
+            throw new Exception(String.format("没有找到此路径对应的权限, [%s]", path));
+        }
+
         String clientIp = UpsUtils.getClientIp(request);
         String serverIp = UpsUtils.getServerIp();
 
         upsOperationLogService.logger(upsUser, upsPermission, clientIp, serverIp);
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        super.postHandle(request, response, handler, modelAndView);
+        Long userId = UpsUtils.getUserId(request.getSession());
+        if (userId == null) {
+            return;
+        }
+
+        UpsUser upsUser = upsUserService.getUpsUser(userId);
+
+        if (modelAndView != null)
+            modelAndView.addObject("upsUser", upsUser);
     }
 
     /**
@@ -118,7 +161,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      */
     public boolean doPermission(HttpServletRequest request) {
 
-        String path = request.getContextPath();
+        String path = request.getServletPath();
         if (doFilter(path)) {
             return true;
         }
@@ -130,7 +173,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             throw new RuntimeException("当前登录用户未设置角色");
         }
 
-        List<UpsPermissionExtend> upsPermissionExtends = upsUserService.allRoleAndPermission();
+        List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
         for (UpsUserRole upsUserRole : upsUserRoles) {
             for (UpsPermissionExtend upsPermission : upsPermissionExtends) {
                 if (upsPermission.getRoleId().equals(upsUserRole.getRoleId())
@@ -165,16 +208,17 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
         try {
             if (RequestType.HTML.equals(RequestType.get(request))) {
-                response.sendRedirect("/ups/login");
+                response.sendRedirect(request.getContextPath() + "/login");
             }
             if (RequestType.JSON.equals(RequestType.get(request))) {
                 out = response.getWriter();
-                out.print(StringUtils.join("<script>top.location.href='/ups/login';</script>"));
+                out.print(StringUtils.join("<script>top.location.href='/login';</script>"));
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            out.close();
+            if (out != null)
+                out.close();
         }
 
         return false;
@@ -184,6 +228,10 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         if (filterPath != null && !filterPath.isEmpty()) {
             this.filterPath.addAll(filterPath);
         }
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public enum RequestType {

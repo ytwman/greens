@@ -295,6 +295,76 @@ public class UpsPermissionExample {
             return (Criteria) this;
         }
 
+        public Criteria andActionIsNull() {
+            addCriterion("action is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionIsNotNull() {
+            addCriterion("action is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionEqualTo(String value) {
+            addCriterion("action =", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotEqualTo(String value) {
+            addCriterion("action <>", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionGreaterThan(String value) {
+            addCriterion("action >", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionGreaterThanOrEqualTo(String value) {
+            addCriterion("action >=", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLessThan(String value) {
+            addCriterion("action <", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLessThanOrEqualTo(String value) {
+            addCriterion("action <=", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLike(String value) {
+            addCriterion("action like", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotLike(String value) {
+            addCriterion("action not like", value, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionIn(List<String> values) {
+            addCriterion("action in", values, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotIn(List<String> values) {
+            addCriterion("action not in", values, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionBetween(String value1, String value2) {
+            addCriterion("action between", value1, value2, "action");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionNotBetween(String value1, String value2) {
+            addCriterion("action not between", value1, value2, "action");
+            return (Criteria) this;
+        }
+
         public Criteria andPathIsNull() {
             addCriterion("path is null");
             return (Criteria) this;
@@ -432,6 +502,66 @@ public class UpsPermissionExample {
 
         public Criteria andDescriptionNotBetween(String value1, String value2) {
             addCriterion("description not between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyIsNull() {
+            addCriterion("sortby is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyIsNotNull() {
+            addCriterion("sortby is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyEqualTo(Integer value) {
+            addCriterion("sortby =", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyNotEqualTo(Integer value) {
+            addCriterion("sortby <>", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyGreaterThan(Integer value) {
+            addCriterion("sortby >", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sortby >=", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyLessThan(Integer value) {
+            addCriterion("sortby <", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyLessThanOrEqualTo(Integer value) {
+            addCriterion("sortby <=", value, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyIn(List<Integer> values) {
+            addCriterion("sortby in", values, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyNotIn(List<Integer> values) {
+            addCriterion("sortby not in", values, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyBetween(Integer value1, Integer value2) {
+            addCriterion("sortby between", value1, value2, "sortby");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortbyNotBetween(Integer value1, Integer value2) {
+            addCriterion("sortby not between", value1, value2, "sortby");
             return (Criteria) this;
         }
 
@@ -617,6 +747,11 @@ public class UpsPermissionExample {
 
         public Criteria andNameLikeInsensitive(String value) {
             addCriterion("upper(name) like", value.toUpperCase(), "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andActionLikeInsensitive(String value) {
+            addCriterion("upper(action) like", value.toUpperCase(), "action");
             return (Criteria) this;
         }
 

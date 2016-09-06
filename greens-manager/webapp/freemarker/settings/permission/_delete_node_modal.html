@@ -1,0 +1,55 @@
+<div class="modal" id="deleteNodeModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">删除节点</h4>
+            </div>
+            <div class="modal-body">
+                <p>你确定要删除 <kbd class="nodeName"></kbd> 节点</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-danger" id="deleteNodeBtn" data-loading-text="Loading...">删除
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $(function () {
+
+        // 显示 Dialog
+        $('#deleteNodeModal').on('shown.bs.modal', function (e) {
+            // 返回指定的节点
+            var selectedNodes = $('#treeview').treeview('getSelected', null);
+            if (selectedNodes.length > 0) {
+                $(this).find(".nodeName").text(selectedNodes[0].text);
+            } else {
+                $('#deleteNodeModal').modal('hide');
+                alert('请选择一个节点');
+            }
+        });
+
+        // 点击删除按钮
+        $('#deleteNodeBtn').on('click', function () {
+            var $btn = $(this).button('loading');
+
+            // 返回指定的节点
+            var selectedNodes = $('#treeview').treeview('getSelected', null);
+            if (selectedNodes.length > 0) {
+                $.post('${request.contextPath}/permissions/' + selectedNodes[0].id + '?_method=delete');
+                // 刷新页面
+                window.location.reload();
+            } else {
+                alert('请选择一个节点');
+            }
+
+            $btn.button('reset');
+            $('#deleteNodeModal').modal('hide');
+        })
+
+    });
+</script>

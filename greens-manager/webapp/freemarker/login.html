@@ -10,7 +10,7 @@
         }
 
         .form-signin {
-            max-width: 330px;
+            max-width: 420px;
             padding: 15px;
             margin: 0 auto;
         }
@@ -49,20 +49,40 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
+        .form-signin button[type="submit"] {
+            margin-bottom: 20px;
+        }
     </style>
     <title>登录</title>
 </head>
 <body>
 
 <div class="container">
-    <form class="form-signin" action="${request.contextPath}/login" method="post" accept-charset="utf-8">
-        <h1 class="form-signin-heading text-center">运营后台管理系统</h1>
-        <label for="account" class="sr-only">账号</label>
-        <input type="text" id="account" name="account" class="form-control" placeholder="账号" required autofocus>
-        <label for="password" class="sr-only">密码</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <form class="form-signin" action="${request.contextPath}/login" method="post" accept-charset="utf-8">
+`
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="form-signin-heading text-center">运营后台管理系统</h3></div>
+            <div class="panel-body">
+
+                <label for="username" class="sr-only">账号</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="账号" required
+                       autofocus>
+                <label for="password" class="sr-only">密码</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+
+                <#if errors?? >
+                    <div class="alert alert-warning alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        ${errors}
+                    </div>
+                </#if>
+            </div>
+        </div>
     </form>
     <div class="text-center text-muted">湖北盛世科技有限公司 © 2016</div>
 </div>

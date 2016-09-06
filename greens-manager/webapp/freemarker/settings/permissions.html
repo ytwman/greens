@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <#include "/layout/meta.html" />
+    <title>功能权限</title>
+</head>
+<body>
+
+
+<#include "layout/navbar.html" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <#include "/settings/_sidebar.html" />
+        </div>
+
+        <div class="col-sm-9 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="col-md-7">
+                            <div id="treeview"></div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal"
+                                    data-target="#addNodeModal">添加模块
+                            </button>
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal"
+                                    data-target="#editNodeModal">编辑节点
+                            </button>
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal"
+                                    data-target="#deleteNodeModal">删除节点
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<#include "/layout/footer.html" />
+
+<#include "/settings/permission/_add_node_modal.html" />
+<#include "/settings/permission/_edit_node_modal.html" />
+<#include "/settings/permission/_delete_node_modal.html" />
+
+<script>
+    $(function () {
+        // 加载权限菜单
+        $.get('${request.contextPath}/permissions', function (result) {
+            var data = new Array();
+
+            // 一级节点
+            $.each(result, function (index, e) {
+                if (e.parentId == null) {
+                    data.push({id: e.id, text: e.name, tags: [e.sortby, e.action, e.path], path: e.path, icon: 'fa fa-home'});
+                }
+            });
+            // 二级节点
+            $.each(result, function (index, e) {
+                if (e.parentId != null) {
+                    for (var i in data) {
+                        var parent = data[i];
+
+                        if (parent.id == e.parentId) {
+                            if (parent.nodes == null) {
+                                parent.nodes = new Array();
+                                // parent.selectable = false;
+                            }
+                            parent.nodes.push({id: e.id, text: e.name, tags: [e.sortby, e.action, e.path], icon: 'fa fa-file-code-o'});
+                        }
+                    }
+                }
+            });
+
+            // 渲染权限树
+            $('#treeview').treeview({
+                levels: 2,
+                expandIcon: 'fa fa-angle-left',
+                collapseIcon: 'fa fa-angle-down',
+                //showBorder: false,
+                showTags: true,
+                data: data
+            });
+        }, 'json');
+    });
+</script>
+</body>
+</html>

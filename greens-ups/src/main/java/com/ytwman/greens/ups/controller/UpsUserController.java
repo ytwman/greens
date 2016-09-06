@@ -6,21 +6,24 @@
  */
 package com.ytwman.greens.ups.controller;
 
+import com.google.common.collect.Lists;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.model.UpdatePassword;
 import com.ytwman.greens.ups.service.UpsOperationLogService;
 import com.ytwman.greens.ups.service.UpsUserService;
-import com.ytwman.greens.ups.support.HttpExtend;
 import com.ytwman.greens.ups.support.Permission;
 import com.ytwman.greens.ups.support.UpsUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * UPS 账号操作
@@ -30,6 +33,7 @@ import javax.servlet.http.HttpSession;
  * @since [产品/模块版本] （可选）
  */
 @Controller
+@RequestMapping("/users")
 public class UpsUserController {
 
     @Resource
@@ -39,55 +43,83 @@ public class UpsUserController {
     UpsOperationLogService upsOperationLogService;
 
     /**
-     * 登录页面
+     * 添加用户页面
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
-    public Object login() {
-        return new ModelMap();
+    @Permission
+    @RequestMapping(method = RequestMethod.GET, value = "/create")
+    public Object usersCreate(ModelAndView modelAndView) {
+        return modelAndView;
     }
 
     /**
-     * 账号登录
+     * 添加用户操作
+     *
+     * @param upsUser
+     * @param modelAndView
+     * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public Object login(String username, String password, HttpServletRequest request) {
-        UpsUser upsUser = upsUserService.login(username, password);
-        if (upsUser != null) {
-            // 保存 Session 状态
-            HttpSession httpSession = request.getSession();
-            httpSession.setAttribute(HttpExtend.Session.UserId, upsUser.getId());
-            return "redirect:/";
-        }
-        return "redirect:/login";
+    @Permission
+    @RequestMapping(method = RequestMethod.POST, value = "/create_or_update")
+    public Object usersCreate(UpsUser upsUser, ModelAndView modelAndView) {
+
+
+        return modelAndView;
     }
 
     /**
-     * 退出系统
+     * 查询用户信息, 包含: 用户基础信息 \ 权限信息
+     *
+     * @param modelAndView
+     * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/logout")
-    public String logout(HttpServletRequest request) {
-        // 先清除所有用户的 session
-        UpsUtils.cleanSession(request.getSession());
-        return "redirect:/login";
+    @Permission
+    @RequestMapping(method = RequestMethod.GET, value = "/profiles")
+    public Object profiles(ModelAndView modelAndView) {
+        return modelAndView;
+    }
+
+    /**
+     * 修改密码页面
+     */
+    @Permission
+    @RequestMapping(method = RequestMethod.GET, value = "/password/modify")
+    public Object passwordModify(ModelAndView modelAndView) {
+        modelAndView.setViewName("/users/password_modify");
+        return modelAndView;
     }
 
     /**
      * 修改账号密码, 本人登录修改或者管理员登录修改
      */
-    @RequestMapping("/password/update")
-    public String updatePassword(UpdatePassword updatePassword, HttpSession httpSession) {
+    @Permission
+    @RequestMapping(method = RequestMethod.POST, value = "/password/modify")
+    public Object modifyPassword(UpdatePassword updatePassword, HttpSession httpSession) {
         Long userId = UpsUtils.getUserId(httpSession);
-        upsUserService.passwordUpdate(userId, updatePassword);
+        UpsUser upsUser = upsUserService.getUpsUser(userId);
 
-        return null;
+        upsUserService.passwordModify(upsUser, updatePassword);
+
+        // 修改密码完成后 登出重新登录, 如果是管理员修改则不跳转
+        if (UpsUser.Type.Admin.getCode().equals(upsUser.getType())) {
+            return passwordModify(new ModelAndView());
+        }
+
+        return "redirect:/logout";
     }
 
     /**
-     * 添加用户,仅限管理员操作
+     * 查询用户名
      */
-    @Permission
-    @RequestMapping("/account/create")
-    public String accountCreate(UpsUser upsUser) {
-        return null;
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/finder")
+    public Object finder() {
+        List<UpsUser> upsUsers = upsUserService.getUpsUsers();
+        List<Object> resultSet = Lists.transform(upsUsers, upsUser -> {
+            Map<String, Object> resultMap = new HashMap<String, Object>();
+            resultMap.put("id", upsUser.getId());
+            resultMap.put("text", upsUser.getNickname());
+            return resultMap;
+        });
+        return resultSet;
     }
 }

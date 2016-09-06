@@ -1,0 +1,116 @@
+<div class="modal fade" id="addNodeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">添加功能权限</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <p class="nodeParentName"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">权限名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" placeholder="请输入名称"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">操作动作</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="action" value="GET" checked> GET
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="action" value="POST"> POST
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="action" value="PUT"> PUT
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="action" value="DELETE"> DELETE
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="path" class="col-sm-2 control-label">访问路径</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="path" placeholder="请输入访问路径"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sortby" class="col-sm-2 control-label">排序序号</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="sortby" value="0" placeholder="仅限数字"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="addNodeBtn">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $(function () {
+
+        // 显示 Dialog
+        $('#addNodeModal').on('show.bs.modal', function(e) {
+            // 重置表单
+            $(this).find('.nodeParentName').html('');
+            $(this).find('input[type=text],textarea').val('');
+        }).on('shown.bs.modal', function (e) {
+            // 返回指定的节点
+            var selectedNodes = $('#treeview').treeview('getSelected', null);
+            if (selectedNodes.length > 0) {
+                $(this).find(".nodeParentName").html("父模块: <kbd>" + selectedNodes[0].text + "</kbd>");
+                $(this).find("#path").val(selectedNodes[0].path);
+            }
+        });
+
+        // 点击删除按钮
+        $('#addNodeBtn').on('click', function () {
+            var $btn = $(this).button('loading');
+
+            var params = {
+                name: $('#addNodeModal #name').val(),
+                path: $('#addNodeModal #path').val(),
+                action: $('#addNodeModal input[name="action"]:checked').val(),
+                sortby: $('#addNodeModal #sortby').val(),
+                description: $('#addNodeModal #description').val()
+            };
+
+            console.log(params);
+
+            // 返回指定的节点
+            var selectedNodes = $('#treeview').treeview('getSelected', null);
+            if (selectedNodes.length > 0) {
+                params.parentId = selectedNodes[0].id;
+            }
+
+            console.log(params);
+
+            $.post('${request.contextPath}/permissions/create', params);
+            // 刷新页面
+            window.location.reload();
+
+            $btn.button('reset');
+            $('#deleteNodeModal').modal('hide');
+        })
+    });
+</script>

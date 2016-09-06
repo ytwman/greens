@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <#include "/layout/meta.html" />
+    <title>系统角色</title>
+</head>
+<body>
+
+
+<#include "layout/navbar.html" />
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-2">
+            <#include "/settings/_sidebar.html" />
+        </div>
+
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div style="margin-bottom: 10px;" class="clearfix">
+                        <div class="btn-group btn-group-sm pull-right">
+                            <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#addRoleModal">添加角色</button>
+                        </div>
+                    </div>
+
+                    <#include "/settings/role/_list.html" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<#include "/layout/footer.html" />
+<#include "/settings/role/_add_role.html" />
+</body>
+</html>
