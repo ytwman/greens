@@ -47,30 +47,21 @@ public class UpsUserController {
      */
     @Permission
     @RequestMapping(method = RequestMethod.GET, value = "/create")
-    public Object usersCreate(ModelAndView modelAndView) {
+    public Object create(ModelAndView modelAndView) {
         return modelAndView;
     }
 
     /**
      * 添加用户操作
-     *
-     * @param upsUser
-     * @param modelAndView
-     * @return
      */
     @Permission
-    @RequestMapping(method = RequestMethod.POST, value = "/create_or_update")
-    public Object usersCreate(UpsUser upsUser, ModelAndView modelAndView) {
-
-
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    public Object create(UpsUser upsUser, ModelAndView modelAndView) {
         return modelAndView;
     }
 
     /**
      * 查询用户信息, 包含: 用户基础信息 \ 权限信息
-     *
-     * @param modelAndView
-     * @return
      */
     @Permission
     @RequestMapping(method = RequestMethod.GET, value = "/profiles")
