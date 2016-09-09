@@ -4,7 +4,7 @@
     <#include "/layout/meta.html" />
     <title>系统角色</title>
 </head>
-<body>
+<body id="roles-list">
 
 
 <#include "layout/navbar.html" />
@@ -23,11 +23,9 @@
 
                     <div style="margin-bottom: 10px;" class="clearfix">
                         <div class="btn-group btn-group-sm pull-right">
-                            <button type="button" class="btn btn-default" data-toggle="modal"
-                                    data-target="#addRoleModal">添加角色</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addRoleModal">添加角色</button>
                         </div>
                     </div>
-
                     <#include "/settings/role/_list.html" />
                 </div>
             </div>
@@ -36,6 +34,9 @@
 </div>
 
 <#include "/layout/footer.html" />
+<script src="${request.contextPath}/javascripts/roles/main.js"></script>
+
 <#include "/settings/role/_add_role.html" />
+<#include "/settings/_delete_modal.html" />
 </body>
 </html>

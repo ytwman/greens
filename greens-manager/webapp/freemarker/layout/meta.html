@@ -6,14 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css">
 
-<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
 
 <!-- select2 -->
-<link rel="stylesheet" href="//cdn.bootcss.com/select2/4.0.3/css/select2.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/select2/4.0.3/css/select2.css">
 
+<!-- bootstrap-treeview -->
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css">
+
+<!-- bootstrap-datepicker -->
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.standalone.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/jstree/3.3.2/themes/default/style.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/jstree/3.3.2/themes/default-dark/style.min.css">
 
 <link rel="stylesheet" href="${request.contextPath}/stylesheets/main.css">
 
@@ -23,9 +31,14 @@
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
 <![endif]-->
 
 <!-- growing 统计 -->
 <#include "/layout/growingio.html" />
+
+<script>
+    // 全局变量
+    var contextPath = "${request.contextPath}";
+</script>
