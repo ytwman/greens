@@ -49,6 +49,9 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      */
     private List<String> filterPath;
 
+    /**
+     * 是否开启拦截模式
+     */
     private boolean enable;
 
     public PermissionInterceptor() {
@@ -65,6 +68,9 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
+        /**
+         * 如果开启则跳过
+         */
         if (enable) {
             return true;
         }
@@ -77,7 +83,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             permission = (Permission) handlerMethod.getBeanType().getAnnotation(Permission.class);
         }
 
-        // 不需要登录直接跳过
+        // 未设置或者不需要登录直接跳过
         if (permission == null || !permission.login()) {
             return true;
         }

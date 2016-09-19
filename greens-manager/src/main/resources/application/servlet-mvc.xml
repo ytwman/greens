@@ -48,6 +48,8 @@
     <mvc:resources mapping="/javascripts/**" location="/javascripts/"/>
     <mvc:resources mapping="/stylesheets/**" location="/stylesheets/"/>
     <mvc:resources mapping="/vendor/**"      location="/vendor/"/>
+    <mvc:resources mapping="/images/**"      location="/images/"/>
+    <mvc:resources mapping="/**"      location="/web/"/>
 
     <mvc:interceptors>
         <!-- 统一权限管理系统 -->

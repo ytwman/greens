@@ -1,3 +1,43 @@
 body {
     background-color: #f5f5f5;
 }
+
+.head_area {
+    height: 70px;
+    border-top: none;
+    background: url('/images/head.gif') repeat-x 0 -10px;
+}
+
+.head_area .brand h3 {
+    font-size: 24px;
+    margin: 18px;
+    display: inline-block;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.form {
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.datagrid-toolbar {
+    padding: 2px 5px;
+}
+
+.datagrid-btn-separator {
+    margin: 1px 10px;
+}

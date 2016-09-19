@@ -1,0 +1,154 @@
+<div id="user-container">
+    <div style="width: 70%;">
+        <div class="easyui-panel" title="用户基础信息" style="padding: 10px;">
+            <table>
+                <tr>
+                    <td width="80">昵称</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                    <td width="80">姓名</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80">出生日期</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                    <td width="80">性别</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80">省份</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                    <td width="80">城市</td>
+                    <td>
+                        <input type="text" name="" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80">县市区</td>
+                    <td></td>
+                    <td width="80">街道/乡镇</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="80">地址</td>
+                    <td></td>
+                    <td width="80">电话</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 用户积分列表 -->
+        <div class="easyui-panel" border=false>
+            <table id="user-points" class="easyui-datagrid" title="积分记录" url="/users/detail/user_point.json" method="get" rownumbers="true" pagination="true">
+                <thead>
+                    <tr>
+                        <th data-options="field:'created_time',align:'right'" width="160">记录时间</th>
+                        <th data-options="field:'amount',align:'right'" width="100">积分</th>
+                        <th data-options="field:'rule_name',align:'left'" width="400">操作名称</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- 用户购物袋列表 -->
+        <div class="easyui-panel" border=false>
+            <table id="user-ecobags" class="easyui-datagrid" title="购物袋" url="/users/detail/user_ecobags.json" method="get">
+                <thead>
+                    <tr>
+                        <th data-options="field:'created_time',align:'right'" width="160">主键</th>
+                        <th data-options="field:'amount',align:'right'" width="100">领取时间</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div style="width: 30%;">
+        <div class="easyui-panel" title="扩展信息">
+            <table class="easyui-propertygrid" data-options="
+                url:'/users/detail/user_info_ext.json',
+                method:'get',
+                border:false,
+                columns:userPropertyColumns
+            ">
+            </table>
+        </div>
+        <div class="easyui-panel" title="家庭成员">
+            <table class="easyui-propertygrid" data-options="
+                url:'/users/detail/user_family.json',
+                method:'get',
+                border:false,
+                columns:familyColumns,
+                toolbar:toolbar
+            ">
+            </table>
+        </div>
+        <div class="easyui-panel" title="关联账号" style="padding:10px;">
+        </div>
+    </div>
+</div>
+<div class="easyui-dialog" id="add-family-dialog" style="width:360px;" modal=true closed=true iconCls='Disk' title="添加家庭成员" buttons="#add-family-dialog-buttons">
+    <form method="post" class="form">
+        <div class="form-group">
+            <input class="easyui-textbox" style="width:99%;" label="姓名:" name="nickname">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" style="width:99%;" label="电话:" name="name">
+        </div>
+    </form>
+</div>
+<div id="add-family-dialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="alert('save')">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add-family-dialog').dialog('close')">取消</a>
+</div>
+<script>
+var userPropertyColumns = [
+    [{
+        field: 'name',
+        title: '名称',
+        width: 80
+    }, {
+        field: 'value',
+        title: '值',
+        width: 120
+    }]
+];
+var familyColumns = [
+    [{
+        field: 'name',
+        title: '姓名',
+        width: 80
+    }, {
+        field: 'value',
+        title: '电话',
+        width: 120
+    }]
+];
+
+var toolbar = [{
+    text: '添加',
+    iconCls: 'Add',
+    handler: function() {
+        $('#add-family-dialog').dialog('open');
+    }
+}, {
+    text: '删除',
+    iconCls: 'Delete',
+    handler: function() {
+        alert('Delete')
+    }
+}];
+
+$(function() {
+    $('#user-container').portal({
+        border: false
+    });
+});
+</script>

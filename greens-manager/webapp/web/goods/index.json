@@ -1,0 +1,13 @@
+{
+    "total": 28,
+    "rows": [{
+        "id": 1,
+        "name": "南瓜",
+        "abridge": "NG",
+        "code": "SC20135",
+        "category_name": "瓜类",
+        "description": "南瓜（学名：Cucurbita moschata (Duch. ex Lam.) Duch. ex Poiret）葫芦科南瓜属的一个种，一年生蔓生草本植物，茎常节部生根，叶柄粗壮，叶片宽卵形或卵圆形，质稍柔软，叶脉隆起，卷须稍粗壮，雌雄同株，果梗粗壮，有棱和槽，因品种而异，外面常有数条纵沟或无，种子多数，长卵形或长圆形。",
+        "created_time": "2016-08-31 12:33:00",
+        "updated_time": "2016-08-31 21:44:22"
+    }]
+}

@@ -1,0 +1,35 @@
+<!-- 商品采购单列表 -->
+<table id="purchase-list" class="easyui-datagrid" border=false fit=true striped=true fitColumns=true singleSelect=true selectOnCheck=false pagination=true toolbar="#purchase-toolbar" url="/goods/purchase/index.json" method="get">
+    <thead>
+        <tr>
+            <th field='id' align="center" width="10%">采购单号</th>
+            <th field='created_time' align="center" width="12%">采购日期</th>
+            <th field='name' align="left" width="15%">批次名称</th>
+            <th field='total_price' align="right" width="6%">总金额</th>
+            <th field='purchaser_name' align="left" width="10%">采购人</th>
+            <th field='operator_name' align="left" width="10%">录入人</th>
+            <th field='description' align="left" width="30%">备注</th>
+            <th field='audit' align="left" width="6%">是否核对</th>
+        </tr>
+    </thead>
+</table>
+<div id="purchase-toolbar">
+    <div class="clearfix">
+        <div style="float:left;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Add" plain="true" onclick="$('#add-purchase-dialog').dialog('open')">添加</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Delete" plain="true" onclick="">删除</a>
+        </div>
+        <div class="datagrid-btn-separator"></div>
+        <div>
+            <input class="easyui-textbox" style="width:160px" prompt="采购单">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Magnifier" onclick="search()">搜索</a>
+        </div>
+    </div>
+</div>
+<!-- 添加采购单 -->
+<div id="add-purchase-dialog" class="easyui-dialog" modal=true closed=true iconCls='Disk' title="添加采购单" buttons="#add-purchase-dialog-buttons" href="/goods/purchase/add_purchase.html" width=640 height=500 style="padding:10px;">
+</div>
+<div id="add-purchase-dialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="alert('save')">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add-purchase-dialog').dialog('close')">取消</a>
+</div>

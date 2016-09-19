@@ -1,24 +1,79 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html>
+
 <head>
+    <title>蔬果佳园店营管理系统 - V3.0</title>
     <#include "/layout/meta.html" />
     <title>首页</title>
 </head>
 <body>
-<#include "layout/navbar.html" />
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            <#include "/layout/sidebar.html" />
-        </div>
+<div class="easyui-layout" id="main-content" style="width:100%;">
+    <#include "/layout/header.html" />
 
-        <div class="col-md-10">
+    <#include "/layout/sidebar.html" />
 
+    <!-- 内容区域 -->
+    <div region="center" border=false>
+        <div class="easyui-tabs" data-options="fit:true">
+            <div title="首页" id="tabRoot" href='/dashboard.html'></div>
         </div>
     </div>
 </div>
 
-<#include "/layout/footer.html" />
 </body>
+<script>
+    $(function () {
+        // 页面布局框架高度
+        $(window).resize(function () {
+            var mainContent = $('#main-content');
+            mainContent.layout('resize', {
+                height: ($(window).height() - 5)
+            });
+        }).resize();
+
+        // 左边导航栏点击添加 Tab Panel
+        $('.easyui-datalist').datalist({
+            onSelect: function (index, row) {
+                // 所有已显示的 tabs
+                var tabs = $.grep($('.easyui-tabs').tabs('tabs'), function (tab) {
+                    return row.value == tab.panel("options").href;
+                });
+
+                // 如果已经打开设置选中，否则添加一个
+                if ($.isEmptyObject(tabs)) {
+                    $('.easyui-tabs').tabs("add", {
+                        title: row.text,
+                        href: row.value,
+                        fit: true,
+                        closable: true
+                    });
+                } else {
+                    $('.easyui-tabs').tabs("select", row.text);
+                }
+            }
+        });
+
+        // 关闭页面Tabs按钮
+        $('#closeTabBtn').linkbutton({
+            onClick: function () {
+                var tabs = $('.easyui-tabs').tabs('tabs');
+                if (tabs.length > 1) {
+                    $('.easyui-tabs').tabs('close', tabs.length - 1);
+                }
+            }
+        });
+
+    });
+
+    // 当前选择的页面设置内容
+    function setCurrentTab(title, href) {
+        $('.easyui-tabs').tabs("add", {
+            title: title,
+            href: href,
+            fit: true,
+            closable: true
+        });
+    }
+</script>
 </html>

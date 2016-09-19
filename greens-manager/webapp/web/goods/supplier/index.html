@@ -1,0 +1,55 @@
+<!-- 供应商列表 -->
+<table id="supplier-list" class="easyui-datagrid" border=false fit=true striped=true fitColumns=true singleSelect=true selectOnCheck=false pagination=true toolbar="#supplier-toolbar" url="/goods/supplier/index.json" method="get">
+    <thead>
+        <tr>
+            <th field='ck' checkbox=true width="5% "></th>
+            <th field='name' align="center" width="15%">供应商名称</th>
+            <th field='code' align="center" width="10%">联系人</th>
+            <th field='description' align="left" width="30%">联系的电话</th>
+            <th field='created_time' align="right" width="12% ">地址</th>
+            <th field='updated_time' align="right" width="12%">描述</th>
+        </tr>
+    </thead>
+</table>
+<div id="supplier-toolbar">
+    <div class="clearfix">
+        <div style="float:left;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Add" plain="true" onclick="$('#add-supplier-dialog').dialog('open')">添加</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Delete" plain="true" onclick="">删除</a>
+        </div>
+        <div class="datagrid-btn-separator"></div>
+        <div>
+            <input class="easyui-textbox" style="width:160px" prompt="供应商名称">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="Magnifier" onclick="search()">搜索</a>
+        </div>
+    </div>
+</div>
+<!-- 添加供应商 -->
+<div id="add-supplier-dialog" class="easyui-dialog" modal=true closed=true iconCls='Disk' title="添加供应商" buttons="#add-supplier-dialog-buttons" style="width:360px;">
+    <form method="post" class="form">
+        <div class="form-group">
+            <input class="easyui-textbox" label="供应商名称:" name="name" style="width:99%;">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" label="联系人:" name="name" style="width:99%;">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" label="联系的电话:" name="linkphone" style="width:99%;">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" label="地址:" name="address" style="width:99%;">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" label="描述:" name="linkphone" multiline="true" style="width:99%;height:60px">
+        </div>
+    </form>
+</div>
+<div id="add-supplier-dialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="alert('save')">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add-supplier-dialog').dialog('close')">取消</a>
+</div>
+<script>
+$(function() {
+
+});
+</script>

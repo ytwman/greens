@@ -43,6 +43,9 @@ public class UpsRoleService {
     @Resource
     UpsPermissionService upsPermissionService;
 
+    /**
+     * 返回角色权限对应的增强
+     */
     @Cacheable("UpsRoleService.allRoleAndPermission")
     public List<UpsPermissionExtend> allRoleAndPermission() {
         List<UpsPermissionExtend> upsPermissionExtends = new ArrayList<>();

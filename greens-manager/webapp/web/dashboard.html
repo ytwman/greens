@@ -1,0 +1,41 @@
+<div id="dashboard-container">
+    <div style="width:50%"></div>
+    <div style="width:50%"></div>
+</div>
+<div id="update-container"></div>
+<div id="notice-container"></div>
+<script>
+    $(function () {
+        $('#dashboard-container').portal({
+            border: false
+        });
+        $('#update-container').panel({
+            title: '日志升级',
+            height: 150,
+            fit: true,
+            collapsible: true
+        });
+
+        // add the panel to portal
+        $('#dashboard-container').portal('add', {
+            panel: $('#update-container').panel(),
+            columnIndex: 0
+        });
+
+
+        $('#notice-container').panel({
+            title: '公告',
+            height: 150,
+            fit: true,
+            collapsible: true,
+            href: "notice.html",
+            method: "get"
+        });
+
+        // add the panel to portal
+        $('#dashboard-container').portal('add', {
+            panel: $('#notice-container').panel(),
+            columnIndex: 1
+        });
+    });
+</script>
