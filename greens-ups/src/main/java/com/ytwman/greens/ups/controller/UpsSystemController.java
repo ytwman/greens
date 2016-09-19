@@ -6,13 +6,15 @@
  */
 package com.ytwman.greens.ups.controller;
 
+import com.ytwman.greens.commons.cache.HttpExtend;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.service.UpsUserService;
-import com.ytwman.greens.ups.support.HttpExtend;
+import com.ytwman.greens.ups.support.Permission;
 import com.ytwman.greens.ups.support.UpsUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -32,6 +34,13 @@ public class UpsSystemController {
     @Resource
     UpsUserService upsUserService;
 
+    @Permission
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public Object index(ModelAndView modelAndView) {
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
     /**
      * 登录页面
      */
@@ -43,6 +52,7 @@ public class UpsSystemController {
     /**
      * 账号登录操作
      */
+    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public Object login(String username, String password, HttpServletRequest request) {
         UpsUser upsUser = upsUserService.login(username, password);
@@ -50,13 +60,9 @@ public class UpsSystemController {
             // 保存 Session 状态
             HttpSession httpSession = request.getSession();
             httpSession.setAttribute(HttpExtend.Session.UserId, upsUser.getId());
-            return "redirect:/";
         }
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("errors", "<strong>登录失败!</strong> 账号或密码不正确,请重新输入!");
-
-        return login(modelAndView);
+        return upsUser != null;
     }
 
     /**
@@ -67,5 +73,12 @@ public class UpsSystemController {
         // 先清除所有用户的 session
         UpsUtils.cleanSession(request.getSession());
         return "redirect:/login";
+    }
+
+    @Permission
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/test")
+    public Object test() {
+        return true;
     }
 }

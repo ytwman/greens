@@ -57,8 +57,8 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     public PermissionInterceptor() {
         this.filterPath = new ArrayList<>();
 
-        this.filterPath.add("/login");
-        this.filterPath.add("/");
+//        this.filterPath.add("/login");
+//        this.filterPath.add("/");
     }
 
     @Override
@@ -68,9 +68,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        /**
-         * 如果开启则跳过
-         */
+        // 如果开启则跳过
         if (enable) {
             return true;
         }
@@ -100,27 +98,18 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             throw new Exception("没有足够权限访问");
         }
 
-        loggerOperator(request);
-
         return super.preHandle(request, response, handler);
     }
 
-    public void loggerOperator(HttpServletRequest request) throws Exception {
-
-        Long userId = UpsUtils.getUserId(request.getSession());
-        if (userId == null) {
-            return;
-        }
-
-        UpsUser upsUser = upsUserService.getUpsUser(userId);
-
+    public void loggerOperator(HttpServletRequest request, UpsUser upsUser) throws Exception {
         UpsPermission upsPermission = null;
         String path = request.getServletPath();
 
         List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
         for (UpsPermissionExtend upsPermissionExtend : upsPermissionExtends) {
-            if (path.startsWith(upsPermissionExtend.getPath())) {
+            if (upsPermissionExtend.getPath().startsWith(path)) {
                 upsPermission = upsPermissionExtend;
+                break;
             }
         }
 
@@ -138,22 +127,25 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) throws Exception {
         super.postHandle(request, response, handler, modelAndView);
+
+        // 如果已经登录, 返回用户实体
         Long userId = UpsUtils.getUserId(request.getSession());
         if (userId == null) {
             return;
         }
 
         UpsUser upsUser = upsUserService.getUpsUser(userId);
-
-        if (modelAndView != null)
+        if (modelAndView != null) {
             modelAndView.addObject("upsUser", upsUser);
+        }
+
+        // 记录操作日志
+        // TODO 当执行过程中异常了,那么还会进入 postHandle 么. 这样就无法记录到操作日志了.
+        loggerOperator(request, upsUser);
     }
 
     /**
      * 是否登录
-     *
-     * @param httpSession
-     * @return
      */
     public boolean doLogin(HttpSession httpSession) {
         return UpsUtils.getUserId(httpSession) != null;
@@ -161,9 +153,6 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * 是否有权限访问
-     *
-     * @param request
-     * @return
      */
     public boolean doPermission(HttpServletRequest request) {
 
@@ -174,6 +163,13 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
         // 验证权限
         Long userId = UpsUtils.getUserId(request.getSession());
+
+        // 如果是管理员直接跳过
+        UpsUser upsUser = upsUserService.getUpsUser(userId);
+        if (UpsUtils.isAdmin(upsUser)) {
+            return true;
+        }
+
         List<UpsUserRole> upsUserRoles = upsUserService.getUpsUserRole(userId);
         if (CollectionUtils.isEmpty(upsUserRoles)) {
             throw new RuntimeException("当前登录用户未设置角色");
@@ -182,8 +178,9 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
         for (UpsUserRole upsUserRole : upsUserRoles) {
             for (UpsPermissionExtend upsPermission : upsPermissionExtends) {
+                //  /test 和 /test/ 是同一个路径
                 if (upsPermission.getRoleId().equals(upsUserRole.getRoleId())
-                        && upsPermission.getPath().equals(path)) {
+                        && upsPermission.getPath().startsWith(path)) {
                     return true;
                 }
             }

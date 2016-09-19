@@ -39,6 +39,7 @@
                     <list>
                         <value>text/html;charset=UTF-8</value>
                         <value>application/json;charset=UTF-8</value>
+                        <value>application/javascript;charset=UTF-8</value>
                     </list>
                 </property>
             </bean>
@@ -49,14 +50,14 @@
     <mvc:resources mapping="/stylesheets/**" location="/stylesheets/"/>
     <mvc:resources mapping="/vendor/**"      location="/vendor/"/>
     <mvc:resources mapping="/images/**"      location="/images/"/>
-    <mvc:resources mapping="/**"      location="/web/"/>
+    <!--<mvc:resources mapping="/**"      location="/web/"/>-->
 
     <mvc:interceptors>
         <!-- 统一权限管理系统 -->
         <mvc:interceptor>
             <mvc:mapping path="/**/"/>
             <bean class="com.ytwman.greens.ups.support.PermissionInterceptor">
-                <property name="enable" value="true" />
+                <!--<property name="enable" value="true" />-->
             </bean>
         </mvc:interceptor>
     </mvc:interceptors>

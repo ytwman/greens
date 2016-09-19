@@ -6,6 +6,7 @@
  */
 package com.ytwman.greens.ups.support;
 
+import com.ytwman.greens.commons.cache.HttpExtend;
 import com.ytwman.greens.ups.entity.UpsUser;
 
 import javax.servlet.http.HttpServletRequest;

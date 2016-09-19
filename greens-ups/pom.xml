@@ -20,6 +20,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.ytwman</groupId>
+            <artifactId>greens-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
