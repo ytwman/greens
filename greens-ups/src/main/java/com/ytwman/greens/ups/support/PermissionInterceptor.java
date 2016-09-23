@@ -14,6 +14,8 @@ import com.ytwman.greens.ups.service.UpsRoleService;
 import com.ytwman.greens.ups.service.UpsUserService;
 import com.ytwman.greens.ups.service.model.UpsPermissionExtend;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +29,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author 忽忽(huhu)
@@ -34,6 +37,8 @@ import java.util.List;
  * @since [产品/模块版本] （可选）
  */
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource
     UpsUserService upsUserService;
@@ -90,7 +95,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
         // 需要登录访问, 如果未登录先登录
         if (!doLogin(httpSession)) {
-            return redirectLogin(request, response);
+            return doRedirectLogin(request, response);
         }
 
         // 需要授权访问, 如果没有权限访问抛出异常提醒用户
@@ -103,18 +108,17 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
     public void loggerOperator(HttpServletRequest request, UpsUser upsUser) throws Exception {
         UpsPermission upsPermission = null;
-        String path = request.getServletPath();
 
         List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
         for (UpsPermissionExtend upsPermissionExtend : upsPermissionExtends) {
-            if (upsPermissionExtend.getPath().startsWith(path)) {
+            if (modelCompare(request, upsPermissionExtend)) {
                 upsPermission = upsPermissionExtend;
                 break;
             }
         }
 
         if (upsPermission == null) {
-            throw new Exception(String.format("没有找到此路径对应的权限, [%s]", path));
+            throw new Exception(String.format("没有找到此路径对应的权限, [%s]", request.getServletPath()));
         }
 
         String clientIp = UpsUtils.getClientIp(request);
@@ -156,8 +160,8 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      */
     public boolean doPermission(HttpServletRequest request) {
 
-        String path = request.getServletPath();
-        if (doFilter(path)) {
+        // 默认跳过的一些请求
+        if (doFilter(request.getServletPath())) {
             return true;
         }
 
@@ -175,14 +179,25 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
             throw new RuntimeException("当前登录用户未设置角色");
         }
 
+        // 匹配请求路径对应的功能权限
+        UpsPermissionExtend upsPermissionExtend = null;
         List<UpsPermissionExtend> upsPermissionExtends = upsRoleService.allRoleAndPermission();
+        for (UpsPermissionExtend upsPermission : upsPermissionExtends) {
+            if (modelCompare(request, upsPermission)) {
+                upsPermissionExtend = upsPermission;
+                break;
+            }
+        }
+
+        // 如果配有匹配到对应路径的权限
+        if (upsPermissionExtend == null) {
+            throw new RuntimeException(String.format("没有找到此路径对应的权限, [%s]", request.getServletPath()));
+        }
+
+        // 匹配用户角色是否和对应的权限相同, 如果有相同的就放行
         for (UpsUserRole upsUserRole : upsUserRoles) {
-            for (UpsPermissionExtend upsPermission : upsPermissionExtends) {
-                //  /test 和 /test/ 是同一个路径
-                if (upsPermission.getRoleId().equals(upsUserRole.getRoleId())
-                        && upsPermission.getPath().startsWith(path)) {
-                    return true;
-                }
+            if (upsUserRole.getRoleId().equals(upsPermissionExtend.getRoleId())) {
+                return true;
             }
         }
 
@@ -206,14 +221,16 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      * @param response
      * @return
      */
-    public boolean redirectLogin(HttpServletRequest request, HttpServletResponse response) {
+    public boolean doRedirectLogin(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
 
+        RequestType requestType = RequestType.get(request);
+
         try {
-            if (RequestType.HTML.equals(RequestType.get(request))) {
+            if (RequestType.HTML.equals(requestType)) {
                 response.sendRedirect(request.getContextPath() + "/login");
             }
-            if (RequestType.JSON.equals(RequestType.get(request))) {
+            if (RequestType.JSON.equals(requestType)) {
                 out = response.getWriter();
                 out.print(StringUtils.join("<script>top.location.href='/login';</script>"));
             }
@@ -225,6 +242,32 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         }
 
         return false;
+    }
+
+    public boolean modelCompare(HttpServletRequest request, UpsPermissionExtend upsPermissionExtend) {
+        // 实际请求 -> 配置项目
+        // /test/ -> /test
+        // /test  -> /test
+        // /test  -> /
+        // 针对以上三种情况, 如果当前访问的是  首页 "/" 那么直接相等匹配,如果不是
+
+        // /test/1 -> /test/*
+
+        String requestPath = request.getServletPath();
+        String path = upsPermissionExtend.getPath();
+
+        if (path.equals("/")) {
+            return requestPath.equals(path);
+        }
+
+        // 判断路径和动作相符合
+        path = "^" + path.replace("*", "[a-zA-Z_0-9]+/?");
+        Pattern pattern = Pattern.compile(path, Pattern.CASE_INSENSITIVE);
+
+        logger.debug("验证权限, 请求路径:{}, 动作:{}, 权限路径:{}, 动作:{}",
+                requestPath, request.getMethod(), path, upsPermissionExtend.getAction());
+
+        return request.getMethod().equals(upsPermissionExtend.getAction()) && pattern.matcher(requestPath).matches();
     }
 
     public void setFilterPath(List<String> filterPath) {

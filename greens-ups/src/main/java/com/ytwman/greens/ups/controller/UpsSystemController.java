@@ -45,7 +45,10 @@ public class UpsSystemController {
      * 登录页面
      */
     @RequestMapping(method = RequestMethod.GET, value = "/login")
-    public Object login(ModelAndView modelAndView) {
+    public Object login(ModelAndView modelAndView, HttpSession httpSession) {
+        if (UpsUtils.getUserId(httpSession) != null) {
+            return "redirect:/";
+        }
         return modelAndView;
     }
 

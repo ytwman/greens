@@ -24,6 +24,7 @@ public class UpsPermissionExtend extends UpsPermission {
         this.setId(upsPermission.getId());
         this.setName(upsPermission.getName());
         this.setParentId(upsPermission.getParentId());
+        this.setAction(upsPermission.getAction());
         this.setPath(upsPermission.getPath());
         this.setDescription(upsPermission.getDescription());
         this.setCreatedTime(upsPermission.getCreatedTime());
@@ -35,6 +36,7 @@ public class UpsPermissionExtend extends UpsPermission {
         this.setId(upsPermission.getId());
         this.setName(upsPermission.getName());
         this.setParentId(upsPermission.getParentId());
+        this.setAction(upsPermission.getAction());
         this.setPath(upsPermission.getPath());
         this.setDescription(upsPermission.getDescription());
         this.setCreatedTime(upsPermission.getCreatedTime());

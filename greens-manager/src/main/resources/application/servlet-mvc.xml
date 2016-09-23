@@ -50,12 +50,13 @@
     <mvc:resources mapping="/stylesheets/**" location="/stylesheets/"/>
     <mvc:resources mapping="/vendor/**"      location="/vendor/"/>
     <mvc:resources mapping="/images/**"      location="/images/"/>
-    <!--<mvc:resources mapping="/**"      location="/web/"/>-->
+    <mvc:resources mapping="/web/**"         location="/web/"/>
 
     <mvc:interceptors>
         <!-- 统一权限管理系统 -->
         <mvc:interceptor>
             <mvc:mapping path="/**/"/>
+            <mvc:exclude-mapping path="/web/**"/>
             <bean class="com.ytwman.greens.ups.support.PermissionInterceptor">
                 <!--<property name="enable" value="true" />-->
             </bean>
