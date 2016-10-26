@@ -33,7 +33,7 @@
         // 左边导航栏点击添加 Tab Panel
         $('.easyui-datalist').datalist({
             onSelect: function (index, row) {
-                row.value = contextPath + '/web/' + row.value;
+                row.value = contextPath + row.value;
                 // 所有已显示的 tabs
                 var tabs = $.grep($('.easyui-tabs').tabs('tabs'), function (tab) {
                     return row.value == tab.panel("options").href;

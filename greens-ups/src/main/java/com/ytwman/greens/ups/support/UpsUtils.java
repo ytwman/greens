@@ -20,6 +20,10 @@ import java.net.UnknownHostException;
  * @since [产品/模块版本] （可选）
  */
 public class UpsUtils {
+
+    // 保存当前登录的用户信息
+    ThreadLocal<UpsUser> current = null;
+
     /**
      * 获取用户主键
      */
