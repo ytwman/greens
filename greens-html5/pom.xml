@@ -13,5 +13,10 @@
     <artifactId>greens-html5</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <project.name>greens-html5</project.name>
+    </properties>
+
 
 </project>
