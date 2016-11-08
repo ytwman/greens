@@ -3,18 +3,16 @@ package com.ytwman.greens.commons.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SupplierBusiness implements Serializable {
+public class GoodsCategoryEntity implements Serializable {
     private Long id;
+
+    private Long parentId;
+
+    private String code;
 
     private String name;
 
     private String description;
-
-    private String linkman;
-
-    private String linkphone;
-
-    private String address;
 
     private Date createdTime;
 
@@ -32,6 +30,22 @@ public class SupplierBusiness implements Serializable {
         this.id = id;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
     public String getName() {
         return name;
     }
@@ -46,30 +60,6 @@ public class SupplierBusiness implements Serializable {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
-    }
-
-    public String getLinkman() {
-        return linkman;
-    }
-
-    public void setLinkman(String linkman) {
-        this.linkman = linkman == null ? null : linkman.trim();
-    }
-
-    public String getLinkphone() {
-        return linkphone;
-    }
-
-    public void setLinkphone(String linkphone) {
-        this.linkphone = linkphone == null ? null : linkphone.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
     }
 
     public Date getCreatedTime() {
@@ -103,11 +93,10 @@ public class SupplierBusiness implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", code=").append(code);
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
-        sb.append(", linkman=").append(linkman);
-        sb.append(", linkphone=").append(linkphone);
-        sb.append(", address=").append(address);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);
