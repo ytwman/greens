@@ -7,9 +7,6 @@
 package com.ytwman.greens.manager.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author 忽忽(huhu)
@@ -19,9 +16,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public Object index(ModelAndView modelAndView) {
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
 }
