@@ -7,7 +7,6 @@
 package com.ytwman.greens.ups.controller;
 
 import com.ytwman.greens.ups.support.Permission;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-@Controller
+//@Controller
 @RequestMapping("/settings")
 public class UpsSettingsController {
 

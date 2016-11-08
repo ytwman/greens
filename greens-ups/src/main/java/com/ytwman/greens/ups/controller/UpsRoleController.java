@@ -11,7 +11,6 @@ import com.ytwman.greens.ups.service.UpsRoleService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -21,7 +20,7 @@ import javax.validation.Valid;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-@RestController
+//@RestController
 @RequestMapping("/roles")
 public class UpsRoleController {
 

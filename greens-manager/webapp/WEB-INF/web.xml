@@ -26,9 +26,7 @@
     <!-- 管理目录下的资源文件 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/javascripts/*</url-pattern>
-        <url-pattern>/stylesheets/*</url-pattern>
-        <url-pattern>/vendor/*</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -42,7 +40,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
     <!-- spring 字符编码过滤器 -->

@@ -5,7 +5,7 @@ body {
 .head_area {
     height: 70px;
     border-top: none;
-    background: url('/images/head.gif') repeat-x 0 -10px;
+    background: url('/assets/images/head.gif') repeat-x 0 -10px;
 }
 
 .head_area .brand h3 {

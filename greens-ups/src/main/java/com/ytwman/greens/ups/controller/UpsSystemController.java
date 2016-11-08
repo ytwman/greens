@@ -9,7 +9,6 @@ package com.ytwman.greens.ups.controller;
 import com.ytwman.greens.commons.cache.HttpExtend;
 import com.ytwman.greens.ups.entity.UpsUser;
 import com.ytwman.greens.ups.service.UpsUserService;
-import com.ytwman.greens.ups.support.Permission;
 import com.ytwman.greens.ups.support.UpsUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +32,6 @@ public class UpsSystemController {
 
     @Resource
     UpsUserService upsUserService;
-
-    @Permission
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public Object index(ModelAndView modelAndView) {
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
 
     /**
      * 登录页面
@@ -76,12 +68,5 @@ public class UpsSystemController {
         // 先清除所有用户的 session
         UpsUtils.cleanSession(request.getSession());
         return "redirect:/login";
-    }
-
-    @Permission
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = "/test")
-    public Object test() {
-        return true;
     }
 }

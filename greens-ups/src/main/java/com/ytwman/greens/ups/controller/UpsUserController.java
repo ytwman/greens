@@ -13,7 +13,6 @@ import com.ytwman.greens.ups.service.UpsOperationLogService;
 import com.ytwman.greens.ups.service.UpsUserService;
 import com.ytwman.greens.ups.support.Permission;
 import com.ytwman.greens.ups.support.UpsUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +31,7 @@ import java.util.Map;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-@Controller
+//@Controller
 @RequestMapping("/users")
 public class UpsUserController {
 

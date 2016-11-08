@@ -46,22 +46,16 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <mvc:resources mapping="/javascripts/**" location="/javascripts/"/>
-    <mvc:resources mapping="/stylesheets/**" location="/stylesheets/"/>
-    <mvc:resources mapping="/vendor/**"      location="/vendor/"/>
-    <mvc:resources mapping="/images/**"      location="/images/"/>
-    <mvc:resources mapping="/web/**"         location="/web/"/>
-
-    <mvc:interceptors>
-        <!-- 统一权限管理系统 -->
+    <!-- 统一权限管理系统 -->
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/"/>
             <mvc:exclude-mapping path="/**/*.html*"/>
             <bean class="com.ytwman.greens.ups.support.PermissionInterceptor">
-                <!--<property name="enable" value="true" />-->
+
             </bean>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
     <!-- 国际化资源 -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

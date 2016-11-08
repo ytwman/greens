@@ -1,12 +1,15 @@
 /*
  * Copyright (C), 2014-2015, 杭州小卡科技有限公司
  * Author:  忽忽(huhu)
- * Date:    16/8/29 上午4:04
+ * Date:    16/11/8 下午10:45
  * Description: 
  */
 package com.ytwman.greens.manager.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author 忽忽(huhu)
@@ -16,10 +19,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class IndexController {
 
-//    @Permission
-//    @RequestMapping(method = RequestMethod.GET)
-//    public Object index(ModelAndView modelAndView) {
-//        modelAndView.setViewName("index");
-//        return modelAndView;
-//    }
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public Object index(ModelAndView modelAndView) {
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
 }
