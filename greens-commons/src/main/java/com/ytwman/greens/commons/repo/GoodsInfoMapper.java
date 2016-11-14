@@ -6,6 +6,7 @@
  */
 package com.ytwman.greens.commons.repo;
 
+import com.ytwman.greens.commons.core.web.Pagination;
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,10 +22,9 @@ public interface GoodsInfoMapper {
     /**
      * 查询分页商品
      *
-     * @param offset
-     * @param limit
+     * @param pagination
      * @return
      */
-    List<GoodsInfoEntity> selectByPagination(@Param("offset") int offset, @Param("limit") int limit);
+    List<GoodsInfoEntity> selectByPagination(@Param("page") Pagination pagination);
 
 }

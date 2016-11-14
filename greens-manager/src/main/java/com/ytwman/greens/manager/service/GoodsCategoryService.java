@@ -6,9 +6,11 @@
  */
 package com.ytwman.greens.manager.service;
 
+import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntityExample;
 import com.ytwman.greens.commons.entity.mapper.base.GoodsCategoryEntityMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,9 +27,15 @@ public class GoodsCategoryService {
     @Resource
     GoodsCategoryEntityMapper goodsCategoryEntityMapper;
 
-    public List<GoodsCategoryEntity> getAll() {
+    public List<GoodsCategoryEntity> getAll(String keywords) {
         GoodsCategoryEntityExample example = new GoodsCategoryEntityExample();
-        example.or().andIsDeleteEqualTo(0);
+        example.setOrderByClause("id desc");
+
+        if (StringUtils.isNotEmpty(keywords)) {
+            example.or().andIsDeleteEqualTo(0).andCodeLike(Like.right(keywords));
+            example.or().andIsDeleteEqualTo(0).andNameLike(Like.right(keywords));
+        }
+
         return goodsCategoryEntityMapper.selectByExample(example);
     }
 

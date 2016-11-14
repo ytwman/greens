@@ -2,10 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ytwman.greens.commons.repo.GoodsInfoMapper">
 
-    <select id="selectByPagination" parameterType="java.util.Map"
-            resultType="com.ytwman.greens.commons.entity.GoodsInfoEntity">
+    <select id="selectByPagination" resultType="com.ytwman.greens.commons.entity.GoodsInfoEntity">
       SELECT * FROM goods_info WHERE is_delete = 0
       ORDER BY id DESC
-      LIMIT #{offset}, #{limit};
+      LIMIT #{page.offset}, #{page.limit};
     </select>
 </mapper>

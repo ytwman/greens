@@ -67,7 +67,7 @@ public class Pagination {
     }
 
     public int getOffset() {
-        return (page < 0 ? 0 : page - 1) * rows;
+        return (page <= 0 ? 0 : page - 1) * rows;
     }
 
     public int getLimit() {

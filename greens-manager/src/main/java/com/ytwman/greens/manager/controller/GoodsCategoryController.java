@@ -28,8 +28,8 @@ public class GoodsCategoryController {
     GoodsCategoryService goodsCategoryService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object index() {
-        return goodsCategoryService.getAll();
+    public Object index(String keywords) {
+        return goodsCategoryService.getAll(keywords);
     }
 
     @RequestMapping("/{categoryId}")

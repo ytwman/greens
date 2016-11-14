@@ -30,7 +30,7 @@ public class GoodsInfoService {
     GoodsInfoMapper goodsInfoMapper;
 
     public List<GoodsInfoEntity> getAll(Pagination pagination) {
-        return goodsInfoMapper.selectByPagination(pagination.getOffset(), pagination.getLimit());
+        return goodsInfoMapper.selectByPagination(pagination);
     }
 
     public GoodsInfoEntity get(Long goodsId) {
