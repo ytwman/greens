@@ -6,7 +6,14 @@
  */
 package com.ytwman.greens.manager.controller;
 
+import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
+import com.ytwman.greens.manager.service.GoodsCategoryService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author 忽忽(huhu)
@@ -14,6 +21,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @since [产品/模块版本] （可选）
  */
 @RestController
+@RequestMapping("/goods_category")
 public class GoodsCategoryController {
 
+    @Resource
+    GoodsCategoryService goodsCategoryService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Object index() {
+        return goodsCategoryService.getAll();
+    }
+
+    @RequestMapping("/{categoryId}")
+    public Object show(@PathVariable("categoryId") Long categoryId) {
+        return goodsCategoryService.get(categoryId);
+    }
+
+    @RequestMapping("/create")
+    public void create(GoodsCategoryEntity entity) {
+        goodsCategoryService.save(entity);
+    }
+
+    @RequestMapping("update")
+    public void update(GoodsCategoryEntity entity) {
+        goodsCategoryService.update(entity);
+    }
 }

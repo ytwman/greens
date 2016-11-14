@@ -24,7 +24,7 @@
 
     <!-- 扫描指定包下的 Mapper 类文件, 可以加载到 Spring Bean 容器中,并且 从 sqlSession 种拿到该类的实例 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ytwman.greens.*.entity"/>
+        <property name="basePackage" value="com.ytwman.greens.commons"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
