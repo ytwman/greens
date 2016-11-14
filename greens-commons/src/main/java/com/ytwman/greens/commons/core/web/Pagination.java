@@ -4,7 +4,7 @@
  * Date:    16/11/14 上午2:24
  * Description: 
  */
-package com.ytwman.greens.commons;
+package com.ytwman.greens.commons.core.web;
 
 /**
  * @author 忽忽(huhu)

@@ -6,7 +6,7 @@
  */
 package com.ytwman.greens.manager.controller;
 
-import com.ytwman.greens.commons.Pagination;
+import com.ytwman.greens.commons.core.web.Pagination;
 import com.ytwman.greens.manager.service.GoodsInfoService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

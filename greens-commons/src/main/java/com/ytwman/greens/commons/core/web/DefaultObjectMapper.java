@@ -4,7 +4,7 @@
  * Date:    16/11/14 上午2:07
  * Description: 
  */
-package com.ytwman.greens.commons;
+package com.ytwman.greens.commons.core.web;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

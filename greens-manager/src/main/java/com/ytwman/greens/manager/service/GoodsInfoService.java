@@ -6,7 +6,7 @@
  */
 package com.ytwman.greens.manager.service;
 
-import com.ytwman.greens.commons.Pagination;
+import com.ytwman.greens.commons.core.web.Pagination;
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
 import com.ytwman.greens.commons.entity.mapper.base.GoodsInfoEntityMapper;
 import com.ytwman.greens.commons.repo.GoodsInfoMapper;

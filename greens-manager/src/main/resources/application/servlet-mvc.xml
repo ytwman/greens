@@ -9,14 +9,15 @@
        default-lazy-init="true">
 
     <!-- 指定根路径直接跳转到指定页面 -->
-    <!--<mvc:view-controller path="/" view-name="index"/>-->
+    <mvc:view-controller path="/" view-name="index"/>
 
     <!-- 配置扫描的注解目录和类型 -->
     <!-- use-default-filters 默认为 true,会扫描 Component Service Reposity -->
     <context:component-scan base-package="com.ytwman.greens.*.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
-        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <!-- 开启注解功能 -->
@@ -27,7 +28,7 @@
                 <property name="prettyPrint" value="true"/>
                 <property name="objectMapper">
                     <!-- http://www.cnblogs.com/kakag/p/5054772.html -->
-                    <bean class="com.ytwman.greens.commons.DefaultObjectMapper"/>
+                    <bean class="com.ytwman.greens.commons.core.web.DefaultObjectMapper"/>
                 </property>
                 <property name="supportedMediaTypes">
                     <list>
