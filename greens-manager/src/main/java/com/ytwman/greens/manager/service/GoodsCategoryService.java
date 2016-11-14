@@ -10,6 +10,9 @@ import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntityExample;
 import com.ytwman.greens.commons.entity.mapper.base.GoodsCategoryEntityMapper;
+import com.ytwman.greens.commons.exception.ApiException;
+import com.ytwman.greens.commons.exception.BusinessExMessage;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +35,10 @@ public class GoodsCategoryService {
         example.setOrderByClause("id desc");
 
         if (StringUtils.isNotEmpty(keywords)) {
-            example.or().andIsDeleteEqualTo(0).andCodeLike(Like.right(keywords));
-            example.or().andIsDeleteEqualTo(0).andNameLike(Like.right(keywords));
+            example.or().andIsDeleteEqualTo(0).andCodeLike(Like.all(keywords));
+            example.or().andIsDeleteEqualTo(0).andNameLike(Like.all(keywords));
+        } else {
+            example.or().andIsDeleteEqualTo(0);
         }
 
         return goodsCategoryEntityMapper.selectByExample(example);
@@ -48,6 +53,22 @@ public class GoodsCategoryService {
     }
 
     public void update(GoodsCategoryEntity entity) {
+        goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
+    }
+
+    public void delete(Long categoryId) {
+        // 查询是否有子节点
+        GoodsCategoryEntityExample example = new GoodsCategoryEntityExample();
+        example.or().andIsDeleteEqualTo(0).andParentIdEqualTo(categoryId);
+        List<GoodsCategoryEntity> entities = goodsCategoryEntityMapper.selectByExample(example);
+        if (CollectionUtils.isNotEmpty(entities)) {
+            throw new ApiException(BusinessExMessage.GoodsCategoryExistChild);
+        }
+
+        // 删除节点
+        GoodsCategoryEntity entity = new GoodsCategoryEntity();
+        entity.setId(categoryId);
+        entity.setIsDelete(0);
         goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
     }
 }

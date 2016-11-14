@@ -42,8 +42,13 @@ public class GoodsCategoryController {
         goodsCategoryService.save(entity);
     }
 
-    @RequestMapping("update")
+    @RequestMapping("/update")
     public void update(GoodsCategoryEntity entity) {
         goodsCategoryService.update(entity);
+    }
+
+    @RequestMapping("/{categoryId}/delete")
+    public void delete(@PathVariable("categoryId") Long categoryId) {
+        goodsCategoryService.delete(categoryId);
     }
 }
