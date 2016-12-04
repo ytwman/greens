@@ -1,5 +1,7 @@
 package com.ytwman.greens.commons.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,8 +10,10 @@ public class GoodsCategoryEntity implements Serializable {
 
     private Long parentId;
 
+    @NotEmpty(message = "{goods.category.code.NotEmpty}")
     private String code;
 
+    @NotEmpty(message = "{goods.category.name.NotEmpty}")
     private String name;
 
     private String description;

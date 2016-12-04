@@ -2,9 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ytwman.greens.commons.repo.GoodsCategoryMapper">
 
+    <!-- 根据主键查询 -->
+    <select id="findById" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
+        SELECT * FROM goods_category WHERE is_delete = 0 AND id = #{id} limit 1;
+    </select>
+
+    <!-- 根据主键查询节点 -->
+    <select id="findByParentId" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
+        SELECT * FROM goods_category WHERE is_delete = 0 AND parent_id = #{id}
+        ORDER BY id desc;
+    </select>
+
     <!-- 根据编码查询 -->
     <select id="findByCode" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
-      SELECT * FROM goods_category WHERE is_delete = 0 AND code = #{code};
+      SELECT * FROM goods_category WHERE is_delete = 0 AND code = #{code} limit 1;
+    </select>
+
+    <!-- 根据关键字模糊查询商品类目(名称或编码) -->
+    <select id="findAll" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
+        SELECT * FROM goods_category
+        WHERE is_delete = 0
+        <if test="keywords!=null and keywords != ''">
+            AND (code LIKE #{keywords} OR name LIKE #{keywords})
+        </if>
+        ORDER BY id desc;
     </select>
 
 </mapper>

@@ -7,6 +7,9 @@
 package com.ytwman.greens.commons.repo;
 
 import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 忽忽(huhu)
@@ -15,5 +18,34 @@ import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
  */
 public interface GoodsCategoryMapper {
 
-    GoodsCategoryEntity findByCode(String code);
+    /**
+     * 根据主键查询
+     *
+     * @param id
+     * @return
+     */
+    GoodsCategoryEntity findById(@Param("id") Long id);
+
+    /**
+     * 根据主键查询节点
+     * @param id
+     * @return
+     */
+    List<GoodsCategoryEntity> findByParentId(@Param("id") Long id);
+
+    /**
+     * 根据类目编码查询
+     *
+     * @param code
+     * @return
+     */
+    GoodsCategoryEntity findByCode(@Param("code") String code);
+
+    /**
+     * 根据关键字模糊查询商品类目(名称或编码)
+     *
+     * @param keywords
+     * @return
+     */
+    List<GoodsCategoryEntity> findAll(@Param("keywords") String keywords);
 }
