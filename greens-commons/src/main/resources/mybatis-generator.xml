@@ -59,6 +59,11 @@
         <table schema="greens" tableName="goods_info" domainObjectName="GoodsInfoEntity"/>
         <table schema="greens" tableName="goods_attr" domainObjectName="GoodsAttrEntity"/>
 
+        <!-- 供应商和采购单 -->
+        <table schema="greens" tableName="purchase_supplier" domainObjectName="PurchaseSupplierEntity"/>
+        <table schema="greens" tableName="purchase_order" domainObjectName="PurchaseOrderEntity"/>
+        <table schema="greens" tableName="purchase_order_item" domainObjectName="PurchaseOrderItemEntity"/>
+
 
     </context>
 </generatorConfiguration>
