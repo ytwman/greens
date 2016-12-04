@@ -11,5 +11,5 @@ package com.ytwman.greens.commons.repo;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-public class GoodsCategoryMapper {
+public interface GoodsCategoryMapper {
 }

@@ -35,7 +35,7 @@ public class GoodsCategoryService {
         example.setOrderByClause("id desc");
 
         if (StringUtils.isNotEmpty(keywords)) {
-            example.or().andIsDeleteEqualTo(0).andCodeLike(Like.all(keywords));
+            example.or().andIsDeleteEqualTo(0).andCodeLikeInsensitive(Like.all(keywords));
             example.or().andIsDeleteEqualTo(0).andNameLike(Like.all(keywords));
         } else {
             example.or().andIsDeleteEqualTo(0);
@@ -68,7 +68,7 @@ public class GoodsCategoryService {
         // 删除节点
         GoodsCategoryEntity entity = new GoodsCategoryEntity();
         entity.setId(categoryId);
-        entity.setIsDelete(0);
+        entity.setIsDelete(1);
         goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
     }
 }
