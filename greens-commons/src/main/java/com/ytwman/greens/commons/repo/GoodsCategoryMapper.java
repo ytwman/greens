@@ -6,10 +6,14 @@
  */
 package com.ytwman.greens.commons.repo;
 
+import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
+
 /**
  * @author 忽忽(huhu)
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
 public interface GoodsCategoryMapper {
+
+    GoodsCategoryEntity findByCode(String code);
 }

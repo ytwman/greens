@@ -37,7 +37,7 @@ public class GoodsCategoryController {
         return goodsCategoryService.get(categoryId);
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/add")
     public void create(GoodsCategoryEntity entity) {
         goodsCategoryService.save(entity);
     }
@@ -47,7 +47,7 @@ public class GoodsCategoryController {
         goodsCategoryService.update(entity);
     }
 
-    @RequestMapping("/{categoryId}/delete")
+    @RequestMapping("/delete/{categoryId}")
     public void delete(@PathVariable("categoryId") Long categoryId) {
         goodsCategoryService.delete(categoryId);
     }
