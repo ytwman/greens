@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * @author 忽忽(huhu)
@@ -38,7 +39,7 @@ public class GoodsCategoryController {
     }
 
     @RequestMapping("/add")
-    public void create(GoodsCategoryEntity entity) {
+    public void add(@Valid GoodsCategoryEntity entity) {
         goodsCategoryService.save(entity);
     }
 

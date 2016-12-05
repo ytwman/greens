@@ -13,7 +13,7 @@ public class GoodsCategoryEntity implements Serializable {
     @NotEmpty(message = "{goods.category.code.NotEmpty}")
     private String code;
 
-    @NotEmpty(message = "{goods.category.name.NotEmpty}")
+    @NotEmpty(message = "商品类目编码不能为空")
     private String name;
 
     private String description;
