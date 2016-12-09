@@ -12,7 +12,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -42,34 +41,27 @@ public class BusinessExceptionHandler implements ApplicationContextAware {
     }
 
     @ResponseBody
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Object handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        FieldError fieldError = ex.getBindingResult().getFieldError();
-
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("code", BusinessExMessage.Default.getCode());
-        resultMap.put("exMessage", fieldError.getDefaultMessage());
-
-        return resultMap;
-    }
-
-    @ResponseBody
     @ExceptionHandler(Exception.class)
     public Object handleMethodArgumentNotValidException(Exception ex) {
         ex.printStackTrace();
 
+        String exMessage = null;
+
         if (ex instanceof BindException) {
             BindException bindException = (BindException) ex;
-            FieldError fieldError = bindException.getBindingResult().getFieldError();
-
-            Map<String, Object> resultMap = new HashMap<>();
-            resultMap.put("code", BusinessExMessage.Default.getCode());
-            resultMap.put("exMessage", fieldError.getDefaultMessage());
-
-            return resultMap;
+            exMessage = bindException.getBindingResult().getFieldError().getDefaultMessage();
+        } else if (ex instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException validException = (MethodArgumentNotValidException) ex;
+            exMessage = validException.getBindingResult().getFieldError().getDefaultMessage();
+        } else {
+            exMessage = ex.getMessage();
         }
 
-        return ex;
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", BusinessExMessage.Default.getCode());
+        resultMap.put("exMessage", exMessage);
+
+        return resultMap;
     }
 
     @Override
