@@ -4,7 +4,7 @@
  * Date:    16/11/14 下午11:04
  * Description: 
  */
-package com.ytwman.greens.commons.enums;
+package com.ytwman.greens.commons.status;
 
 /**
  * @author 忽忽(huhu)
