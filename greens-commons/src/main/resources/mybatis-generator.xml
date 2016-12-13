@@ -54,9 +54,14 @@
 
         <!-- 如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式。 -->
 
+        <!-- 基础数据 -->
+        <table schema="greens" tableName="base_region" domainObjectName="RegionEntity"/>
+        <table schema="greens" tableName="base_community" domainObjectName="CommunityEntity"/>
+
         <!-- 商品相关 -->
         <table schema="greens" tableName="goods_category" domainObjectName="GoodsCategoryEntity"/>
         <table schema="greens" tableName="goods_info" domainObjectName="GoodsInfoEntity"/>
+        <table schema="greens" tableName="goods_unit" domainObjectName="GoodsUnitEntity"/>
         <table schema="greens" tableName="goods_attr" domainObjectName="GoodsAttrEntity"/>
 
         <!-- 供应商和采购单 -->
@@ -64,6 +69,27 @@
         <table schema="greens" tableName="purchase_order" domainObjectName="PurchaseOrderEntity"/>
         <table schema="greens" tableName="purchase_order_item" domainObjectName="PurchaseOrderItemEntity"/>
 
+        <!-- 用户相关 -->
+        <table schema="greens" tableName="user_account" domainObjectName="UserAccountEntity"/>
+        <table schema="greens" tableName="user_ecobag" domainObjectName="UserEcobagEntity"/>
+        <table schema="greens" tableName="user_family" domainObjectName="UserFamilyEntity"/>
+        <table schema="greens" tableName="user_info" domainObjectName="UserInfoEntity"/>
+        <table schema="greens" tableName="user_info_ext" domainObjectName="UserInfoExtEntity"/>
+
+        <!-- 用户资产 -->
+        <table schema="greens" tableName="assets_balance" domainObjectName="AssetsBalanceEntity"/>
+        <table schema="greens" tableName="assets_balance_modify" domainObjectName="AssetsBalanceModifyEntity"/>
+        <table schema="greens" tableName="assets_coupon" domainObjectName="AssetsCouponEntity"/>
+        <table schema="greens" tableName="assets_point" domainObjectName="AssetsPointEntity"/>
+        <table schema="greens" tableName="assets_point_modify" domainObjectName="AssetsPointModifyEntity"/>
+
+        <!-- 订单相关 -->
+        <table schema="greens" tableName="order_info" domainObjectName="OrderInfoEntity"/>
+        <table schema="greens" tableName="order_item" domainObjectName="OrderItemEntity"/>
+        <table schema="greens" tableName="order_offer" domainObjectName="OrderOfferEntity"/>
+        <table schema="greens" tableName="order_status_log" domainObjectName="OrderStatusLogEntity"/>
+        <table schema="greens" tableName="order_cancel" domainObjectName="OrderCancelEntity"/>
+        <table schema="greens" tableName="order_remark" domainObjectName="OrderRemarkEntity"/>
 
     </context>
 </generatorConfiguration>

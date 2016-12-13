@@ -28,6 +28,7 @@ public interface GoodsCategoryMapper {
 
     /**
      * 根据主键查询节点
+     *
      * @param id
      * @return
      */
@@ -37,9 +38,10 @@ public interface GoodsCategoryMapper {
      * 根据类目编码查询
      *
      * @param code
+     * @param force 查询已删除
      * @return
      */
-    GoodsCategoryEntity findByCode(@Param("code") String code);
+    GoodsCategoryEntity findByCode(@Param("code") String code, @Param("force") boolean force);
 
     /**
      * 根据关键字模糊查询商品类目(名称或编码)

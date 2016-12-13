@@ -42,7 +42,7 @@ public class GoodsCategoryService {
 
     public void save(GoodsCategoryEntity entity) {
         // 验证商品类目编码是否存在
-        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.findByCode(entity.getCode().toUpperCase());
+        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.findByCode(entity.getCode().toUpperCase(), true);
         if (goodsCategoryEntity != null) {
             throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
         }

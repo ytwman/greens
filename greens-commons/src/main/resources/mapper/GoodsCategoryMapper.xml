@@ -15,7 +15,12 @@
 
     <!-- 根据编码查询 -->
     <select id="findByCode" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
-      SELECT * FROM goods_category WHERE is_delete = 0 AND code = #{code} limit 1;
+        SELECT * FROM goods_category WHERE
+        code = #{code}
+        <if test="force == null or force == false">
+            AND is_delete = 0
+        </if>
+        limit 1;
     </select>
 
     <!-- 根据关键字模糊查询商品类目(名称或编码) -->
