@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytwman.greens.commons.repo.PurchaseSupplierMapper">
+    <!-- 批量查询 -->
+    <select id="findAll" resultType="com.ytwman.greens.commons.entity.PurchaseSupplierEntity">
+        SELECT * FROM purchase_supplier
+        WHERE is_delete = 0
+        <if test="keywords != null and keywords != ''">
+            AND (name LIKE #{keywords} OR linkman LIKE #{keywords} OR linkphone LIKE #{keywords})
+        </if>
+        ORDER BY id DESC ;
+    </select>
+
+    <!-- 根据主键查询 -->
+    <select id="findById" resultType="com.ytwman.greens.commons.entity.PurchaseSupplierEntity">
+        SELECT * FROM purchase_supplier WHERE is_delete = 0 AND id = #{id} limit 1;
+    </select>
+</mapper>

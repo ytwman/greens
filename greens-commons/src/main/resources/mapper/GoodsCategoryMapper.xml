@@ -15,8 +15,8 @@
 
     <!-- 根据编码查询 -->
     <select id="findByCode" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
-        SELECT * FROM goods_category WHERE
-        code = #{code}
+        SELECT * FROM goods_category
+        WHERE code LIKE #{code}
         <if test="force == null or force == false">
             AND is_delete = 0
         </if>
@@ -27,7 +27,7 @@
     <select id="findAll" resultType="com.ytwman.greens.commons.entity.GoodsCategoryEntity">
         SELECT * FROM goods_category
         WHERE is_delete = 0
-        <if test="keywords!=null and keywords != ''">
+        <if test="keywords != null and keywords != ''">
             AND (code LIKE #{keywords} OR name LIKE #{keywords})
         </if>
         ORDER BY id desc;
