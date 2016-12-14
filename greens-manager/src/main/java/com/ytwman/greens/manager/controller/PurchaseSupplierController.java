@@ -6,9 +6,7 @@
  */
 package com.ytwman.greens.manager.controller;
 
-import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.PurchaseSupplierEntity;
-import com.ytwman.greens.manager.service.GoodsCategoryService;
 import com.ytwman.greens.manager.service.PurchaseSupplierService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,7 @@ import javax.validation.Valid;
  * @since [产品/模块版本] （可选）
  */
 @RestController
-@RequestMapping("/purchase_supplier")
+@RequestMapping("/supplier")
 public class PurchaseSupplierController {
 
     @Resource

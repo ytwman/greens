@@ -7,7 +7,6 @@
 package com.ytwman.greens.manager.service;
 
 import com.ytwman.greens.commons.core.Like;
-import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.PurchaseSupplierEntity;
 import com.ytwman.greens.commons.entity.mapper.base.PurchaseSupplierEntityMapper;
 import com.ytwman.greens.commons.repo.PurchaseSupplierMapper;
@@ -31,7 +30,7 @@ public class PurchaseSupplierService {
     PurchaseSupplierEntityMapper purchaseSupplierEntityMapper;
 
     public List<PurchaseSupplierEntity> getAll(String keywords) {
-        return purchaseSupplierMapper.findAll(Like.left(keywords));
+        return purchaseSupplierMapper.findAll(Like.right(keywords));
     }
 
     public PurchaseSupplierEntity get(Long categoryId) {
