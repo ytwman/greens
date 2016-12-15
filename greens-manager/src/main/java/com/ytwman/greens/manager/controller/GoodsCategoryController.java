@@ -38,14 +38,9 @@ public class GoodsCategoryController {
         return goodsCategoryService.get(categoryId);
     }
 
-    @RequestMapping("/add")
-    public void add(@Valid GoodsCategoryEntity entity) {
-        goodsCategoryService.save(entity);
-    }
-
-    @RequestMapping("/update")
-    public void update(GoodsCategoryEntity entity) {
-        goodsCategoryService.update(entity);
+    @RequestMapping("/save_or_update")
+    public void saveOrUpdate(@Valid GoodsCategoryEntity entity) {
+        goodsCategoryService.saveOrUpdate(entity);
     }
 
     @RequestMapping("/delete/{categoryId}")

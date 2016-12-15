@@ -22,7 +22,7 @@ import javax.validation.Valid;
  * @since [产品/模块版本] （可选）
  */
 @RestController
-@RequestMapping("/supplier")
+@RequestMapping("/suppliers")
 public class PurchaseSupplierController {
 
     @Resource
@@ -38,14 +38,9 @@ public class PurchaseSupplierController {
         return purchaseSupplierService.get(categoryId);
     }
 
-    @RequestMapping("/add")
-    public void add(@Valid PurchaseSupplierEntity entity) {
-        purchaseSupplierService.save(entity);
-    }
-
-    @RequestMapping("/update")
-    public void update(PurchaseSupplierEntity entity) {
-        purchaseSupplierService.update(entity);
+    @RequestMapping("/save_or_update")
+    public void saveOrUpdate(@Valid PurchaseSupplierEntity entity) {
+        purchaseSupplierService.saveOrUpdate(entity);
     }
 
     @RequestMapping("/delete/{categoryId}")

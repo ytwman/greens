@@ -37,12 +37,12 @@ public class PurchaseSupplierService {
         return purchaseSupplierMapper.findById(categoryId);
     }
 
-    public void save(PurchaseSupplierEntity entity) {
-        purchaseSupplierEntityMapper.insertSelective(entity);
-    }
-
-    public void update(PurchaseSupplierEntity entity) {
-        purchaseSupplierEntityMapper.updateByPrimaryKeySelective(entity);
+    public void saveOrUpdate(PurchaseSupplierEntity entity) {
+        if (entity.getId() == null) {
+            purchaseSupplierEntityMapper.insertSelective(entity);
+        } else {
+            purchaseSupplierEntityMapper.updateByPrimaryKeySelective(entity);
+        }
     }
 
     public void delete(Long categoryId) {

@@ -40,18 +40,26 @@ public class GoodsCategoryService {
         return goodsCategoryMapper.findById(categoryId);
     }
 
-    public void save(GoodsCategoryEntity entity) {
+    public void saveOrUpdate(GoodsCategoryEntity entity) {
+        // 编码转换大写
+        entity.setCode(entity.getCode().toUpperCase());
         // 验证商品类目编码是否存在
-        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.findByCode(entity.getCode().toUpperCase(), true);
-        if (goodsCategoryEntity != null) {
-            throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
+        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.findByCode(entity.getCode(), true);
+
+        if (entity.getId() == null) {
+            if (goodsCategoryEntity != null) {
+                throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
+            }
+
+            goodsCategoryEntityMapper.insertSelective(entity);
+        } else {
+            // 如果ID 不同但编码相同,提示编码已经存在
+            if (goodsCategoryEntity != null && !goodsCategoryEntity.getId().equals(entity.getId())) {
+                throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
+            }
+
+            goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
         }
-
-        goodsCategoryEntityMapper.insertSelective(entity);
-    }
-
-    public void update(GoodsCategoryEntity entity) {
-        goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
     }
 
     public void delete(Long categoryId) {
