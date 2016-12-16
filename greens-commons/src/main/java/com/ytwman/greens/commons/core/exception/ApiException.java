@@ -4,7 +4,7 @@
  * Date:    16/11/14 下午11:09
  * Description: 
  */
-package com.ytwman.greens.commons.exception;
+package com.ytwman.greens.commons.core.exception;
 
 /**
  * @author 忽忽(huhu)

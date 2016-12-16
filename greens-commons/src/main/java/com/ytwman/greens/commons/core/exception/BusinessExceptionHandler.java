@@ -4,10 +4,8 @@
  * Date:    16/11/14 下午11:28
  * Description: 
  */
-package com.ytwman.greens.manager.core;
+package com.ytwman.greens.commons.core.exception;
 
-import com.ytwman.greens.commons.exception.ApiException;
-import com.ytwman.greens.commons.exception.BusinessExMessage;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
