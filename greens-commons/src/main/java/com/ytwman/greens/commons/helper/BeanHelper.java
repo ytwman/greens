@@ -4,7 +4,7 @@
  * Date:    16/12/4 下午10:42
  * Description: 
  */
-package com.ytwman.greens.commons.utils;
+package com.ytwman.greens.commons.helper;
 
 import org.springframework.beans.BeanUtils;
 
