@@ -1,7 +1,0 @@
-greens
-    |-- greens-commons 通用常量\实体\Repo
-    |-- greens-html5
-    |-- greens-manager 蔬果佳园后台管理
-    |-- greens-pom 依赖管理
-    |-- greens-task 调度管理
-    |-- greens-ups 统一权限管理系统 jar, manager 依赖

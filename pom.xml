@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>greens-pom</module>
-        <module>greens-html5</module>
+        <module>greens-commons</module>
+        <module>greens-manager</module>
         <module>greens-ups</module>
     </modules>
-
 
 </project>

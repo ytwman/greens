@@ -24,12 +24,6 @@
         <mybatis.generator.version>1.0-SNAPSHOT</mybatis.generator.version>
     </properties>
 
-    <modules>
-        <module>../greens-commons</module>
-        <module>../greens-manager</module>
-        <module>../greens-task</module>
-    </modules>
-
     <dependencyManagement>
         <dependencies>
             <!-- spring web -->
@@ -316,6 +310,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!-- 编译插件,默认JVM 编译版本1.8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -325,6 +320,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <!-- 部署插件,默认不忽略部署操作 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
@@ -332,6 +328,7 @@
                     <skip>${maven.deploy.skip}</skip>
                 </configuration>
             </plugin>
+            <!-- 打 jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -346,6 +343,7 @@
                     </archive>
                 </configuration>
             </plugin>
+            <!-- 打 war 包 -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.5</version>
