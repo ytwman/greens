@@ -16,14 +16,14 @@ import org.apache.commons.lang3.StringUtils;
 public class Like {
 
     public static String left(String key) {
-        return StringUtils.isNotEmpty(key) ? "%" + key : "";
+        return StringUtils.isNotEmpty(key) ? "%" + key : null;
     }
 
     public static String right(String key) {
-        return StringUtils.isNotEmpty(key) ? key + "%" : "";
+        return StringUtils.isNotEmpty(key) ? key + "%" : null;
     }
 
     public static String all(String key) {
-        return StringUtils.isNotEmpty(key) ? "%" + key + "%" : "";
+        return StringUtils.isNotEmpty(key) ? "%" + key + "%" : null;
     }
 }

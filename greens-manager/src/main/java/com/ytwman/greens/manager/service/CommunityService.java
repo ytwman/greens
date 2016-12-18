@@ -6,6 +6,7 @@
  */
 package com.ytwman.greens.manager.service;
 
+import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.entity.CommunityEntity;
 import com.ytwman.greens.commons.entity.mapper.base.CommunityEntityMapper;
 import com.ytwman.greens.commons.repo.CommunityMapper;
@@ -26,6 +27,6 @@ public class CommunityService {
     CommunityMapper communityMapper;
 
     public List<CommunityEntity> getByRegion(Long regionId, String keywords) {
-        return null;
+        return communityMapper.findByRegion(regionId, Like.right(keywords));
     }
 }

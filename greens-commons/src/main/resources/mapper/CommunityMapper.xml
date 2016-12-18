@@ -5,11 +5,8 @@
         SELECT * FROM greens.base_community
         WHERE is_delete = 0 AND region_id = #{regionId}
         <if test="keywords != null and keywords != ''">
-            name = #{keywords}
+            name LIKE #{keywords}
         </if>
         ORDER BY id DESC;
-    </select>
-    <select id="">
-        SELECT * FROM
     </select>
 </mapper>
