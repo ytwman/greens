@@ -19,9 +19,9 @@
           destroy-method="destroy">
         <property name="hostName" value="${redis.host}"/>
         <property name="port" value="${redis.port}"/>
-        <property name="database" ref="${redis.database}"/>
-        <property name="timeout" ref="${redis.timeout}"/>
-        <property name="usePool" ref="${redis.usePool}"/>
+        <property name="database" value="${redis.database}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="usePool" value="${redis.usePool}"/>
         <property name="poolConfig" ref="redisPoolConfig"/>
     </bean>
 
