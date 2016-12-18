@@ -1,0 +1,20 @@
+{
+    "total": 28,
+    "rows": [{
+        "rule_name": "创建用户",
+        "amount": 12,
+        "created_time": "2016-08-10 21:20:00"
+    }, {
+        "rule_name": "卖菜",
+        "amount": 31,
+        "created_time": "2016-08-10 21:20:00"
+    }, {
+        "rule_name": "卖菜",
+        "amount": 832,
+        "created_time": "2016-08-10 21:20:00"
+    }, {
+        "rule_name": "积分兑换",
+        "amount": -12,
+        "created_time": "2016-08-10 21:20:00"
+    }]
+}

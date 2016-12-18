@@ -1,0 +1,90 @@
+<div id="roles-list"></div>
+<!-- <table id="roles-list" class="easyui-datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true">#</th>
+            <th data-options="field:'id'" width="40">#</th>
+            <th data-options="field:'name',align: 'center'" width="80">角色名称</th>
+            <th data-options="field:'description',align:'left'" width="200">描述</th>
+            <th data-options="field:'createdTime',align:'right'" width="80">创建时间</th>
+            <th data-options="field:'updatedTime',align:'right'" width="80">修改时间</th>
+            <th data-options="field:'isDelete',align:'left'" width="40">是否启用</th>
+        </tr>
+    </thead>
+</table> -->
+<div id="roles-toolbar">
+    <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true"
+       onclick="$('#add-role-window').window('open')">添加角色</a>
+    <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" onclick="destroyRole()">删除</a>
+</div>
+<!-- 添加界面 -->
+<div id="add-role-window" class="easyui-window" title="New Topic" style="width:100%;max-width:400px;padding:30px 60px;">
+
+</div>
+<script>
+    $(function () {
+        // 角色表格显示
+        $("#roles-list").datagrid({
+            border: false, // 不显示边框
+            rownumbers: true, // 显示索引
+            singleSelect: true, // 单行选择
+            fit: true, // 填充父容器
+            striped: true, // 行颜色间隔
+            selectOnCheck: false, // 选择
+            pagination: true, // 分页组件
+            // pageSize:10,
+            // pageList:[5,10,15,20],
+            fitColumns: true, //允许表格自动缩放,以适应父容器
+            loadMsg: '数据加载中......',
+            toolbar: "#roles-toolbar",
+            url: "roles/index.json",
+            method: "get",
+            columns: [
+                [{
+                    field: 'ck',
+                    checkbox: true,
+                    title: '#'
+                }, {
+                    field: 'id',
+                    width: 40,
+                    title: '#'
+                }, {
+                    field: 'name',
+                    align: 'center',
+                    width: 80,
+                    title: '角色名称'
+                }, {
+                    field: 'description',
+                    align: 'left',
+                    width: 200,
+                    title: '描述'
+                }, {
+                    field: 'createdTime',
+                    align: 'right',
+                    width: 80,
+                    title: '创建时间'
+                }, {
+                    field: 'updatedTime',
+                    align: 'right',
+                    width: 80,
+                    title: '修改时间'
+                }, {
+                    field: 'isDelete',
+                    align: 'left',
+                    width: 40,
+                    title: '是否启用'
+                }]
+            ]
+        });
+
+
+    });
+    // 删除弹出层
+    function destroyRole() {
+        $.messager.confirm('角色删除', '您确认要删除此角色?', function (r) {
+            if (r) {
+                alert('confirmed: ' + r);
+            }
+        });
+    }
+</script>

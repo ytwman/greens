@@ -6,7 +6,6 @@
  */
 package com.ytwman.greens.manager.service;
 
-import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.entity.CommunityEntity;
 import com.ytwman.greens.commons.entity.mapper.base.CommunityEntityMapper;
 import com.ytwman.greens.commons.repo.CommunityMapper;
@@ -26,29 +25,7 @@ public class CommunityService {
     @Resource
     CommunityMapper communityMapper;
 
-    @Resource
-    CommunityEntityMapper communityEntityMapper;
-
-    public List<CommunityEntity> getAll(String keywords) {
-        return communityMapper.findAll(Like.right(keywords));
-    }
-
-    public CommunityEntity get(Long communityId) {
-        return communityMapper.findById(communityId);
-    }
-
-    public void save(CommunityEntity entity) {
-        communityEntityMapper.insertSelective(entity);
-    }
-
-    public void update(CommunityEntity entity) {
-        communityEntityMapper.updateByPrimaryKeySelective(entity);
-    }
-
-    public void delete(Long communityId) {
-        CommunityEntity entity = new CommunityEntity();
-        entity.setId(communityId);
-        entity.setIsDelete(1);
-        communityEntityMapper.updateByPrimaryKeySelective(entity);
+    public List<CommunityEntity> getByRegion(Long regionId, String keywords) {
+        return null;
     }
 }

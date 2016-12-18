@@ -1,0 +1,30 @@
+<!-- 供应商列表 -->
+<table id="supplier-list" class="easyui-datagrid">
+    <thead>
+    <tr>
+        <th data-options="field:'ck',checkbox:true">#</th>
+        <th field='name' align="left" width="14%">供应商名称</th>
+        <th field='linkman' align="left" width="10%">联系人</th>
+        <th field='linkphone' align="left" width="12%">联系的电话</th>
+        <th field='address' align="left" width="18% ">地址</th>
+        <th field='description' align="left" width="20%">描述</th>
+        <th field='createdTime' align="right" width="12%">创建时间</th>
+        <th field='updatedTime' align="right" width="12%">修改时间</th>
+    </tr>
+    </thead>
+</table>
+<div id="supplier-toolbar">
+    <div class="clearfix">
+        <div style="float:left;">
+            <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="supplier-add-btn">添加</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="supplier-edit-btn">修改</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="supplier-del-btn">删除</a>
+        </div>
+        <div class="datagrid-btn-separator"></div>
+        <div>
+            <input class="easyui-searchbox" style="width:200px" prompt="供应商名称、联系人、联系电话" searcher="doSupplierSearch">
+        </div>
+    </div>
+</div>
+
+<script src="/assets/javascripts/supplier/index.js"></script>

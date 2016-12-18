@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>蔬果佳园店营管理系统 - V3.0</title>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/normalize.css">
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/font-awesome.css">
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/jquery-easyui/themes/default/easyui.css">
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/jquery-easyui/themes/icon.css">
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/jquery-easyui/themes/color.css">
+    <link type="text/css" rel="stylesheet" href="/assets/vendor/extjs-icon/css/icon.css">
+    <!--<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/jquery-datetimepicker/2.5.4/jquery.datetimepicker.css">-->
+
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/main.css">
+
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="//cdn.bootcss.com/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.js"></script>-->
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/datagrid-detailview.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/datagrid-groupview.js"></script>
+    <script type="text/javascript" src="/assets/vendor/jquery-easyui/jquery.portal.js"></script>
+    <script type="text/javascript" src="/assets/vendor/highcharts/highcharts.src.js"></script>
+    <script type="text/javascript" src="/assets/vendor/highcharts/highcharts-3d.src.js"></script>
+
+    <script type="text/javascript" src="/assets/javascripts/global_config.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/register_event.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/navbar.js"></script>
+</head>
+
+<body>
+<div class="easyui-layout" id="main-content" style="width:100%;">
+    <!-- 头部 -->
+    <div region="north" split=true class="head_area">
+        <div class="brand">
+            <h3>蔬果佳园店营管理系统</h3>
+            <div style="float:right;padding:19px;">
+                <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'Cartadd'" id="menu-tools-cashier-btn">收银台(F2)</a>
+                <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'Decline'" id="menu-tools-close-btn">关闭(ESC)</a>
+                <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'Help'">帮助</a>
+                <a href="#" class="easyui-menubutton"
+                   data-options="plain:true,iconCls:'Userhome',menu:'#userMenu'">忽忽</a>
+            </div>
+            <div id="userMenu" style="width:100px;">
+                <div>个人资料</div>
+                <div data-options="iconCls:'Userkey'">修改密码</div>
+                <div class="menu-sep"></div>
+                <div onClick="window.location.href='/login.html'">退出</div>
+            </div>
+        </div>
+    </div>
+    <!-- 左边导航栏 -->
+    <div region="west" split=true title="导航栏" style="width:180px;background:#eee;">
+        <div id="sider-navbar" class="easyui-accordion" multiple="true" border="false" style="width: 100%;"></div>
+    </div>
+    <!-- 内容区域 -->
+    <div region="center" border=false>
+        <div id="tabContent" class="easyui-tabs" fit="true">
+            <div title="首页" id="tabRoot" href='/dashboard/dashboard.html'></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

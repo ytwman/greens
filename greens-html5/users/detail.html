@@ -1,0 +1,44 @@
+<!-- 
+用户基础信息
+
+用户流水(tab)
+1.订单记录
+2.领取购物袋记录
+3.积分记录
+4.充值记录
+
+用户资产：
+券列表
+VIP 等级
+当前积分
+当前余额
+会员卡信息
+
+
+-->
+
+<div id="user-container" class="easyui-layout" fit="true">
+    <div region="center" border="false" style="padding:10px;padding-right:0px;">
+        <div class="easyui-layout" fit="true">
+            <div region="north" border="false" height="350">
+                <div class="easyui-panel" style="padding:5px;">
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'">余额充值</a>
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">积分兑换</a>
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'">办理会员卡</a>
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">绑定购物袋</a>
+                </div>
+                <div id="user-info" class="easyui-panel" title="用户基础信息" href="/users/detail/_user_info.html" style="padding:10px 20px;"></div>
+            </div>
+            <div region="center" border="false">
+                <div id="user-record" class="easyui-panel" href="/users/detail/user_record.html" style="height:98%;"></div>
+            </div>
+        </div>
+    </div>
+    <div region="east" border="false" style="width: 30%;max-width: 360px;padding: 10px;">
+        <div class="easyui-panel" title="扩展信息" href="/users/detail/_user_ext.html"></div>
+        <div class="easyui-panel" title="家庭成员" href="/users/detail/_user_family.html"></div>
+        <div class="easyui-panel" title="关联账号" href="/users/detail/_user_account.html"></div>
+    </div>
+</div>
+
+<script src="/assets/javascripts/users/detail.js"></script>

@@ -1,0 +1,34 @@
+<!-- 添加供应商 -->
+<div class="form">
+    <form class="easyui-form" method="post" data-options="novalidate:true" id="add-supplier-form">
+        <input type="hidden" name="id">
+
+        <div class="form-group">
+            <label>供应商名称:</label>
+            <input class="easyui-textbox" required="true" style="width:100%;" name="name">
+        </div>
+        <div class="form-group">
+            <label>联系人:</label>
+            <input class="easyui-textbox" required="true" style="width:100%;" name="linkman">
+        </div>
+        <div class="form-group">
+            <label>联系电话:</label>
+            <input class="easyui-textbox" required="true" style="width:100%;" name="linkphone">
+        </div>
+        <div class="form-group">
+            <label>地址:</label>
+            <input class="easyui-textbox" required="true" style="width:100%;" name="address">
+        </div>
+        <div class="form-group">
+            <label>描述:</label>
+            <input class="easyui-textbox" multiline="true" style="width:100%;height:60px" name="description">
+        </div>
+
+        <div class="form-group" align="center">
+            <a href="#" class="easyui-linkbutton" id="add-supplier-form-submit">保存</a>
+            <a href="#" class="easyui-linkbutton" onclick="$('#add-supplier-dialog').dialog('close')">取消</a>
+        </div>
+    </form>
+</div>
+
+<script src="/assets/javascripts/supplier/add_supplier.js"></script>

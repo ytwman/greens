@@ -6,6 +6,7 @@
  */
 package com.ytwman.greens.manager.controller;
 
+import com.ytwman.greens.manager.service.CommunityService;
 import com.ytwman.greens.manager.service.RegionService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,9 @@ public class RegionController {
     @Resource
     RegionService regionService;
 
+    @Resource
+    CommunityService communityService;
+
     @RequestMapping(method = RequestMethod.GET)
     public Object provinces() {
         return regionService.provinces();
@@ -36,5 +40,10 @@ public class RegionController {
     @RequestMapping("/{parentId}")
     public Object level(@PathVariable("parentId") Long parentId) {
         return regionService.getSubset(parentId);
+    }
+
+    @RequestMapping("/{regionId}/communities")
+    public Object communities(@PathVariable("regionId") Long regionId, String keywords) {
+        return communityService.getByRegion(regionId, keywords);
     }
 }

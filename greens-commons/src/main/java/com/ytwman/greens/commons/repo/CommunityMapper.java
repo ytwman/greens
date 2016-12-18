@@ -9,8 +9,6 @@ package com.ytwman.greens.commons.repo;
 import com.ytwman.greens.commons.entity.CommunityEntity;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
  * @author 忽忽(huhu)
  * @see [相关类/方法]（可选）
@@ -21,17 +19,10 @@ public interface CommunityMapper {
     /**
      * 根据主键查询
      *
-     * @param id
+     * @param regionId 地区编码
+     * @param keywords 检索关键字
      * @return
      */
-    CommunityEntity findById(@Param("id") Long id);
-
-    /**
-     * 根据关键字模糊查询(名称或编码)
-     *
-     * @param keywords
-     * @return
-     */
-    List<CommunityEntity> findAll(@Param("keywords") String keywords);
+    CommunityEntity findByRegion(@Param("regionId") Long regionId, @Param("keywords") String keywords);
 
 }

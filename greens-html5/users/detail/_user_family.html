@@ -1,0 +1,50 @@
+<table class="easyui-propertygrid" data-options="
+    url:'/assets/javascripts/users/detail/user_family.json',
+    method:'get',
+    border:false,
+    columns:familyColumns,
+    toolbar:familyToolbar
+">
+</table>
+<!-- 添加家庭成员 Dialog -->
+<div id="add-family-dialog" class="easyui-dialog" style="width:360px;" modal=true closed=true iconCls='Disk' title="添加家庭成员" buttons="#add-family-dialog-buttons">
+    <form method="post" class="form">
+        <div class="form-group">
+            <input class="easyui-textbox" style="width:99%;" label="姓名:" name="nickname">
+        </div>
+        <div class="form-group">
+            <input class="easyui-textbox" style="width:99%;" label="电话:" name="name">
+        </div>
+    </form>
+</div>
+<div id="add-family-dialog-buttons">
+    <a href="#" class="easyui-linkbutton" onclick="alert('save')">保存</a>
+    <a href="#" class="easyui-linkbutton" onclick="$('#add-family-dialog').dialog('close')">取消</a>
+</div>
+<script>
+var familyColumns = [
+    [{
+        field: 'name',
+        title: '姓名',
+        width: 80
+    }, {
+        field: 'value',
+        title: '电话',
+        width: 120
+    }]
+]
+
+var familyToolbar = [{
+    text: '添加',
+    iconCls: 'Groupadd',
+    handler: function() {
+        $('#add-family-dialog').dialog('open');
+    }
+}, {
+    text: '删除',
+    iconCls: 'Groupdelete',
+    handler: function() {
+        alert('Delete')
+    }
+}]
+</script>

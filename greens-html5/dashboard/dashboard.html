@@ -1,0 +1,62 @@
+<div id="dashboard-container" width="100%">
+    <div style="width:30%"></div>
+    <div style="width:40%"></div>
+    <div style="width:30%"></div>
+</div>
+<script>
+$(function() {
+    var panels = [
+    {id: 'p1', title: '内部公告', height: 200, iconCls: 'New'}, {id: 'p2', title: '升级日志', height: 300 }, 
+    {id: 'p3', title: '每日采购', content: '<div class="easyui-calendar"></div>'}, 
+    {id: 'p4', title: 'DataGrid', height: 200 }, {id: 'p5', title: 'Searching'}, 
+    {id: 'p6', title: '代办事项'}, {id: 'p6', title: 'Graph2'}, {id: 'p6', title: 'Graph3', height: 200 }];
+
+
+    $('#dashboard-container').portal({
+        border: false
+    });
+
+    // function addPanels(portalState) {
+        $.each(panels, function(i, e) {
+            var options = e;
+            var p = $('<div/>').attr('id', options.id).appendTo('body');
+            p.panel(options);
+            $('#dashboard-container').portal('add', {
+                panel: p,
+                columnIndex: i%3
+            });
+        })
+    // }
+
+    // $('#update-container').panel({
+    //     title: '日志升级',
+    //     height: 150,
+    //     fit: true,
+    //     collapsible: true
+    // });
+
+    // $('#notice-container').panel({
+    //     title: '公告',
+    //     height: 150,
+    //     fit: true,
+    //     collapsible: true,
+    //     href: "/dashboard/notice.html",
+    //     method: "get"
+    // });
+
+    // // add the panel to portal
+    // $('#dashboard-container').portal('add', {
+    //     panel: $('#update-container').panel(),
+    //     columnIndex: 0
+    // }).portal('add', {
+    //     panel: $('#notice-container').panel(),
+    //     columnIndex: 1
+    // }).portal('add', {
+    //     panel: $('#notice-container').panel(),
+    //     columnIndex: 2
+    // }).portal('add', {
+    //     panel: $('#notice-container').panel(),
+    //     columnIndex: 3
+    // });
+});
+</script>

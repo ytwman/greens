@@ -1,0 +1,21 @@
+<table class="easyui-propertygrid" data-options="
+    url:'/assets/javascripts/users/detail/user_info_ext.json',
+    method:'get',
+    border:false,
+    showHeader:false,
+    columns:userPropertyColumns
+">
+</table>
+<script>
+var userPropertyColumns = [
+    [{
+        field: 'name',
+        title: '名称',
+        width: 80
+    }, {
+        field: 'value',
+        title: '值',
+        width: 120
+    }]
+]
+</script>

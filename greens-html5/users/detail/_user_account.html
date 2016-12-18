@@ -1,0 +1,28 @@
+<table class="easyui-propertygrid" data-options="
+    url:'/assets/javascripts/users/detail/account_join.json',
+    method:'get',
+    border:false,
+    columns:accountColumns,
+    toolbar:accountToolbar">
+</table>
+<script>
+var accountColumns = [
+    [{
+        field: 'account',
+        title: '账号',
+        width: 60
+    }, {
+        field: 'last_login',
+        title: '最后登录时间',
+        width: 80
+    }]
+]
+
+var accountToolbar = [{
+    text: '添加',
+    iconCls: 'Userkey',
+    handler: function() {
+        $('#add-family-dialog').dialog('open');
+    }
+}]
+</script>

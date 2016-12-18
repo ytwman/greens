@@ -1,0 +1,28 @@
+<!-- 商品类目列表 -->
+<table id="goods-category-list" class="easyui-datagrid">
+    <thead>
+    <tr>
+        <th data-options="field:'ck',checkbox:true">#</th>
+        <th width="16%" align="center"  field="name">商品类目名称</th>
+        <th width="12%" align="center"  field="code">商品类目编码</th>
+        <th width="40%" align="left"  field="description">描述</th>
+        <th width="15%" align="right" field="createdTime">创建时间</th>
+        <th width="15%" align="right" field="updatedTime">修改时间</th>
+    </tr>
+    </thead>
+</table>
+<div id="goods-category-toolbar">
+    <div class="clearfix">
+        <div style="float:left;">
+            <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="goods-category-add-btn">添加</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="goods-category-edit-btn">修改</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="goods-category-del-btn">删除</a>
+        </div>
+        <div class="datagrid-btn-separator"></div>
+        <div>
+            <input class="easyui-searchbox" prompt="商品类目名称、编码" searcher="doCategorySearch" style="width:200px">
+        </div>
+    </div>
+</div>
+
+<script src="/assets/javascripts/goods/category/index.js"></script>
