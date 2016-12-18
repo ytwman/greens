@@ -43,11 +43,14 @@ public class BusinessExceptionHandler implements ApplicationContextAware {
     public Object handleMethodArgumentNotValidException(Exception ex) {
         ex.printStackTrace();
 
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", BusinessExMessage.Default.getCode());
         String exMessage = null;
 
         if (ex instanceof BindException) {
             BindException bindException = (BindException) ex;
             exMessage = bindException.getBindingResult().getFieldError().getDefaultMessage();
+            resultMap.put("code", BusinessExMessage.ParameterError.getCode());
         } else if (ex instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException validException = (MethodArgumentNotValidException) ex;
             exMessage = validException.getBindingResult().getFieldError().getDefaultMessage();
@@ -55,8 +58,6 @@ public class BusinessExceptionHandler implements ApplicationContextAware {
             exMessage = ex.getMessage();
         }
 
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("code", BusinessExMessage.Default.getCode());
         resultMap.put("exMessage", exMessage);
 
         return resultMap;
