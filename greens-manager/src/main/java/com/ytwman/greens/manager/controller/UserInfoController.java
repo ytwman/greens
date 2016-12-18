@@ -33,9 +33,9 @@ public class UserInfoController {
         return userInfoService.getAll(keywords, communityId);
     }
 
-    @RequestMapping("/{id}")
-    public Object show(@PathVariable("id") Long id) {
-        return userInfoService.get(id);
+    @RequestMapping("/{userId}")
+    public Object show(@PathVariable("userId") Long userId) {
+        return userInfoService.get(userId);
     }
 
     @RequestMapping("/save_or_update")
@@ -43,8 +43,8 @@ public class UserInfoController {
         userInfoService.saveOrUpdate(entity);
     }
 
-    @RequestMapping("/delete/{categoryId}")
-    public void delete(@PathVariable("categoryId") Long categoryId) {
-        userInfoService.delete(categoryId);
+    @RequestMapping("/delete/{userId}")
+    public void delete(@PathVariable("userId") Long userId) {
+        userInfoService.delete(userId);
     }
 }

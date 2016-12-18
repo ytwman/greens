@@ -33,8 +33,8 @@ public class CommunityService {
         return communityMapper.findAll(Like.right(keywords));
     }
 
-    public CommunityEntity get(Long id) {
-        return communityMapper.findById(id);
+    public CommunityEntity get(Long communityId) {
+        return communityMapper.findById(communityId);
     }
 
     public void save(CommunityEntity entity) {
@@ -45,9 +45,9 @@ public class CommunityService {
         communityEntityMapper.updateByPrimaryKeySelective(entity);
     }
 
-    public void delete(Long id) {
+    public void delete(Long communityId) {
         CommunityEntity entity = new CommunityEntity();
-        entity.setId(id);
+        entity.setId(communityId);
         entity.setIsDelete(1);
         communityEntityMapper.updateByPrimaryKeySelective(entity);
     }

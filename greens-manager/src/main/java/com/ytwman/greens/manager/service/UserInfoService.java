@@ -33,8 +33,8 @@ public class UserInfoService {
         return userInfoMapper.findAll(Like.right(keywords == null ? null : keywords.toUpperCase()), communityId);
     }
 
-    public UserInfoEntity get(Long id) {
-        return userInfoMapper.findById(id);
+    public UserInfoEntity get(Long userId) {
+        return userInfoMapper.findById(userId);
     }
 
     public void saveOrUpdate(UserInfoEntity entity) {
@@ -45,10 +45,10 @@ public class UserInfoService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(Long userId) {
         // 删除节点
         UserInfoEntity entity = new UserInfoEntity();
-        entity.setId(id);
+        entity.setId(userId);
         entity.setIsDelete(1);
         userInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }

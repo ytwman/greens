@@ -33,9 +33,9 @@ public class CommunityController {
         return communityService.getAll(keywords);
     }
 
-    @RequestMapping("/{id}")
-    public Object show(@PathVariable("id") Long id) {
-        return communityService.get(id);
+    @RequestMapping("/{communityId}")
+    public Object show(@PathVariable("communityId") Long communityId) {
+        return communityService.get(communityId);
     }
 
     @RequestMapping("/add")
@@ -48,8 +48,8 @@ public class CommunityController {
         communityService.update(entity);
     }
 
-    @RequestMapping("/delete/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        communityService.delete(id);
+    @RequestMapping("/delete/{communityId}")
+    public void delete(@PathVariable("communityId") Long communityId) {
+        communityService.delete(communityId);
     }
 }
