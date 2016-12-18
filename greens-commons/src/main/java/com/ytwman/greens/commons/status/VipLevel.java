@@ -14,8 +14,8 @@ import java.util.Arrays;
  * @since [产品/模块版本] （可选）
  */
 public enum VipLevel {
-    普通会员(0),
-    VIP(1),;
+    普通会员(1),
+    VIP(2),;
 
     private int code;
 

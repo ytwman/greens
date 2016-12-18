@@ -17,9 +17,9 @@ import java.util.Arrays;
  * @since [产品/模块版本] （可选）
  */
 public enum LoginAccount {
-    手机号码(0),
-    会员卡(1),
-    微信(2),;
+    手机号码(1),
+    会员卡(2),
+    微信(3),;
 
     private int code;
 

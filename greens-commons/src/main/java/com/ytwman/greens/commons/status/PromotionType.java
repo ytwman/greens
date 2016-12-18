@@ -15,12 +15,12 @@ import java.util.Arrays;
  * @since [产品/模块版本] （可选）
  */
 public enum PromotionType {
-    便宜券(0),
+    便宜券(1),
     // 红包
-    抵扣券(1),
+    抵扣券(2),
     // 打折
-    折扣券(2),
-    立减(2),;
+    折扣券(3),
+    立减(4),;
 
     private int code;
 

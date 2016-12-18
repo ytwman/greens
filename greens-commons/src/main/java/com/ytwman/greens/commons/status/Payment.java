@@ -17,11 +17,11 @@ import java.util.Arrays;
  * @since [产品/模块版本] （可选）
  */
 public enum Payment {
-    现金(0),
-    余额(1),// 优惠属于余额
-    支付宝(2),
-    微信(3),
-    银行卡(4),;
+    现金(1),
+    余额(2),// 优惠属于余额
+    支付宝(3),
+    微信(4),
+    银行卡(5),;
 
     private int code;
 
@@ -41,7 +41,7 @@ public enum Payment {
         return Arrays.asList(values()).stream().filter(e -> e.getCode() == code).findFirst().orElse(null);
     }
 
-    public static Payment legal(Integer code) throws ValueAbsentException {
+    public static Payment legal(int code) throws ValueAbsentException {
         return Arrays.asList(values()).stream().filter(e -> e.getCode() == code).findFirst().orElseThrow(ValueAbsentException::new);
     }
 }
