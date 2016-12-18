@@ -18,10 +18,10 @@ import java.io.Serializable;
  */
 public class GoodsCategoryParam extends GoodsCategoryEntity implements Serializable {
 
-    @NotEmpty(message = "goods.category.code.NotEmpty")
+    @NotEmpty(message = "商品类目编码不能为空")
     private String code;
 
-    @NotEmpty(message = "goods.category.name.NotEmpty")
+    @NotEmpty(message = "商品类目名称不能为空")
     private String name;
 
     @Override
