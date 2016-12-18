@@ -1,14 +1,13 @@
 /*
  * Copyright (C), 2014-2015, 杭州小卡科技有限公司
  * Author:  忽忽(huhu)
- * Date:    16/9/18 下午10:03
+ * Date:    16/12/16 上午12:18
  * Description: 
  */
 package com.ytwman.greens.manager.controller;
 
-import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
-import com.ytwman.greens.manager.model.param.GoodsCategoryParam;
-import com.ytwman.greens.manager.service.GoodsCategoryService;
+import com.ytwman.greens.commons.entity.UserInfoEntity;
+import com.ytwman.greens.manager.service.UserInfoService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,29 +22,29 @@ import javax.validation.Valid;
  * @since [产品/模块版本] （可选）
  */
 @RestController
-@RequestMapping("/goods_category")
-public class GoodsCategoryController {
+@RequestMapping("/users")
+public class UserInfoController {
 
     @Resource
-    GoodsCategoryService goodsCategoryService;
+    UserInfoService userInfoService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object index(String keywords) {
-        return goodsCategoryService.getAll(keywords);
+    public Object index(String keywords, Long communityId) {
+        return userInfoService.getAll(keywords, communityId);
     }
 
-    @RequestMapping("/{categoryId}")
-    public Object show(@PathVariable("categoryId") Long categoryId) {
-        return goodsCategoryService.get(categoryId);
+    @RequestMapping("/{id}")
+    public Object show(@PathVariable("id") Long id) {
+        return userInfoService.get(id);
     }
 
     @RequestMapping("/save_or_update")
-    public void saveOrUpdate(@Valid GoodsCategoryParam param) {
-        goodsCategoryService.saveOrUpdate((GoodsCategoryEntity) param);
+    public void saveOrUpdate(@Valid UserInfoEntity entity) {
+        userInfoService.saveOrUpdate(entity);
     }
 
     @RequestMapping("/delete/{categoryId}")
     public void delete(@PathVariable("categoryId") Long categoryId) {
-        goodsCategoryService.delete(categoryId);
+        userInfoService.delete(categoryId);
     }
 }
