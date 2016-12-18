@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytwman.greens.commons.repo.RegionMapper">
+    <select id="findByParentId" resultType="com.ytwman.greens.commons.entity.RegionEntity">
+      SELECT * FROM greens.base_region WHERE is_delete = 0 AND parent_id = #{id}
+      ORDER BY id;
+    </select>
+
+    <select id="findByLevel" resultType="com.ytwman.greens.commons.entity.RegionEntity">
+      SELECT * FROM greens.base_region WHERE is_delete = 0 AND level = #{level}
+      ORDER BY id;
+    </select>
+</mapper>
