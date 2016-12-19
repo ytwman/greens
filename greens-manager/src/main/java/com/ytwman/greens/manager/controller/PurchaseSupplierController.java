@@ -33,9 +33,9 @@ public class PurchaseSupplierController {
         return purchaseSupplierService.getAll(keywords);
     }
 
-    @RequestMapping("/{categoryId}")
-    public Object show(@PathVariable("categoryId") Long categoryId) {
-        return purchaseSupplierService.get(categoryId);
+    @RequestMapping("/{supplierId}")
+    public Object show(@PathVariable("supplierId") Long supplierId) {
+        return purchaseSupplierService.get(supplierId);
     }
 
     @RequestMapping("/save_or_update")
@@ -43,8 +43,8 @@ public class PurchaseSupplierController {
         purchaseSupplierService.saveOrUpdate(entity);
     }
 
-    @RequestMapping("/delete/{categoryId}")
-    public void delete(@PathVariable("categoryId") Long categoryId) {
-        purchaseSupplierService.delete(categoryId);
+    @RequestMapping("/delete/{supplierId}")
+    public void delete(@PathVariable("supplierId") Long supplierId) {
+        purchaseSupplierService.delete(supplierId);
     }
 }

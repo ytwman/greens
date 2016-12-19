@@ -37,9 +37,9 @@ public class RegionController {
         return regionService.provinces();
     }
 
-    @RequestMapping("/{id}/childrens")
-    public Object subset(@PathVariable("id") Long id) {
-        return regionService.getSubset(id);
+    @RequestMapping("/{regionId}/childrens")
+    public Object subset(@PathVariable("regionId") Long regionId) {
+        return regionService.getSubset(regionId);
     }
 
     @RequestMapping("/{regionId}/communities")

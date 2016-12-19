@@ -30,15 +30,15 @@ public class RegionService {
         return regionMapper.findByLevel(RegionLevel.省份.getCode());
     }
 
-    public List<RegionEntity> getSubset(Long id) {
-        return regionMapper.findByParentId(id);
+    public List<RegionEntity> getSubset(Long regionId) {
+        return regionMapper.findByParentId(regionId);
     }
 
-    public RegionEntity get(Long id) {
-        return regionMapper.findById(id);
+    public RegionEntity get(Long regionId) {
+        return regionMapper.findById(regionId);
     }
 
-    public RegionEntity getParent(Long id) {
-        return  regionMapper.findParentById(id);
+    public RegionEntity getParent(Long regionId) {
+        return  regionMapper.findParentById(regionId);
     }
 }
