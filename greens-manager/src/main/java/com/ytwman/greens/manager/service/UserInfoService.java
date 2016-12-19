@@ -7,9 +7,14 @@
 package com.ytwman.greens.manager.service;
 
 import com.ytwman.greens.commons.core.Like;
+import com.ytwman.greens.commons.core.exception.ApiException;
+import com.ytwman.greens.commons.core.exception.BusinessExMessage;
+import com.ytwman.greens.commons.entity.CommunityEntity;
+import com.ytwman.greens.commons.entity.RegionEntity;
 import com.ytwman.greens.commons.entity.UserInfoEntity;
 import com.ytwman.greens.commons.entity.mapper.base.UserInfoEntityMapper;
 import com.ytwman.greens.commons.repo.UserInfoMapper;
+import com.ytwman.greens.manager.model.param.UserInfoParam;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,6 +27,12 @@ import java.util.List;
  */
 @Service
 public class UserInfoService {
+
+    @Resource
+    RegionService regionService;
+
+    @Resource
+    CommunityService communityService;
 
     @Resource
     UserInfoMapper userInfoMapper;
@@ -37,11 +48,28 @@ public class UserInfoService {
         return userInfoMapper.findById(userId);
     }
 
-    public void saveOrUpdate(UserInfoEntity entity) {
-        if (entity.getId() == null) {
-            userInfoEntityMapper.insertSelective(entity);
+    public void saveOrUpdate(UserInfoParam param) {
+        // 验证城市是否存在
+        RegionEntity regionEntity = regionService.getParent(param.getRegionId());
+        if (regionEntity == null) {
+            throw new ApiException(BusinessExMessage.RegionNotFound);
+        }
+
+        // 验证社区是否存在
+        CommunityEntity communityEntity = communityService.get(param.getCommunity());
+        if (communityEntity == null || !communityEntity.getRegionId().equals(param.getRegionId())) {
+            throw new ApiException(BusinessExMessage.CommunityNotFound);
+        }
+
+        // 城市和省份信息
+        param.setProvince(regionEntity.getParentId());
+        param.setCity(regionEntity.getId());
+        param.setDistrict(param.getRegionId());
+
+        if (param.getId() == null) {
+            userInfoEntityMapper.insertSelective(param);
         } else {
-            userInfoEntityMapper.updateByPrimaryKeySelective(entity);
+            userInfoEntityMapper.updateByPrimaryKeySelective(param);
         }
     }
 

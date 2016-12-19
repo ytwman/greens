@@ -28,25 +28,16 @@ public class UserInfoParam extends UserInfoEntity implements Serializable {
     @NotNull(message = "未填写出生日期")
     private Date birthday;
 
-    @NotNull(message = "未选择省份")
-    private Long province;
-
     @NotNull(message = "未选择城市")
-    private Long city;
-
-    @NotNull(message = "未选择县市区")
-    private Long district;
-
-    @NotNull(message = "未选择街道（乡镇）")
-    private Long street;
+    private Long regionId;
 
     @NotNull(message = "未选择小区")
     private Long community;
 
-    @NotNull(message = "未填写地址")
+    @NotEmpty(message = "未填写地址")
     private String address;
 
-    @NotNull(message = "未填写手机号码")
+    @NotEmpty(message = "未填写手机号码")
     private String phone;
 
     @Override
@@ -67,46 +58,6 @@ public class UserInfoParam extends UserInfoEntity implements Serializable {
     @Override
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    @Override
-    public Long getProvince() {
-        return province;
-    }
-
-    @Override
-    public void setProvince(Long province) {
-        this.province = province;
-    }
-
-    @Override
-    public Long getCity() {
-        return city;
-    }
-
-    @Override
-    public void setCity(Long city) {
-        this.city = city;
-    }
-
-    @Override
-    public Long getDistrict() {
-        return district;
-    }
-
-    @Override
-    public void setDistrict(Long district) {
-        this.district = district;
-    }
-
-    @Override
-    public Long getStreet() {
-        return street;
-    }
-
-    @Override
-    public void setStreet(Long street) {
-        this.street = street;
     }
 
     @Override
@@ -137,5 +88,13 @@ public class UserInfoParam extends UserInfoEntity implements Serializable {
     @Override
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Long getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(Long regionId) {
+        this.regionId = regionId;
     }
 }
