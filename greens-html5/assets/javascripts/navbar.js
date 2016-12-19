@@ -7,7 +7,6 @@ var navbar = [{
 }, {
     title: '会员管理',
     iconCls: 'User',
-    selected: true,
     subMenu: [
         {id: 'menu-member-list', title: '会员列表', href: '/users/index.html'},
         {id: 'menu-member-card', title: '会员卡管理', href: ''}
@@ -15,6 +14,7 @@ var navbar = [{
 }, {
     title: '商品信息',
     iconCls: 'Cart',
+    selected: true,
     subMenu: [
         {id: 'menu-goods-purchase', title: '商品采购单', href: '/goods/purchase/index.html'},
         {id: 'menu-goods-list', title: '商品列表', href: '/goods/index.html'},
