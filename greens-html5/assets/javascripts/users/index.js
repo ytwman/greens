@@ -15,8 +15,8 @@ $(function () {
         id: 'add-user-dialog',
         title: '添加用户',
         iconCls: 'Disk',
-        width: 650,
-        height: 420,
+        width: 400,
+        height: 580,
         modal: true,
         href: '/users/add_user.html'
     };

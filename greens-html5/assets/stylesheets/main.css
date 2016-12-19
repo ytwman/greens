@@ -33,6 +33,10 @@ body {
 .form-mini {
     width: 90%;
 }
+.form .combo-arrow {
+    width:  27px !important;
+    height: 27px !important;
+}
 
 .form-group {
     margin-bottom: 15px;
