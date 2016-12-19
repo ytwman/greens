@@ -3,8 +3,15 @@
 <mapper namespace="com.ytwman.greens.commons.repo.GoodsInfoMapper">
 
     <select id="selectByPagination" resultType="com.ytwman.greens.commons.entity.GoodsInfoEntity">
-      SELECT * FROM goods_info WHERE is_delete = 0
-      ORDER BY id DESC
-      LIMIT #{page.offset}, #{page.limit};
+        SELECT * FROM greens.goods_info WHERE is_delete = 0
+        <if test="categoryId != null">
+            AND category_id = #{categoryId}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            AND ( name LIKE #{keywords} OR spell LIKE upper(#{keywords}) OR code LIKE upper(#{keywords}) )
+        </if>
+        ORDER BY id DESC
+        LIMIT #{page.offset}, #{page.limit};
     </select>
+
 </mapper>

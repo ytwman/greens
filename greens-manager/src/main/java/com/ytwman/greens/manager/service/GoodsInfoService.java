@@ -6,10 +6,16 @@
  */
 package com.ytwman.greens.manager.service;
 
-import com.ytwman.greens.commons.core.web.Pagination;
+import com.google.common.collect.Lists;
+import com.ytwman.greens.commons.core.Like;
+import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
 import com.ytwman.greens.commons.entity.mapper.base.GoodsInfoEntityMapper;
 import com.ytwman.greens.commons.repo.GoodsInfoMapper;
+import com.ytwman.greens.manager.model.param.GoodsInfoParam;
+import com.ytwman.greens.manager.model.param.GoodsInfoSearchParam;
+import com.ytwman.greens.manager.model.result.GoodsInfoSearchResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,16 +30,45 @@ import java.util.List;
 public class GoodsInfoService {
 
     @Resource
+    GoodsInfoMapper goodsInfoMapper;
+
+    @Resource
     GoodsInfoEntityMapper goodsInfoEntityMapper;
 
     @Resource
-    GoodsInfoMapper goodsInfoMapper;
+    GoodsCategoryService goodsCategoryService;
 
-    public List<GoodsInfoEntity> getAll(Pagination pagination) {
-        return goodsInfoMapper.selectByPagination(pagination);
+    public List<GoodsInfoSearchResult> getAll(GoodsInfoSearchParam searchParam) {
+        List<GoodsInfoEntity> entities = goodsInfoMapper.selectByPagination(
+                Like.right(searchParam.getKeywords()), searchParam.getCategoryId(), searchParam);
+        return Lists.transform(entities, entity -> transform(entity));
+    }
+
+    private GoodsInfoSearchResult transform(GoodsInfoEntity entity) {
+        GoodsInfoSearchResult result = new GoodsInfoSearchResult();
+        BeanUtils.copyProperties(entity, result);
+
+        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryService.get(entity.getCategoryId());
+        result.setCategoryName(goodsCategoryEntity.getName());
+        return result;
     }
 
     public GoodsInfoEntity get(Long goodsId) {
         return goodsInfoEntityMapper.selectByPrimaryKey(goodsId);
+    }
+
+    public void saveOrUpdate(GoodsInfoParam param) {
+        if (param.getId() == null) {
+            goodsInfoEntityMapper.insertSelective(param);
+        } else {
+            goodsInfoEntityMapper.updateByPrimaryKeySelective(param);
+        }
+    }
+
+    public void delete(Long goodsId) {
+        GoodsInfoEntity entity = new GoodsInfoParam();
+        entity.setId(goodsId);
+        entity.setIsDelete(1);
+        goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }
 }

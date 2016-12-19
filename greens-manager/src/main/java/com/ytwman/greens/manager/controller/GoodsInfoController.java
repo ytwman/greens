@@ -6,7 +6,8 @@
  */
 package com.ytwman.greens.manager.controller;
 
-import com.ytwman.greens.commons.core.web.Pagination;
+import com.ytwman.greens.manager.model.param.GoodsInfoParam;
+import com.ytwman.greens.manager.model.param.GoodsInfoSearchParam;
 import com.ytwman.greens.manager.service.GoodsInfoService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * @author 忽忽(huhu)
@@ -28,12 +30,22 @@ public class GoodsInfoController {
     GoodsInfoService goodsInfoService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object index(Pagination pagination) {
-        return goodsInfoService.getAll(pagination);
+    public Object index(GoodsInfoSearchParam searchParam) {
+        return goodsInfoService.getAll(searchParam);
     }
 
     @RequestMapping("/{goodsId}")
     public Object show(@PathVariable("goodsId") Long goodsId) {
         return goodsInfoService.get(goodsId);
+    }
+
+    @RequestMapping("/save_or_update")
+    public void saveOrUpdate(@Valid GoodsInfoParam param) {
+        goodsInfoService.saveOrUpdate(param);
+    }
+
+    @RequestMapping("/delete/{goodsId}")
+    public void delete(@PathVariable("goodsId") Long goodsId) {
+        goodsInfoService.delete(goodsId);
     }
 }
