@@ -54,8 +54,8 @@ $(function () {
     });
 
     // 社区初始化数据
-    $('#user-search-communityId').combobox({
-        url: projectPath + '/communities',
+    $('#user-search-community').combobox({
+        url: projectPath + '/regions/1/communities',
         method: 'get',
         valueField: 'id',
         textField: 'name',
