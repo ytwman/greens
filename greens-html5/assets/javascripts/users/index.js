@@ -55,11 +55,11 @@ $(function () {
 
     // 社区初始化数据
     $('#user-search-community').combobox({
-        url: projectPath + '/regions/1/communities',
+        url: projectPath + '/regions/1907/communities',
         method: 'get',
         valueField: 'id',
         textField: 'name',
-        panelHeight: 'auto',
+        panelHeight: 200,
         onChange: function (newValue) {
             userSearchParams.communityId = newValue;
         }

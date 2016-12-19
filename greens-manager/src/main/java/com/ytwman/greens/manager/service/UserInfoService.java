@@ -6,6 +6,7 @@
  */
 package com.ytwman.greens.manager.service;
 
+import com.google.common.collect.Lists;
 import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.core.exception.ApiException;
 import com.ytwman.greens.commons.core.exception.BusinessExMessage;
@@ -13,8 +14,11 @@ import com.ytwman.greens.commons.entity.CommunityEntity;
 import com.ytwman.greens.commons.entity.RegionEntity;
 import com.ytwman.greens.commons.entity.UserInfoEntity;
 import com.ytwman.greens.commons.entity.mapper.base.UserInfoEntityMapper;
+import com.ytwman.greens.commons.helper.BeanHelper;
 import com.ytwman.greens.commons.repo.UserInfoMapper;
 import com.ytwman.greens.manager.model.param.UserInfoParam;
+import com.ytwman.greens.manager.model.result.UserInfoResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -40,8 +44,24 @@ public class UserInfoService {
     @Resource
     UserInfoEntityMapper userInfoEntityMapper;
 
-    public List<UserInfoEntity> getAll(String keywords, Long communityId) {
-        return userInfoMapper.findAll(Like.right(keywords == null ? null : keywords.toUpperCase()), communityId);
+    public List<UserInfoResult> getAll(String keywords, Long communityId) {
+        List<UserInfoEntity> entities = userInfoMapper.findAll(Like.rightUpperCase(keywords), communityId);
+        return Lists.transform(entities, entity -> transform(entity));
+    }
+
+    private UserInfoResult transform(UserInfoEntity entity) {
+        UserInfoResult result = new UserInfoResult();
+        BeanUtils.copyProperties(entity, result);
+
+        RegionEntity province = regionService.get(entity.getProvince());
+        RegionEntity city = regionService.get(entity.getCity());
+        RegionEntity district = regionService.get(entity.getDistrict());
+        CommunityEntity community = communityService.get(entity.getCommunity());
+        result.setProvinceName(province.getName());
+        result.setCityName(city.getName());
+        result.setDistrictName(district.getName());
+        result.setCommunityName(community.getName());
+        return result;
     }
 
     public UserInfoEntity get(Long userId) {

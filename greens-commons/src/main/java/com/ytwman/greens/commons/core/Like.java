@@ -23,6 +23,10 @@ public class Like {
         return StringUtils.isNotEmpty(key) ? key + "%" : null;
     }
 
+    public static String rightUpperCase(String key) {
+        return key == null ? null : right(key.toUpperCase());
+    }
+
     public static String all(String key) {
         return StringUtils.isNotEmpty(key) ? "%" + key + "%" : null;
     }
