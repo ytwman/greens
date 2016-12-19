@@ -32,7 +32,7 @@ public class RegionController {
     @Resource
     CommunityService communityService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping("/provinces")
     public Object provinces() {
         return regionService.provinces();
     }
