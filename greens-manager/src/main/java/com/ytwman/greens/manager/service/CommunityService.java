@@ -29,4 +29,8 @@ public class CommunityService {
     public List<CommunityEntity> getByRegion(Long regionId, String keywords) {
         return communityMapper.findByRegion(regionId, Like.right(keywords));
     }
+
+    public CommunityEntity get(Long id) {
+        return communityMapper.findById(id);
+    }
 }

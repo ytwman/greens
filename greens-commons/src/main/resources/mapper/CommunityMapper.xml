@@ -11,4 +11,8 @@
         ORDER BY id DESC;
     </select>
 
+    <select id="findById" resultType="com.ytwman.greens.commons.entity.CommunityEntity">
+        SELECT * FROM greens.base_community WHERE is_delete = 0 AND id = #{id} limit 1;
+    </select>
+
 </mapper>

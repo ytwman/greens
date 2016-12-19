@@ -16,6 +16,11 @@ public enum BusinessExMessage implements IExMessage {
     ParameterError(10001, "请求参数校验异常"),
     GoodsCategoryExistChild(30001, "商品类目存在子节点"),
     GoodsCategoryCodeExistChild(30002, "商品类目编码已存在"),
+
+
+    // 基础信息
+    RegionNotFound(90002, "城市不存在"),
+    CommunityNotFound(90002, "社区不存在或和选择的城市不匹配"),
     ;
 
     int code;

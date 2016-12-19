@@ -19,7 +19,7 @@ import java.util.List;
 public interface CommunityMapper {
 
     /**
-     * 根据主键查询
+     * 根据地区第四级主键查询
      *
      * @param regionId 地区编码
      * @param keywords 检索关键字
@@ -27,4 +27,10 @@ public interface CommunityMapper {
      */
     List<CommunityEntity> findByRegion(@Param("regionId") Long regionId, @Param("keywords") String keywords);
 
+    /**
+     * 根据主键查询
+     * @param id
+     * @return
+     */
+    CommunityEntity findById(@Param("id") Long id);
 }
