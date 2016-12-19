@@ -21,10 +21,18 @@ public interface RegionMapper {
     /**
      * 根据主键查询节点
      *
+     * @param parentId
+     * @return
+     */
+    List<RegionEntity> findByParentId(@Param("parentId") Long parentId);
+
+    /**
+     * 根据主键查询父节点
+     *
      * @param id
      * @return
      */
-    List<RegionEntity> findByParentId(@Param("id") Long id);
+    RegionEntity findById(@Param("id") Long id);
 
     /**
      * 根据地区等级查询

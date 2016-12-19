@@ -25,14 +25,16 @@ public class RegionService {
     @Resource
     RegionMapper regionMapper;
 
-    /**
-     * 查询出所有的省份
-     */
+    // 查询出所有的省份
     public List<RegionEntity> provinces() {
         return regionMapper.findByLevel(RegionLevel.省份.getCode());
     }
 
-    public List<RegionEntity> getSubset(Long parentId) {
-        return regionMapper.findByParentId(parentId);
+    public List<RegionEntity> getSubset(Long id) {
+        return regionMapper.findByParentId(id);
+    }
+
+    public RegionEntity get(Long id) {
+        return regionMapper.findById(id);
     }
 }
