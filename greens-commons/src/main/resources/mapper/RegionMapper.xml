@@ -11,6 +11,11 @@
         SELECT * FROM greens.base_region WHERE is_delete = 0 AND id = #{id} limit 1;
     </select>
 
+    <select id="findParentById" resultType="com.ytwman.greens.commons.entity.RegionEntity">
+        SELECT  * FROM greens.base_region WHERE is_delete = 0 AND id IN
+          (SELECT parent_id FROM greens.base_region WHERE is_delete = 0 AND id = #{id}) limit 1;
+    </select>
+
     <select id="findByLevel" resultType="com.ytwman.greens.commons.entity.RegionEntity">
       SELECT * FROM greens.base_region WHERE is_delete = 0 AND level = #{level}
       ORDER BY id;

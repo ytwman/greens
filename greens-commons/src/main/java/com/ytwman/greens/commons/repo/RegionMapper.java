@@ -27,12 +27,19 @@ public interface RegionMapper {
     List<RegionEntity> findByParentId(@Param("parentId") Long parentId);
 
     /**
-     * 根据主键查询父节点
+     * 根据主键查询
      *
      * @param id
      * @return
      */
     RegionEntity findById(@Param("id") Long id);
+
+    /**
+     * 根据主键查询父节点
+     * @param id
+     * @return
+     */
+    RegionEntity findParentById(@Param("id") Long id);
 
     /**
      * 根据地区等级查询

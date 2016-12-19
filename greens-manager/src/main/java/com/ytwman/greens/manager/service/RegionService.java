@@ -37,4 +37,8 @@ public class RegionService {
     public RegionEntity get(Long id) {
         return regionMapper.findById(id);
     }
+
+    public RegionEntity getParent(Long id) {
+        return  regionMapper.findParentById(id);
+    }
 }
