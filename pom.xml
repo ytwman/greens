@@ -13,7 +13,6 @@
         <module>greens-commons</module>
         <module>greens-manager</module>
         <module>greens-ups</module>
-        <module>greens-cashier</module>
     </modules>
 
 </project>
