@@ -71,4 +71,10 @@ public class GoodsInfoService {
         entity.setIsDelete(1);
         goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }
+
+    public void sell(Long goodsId) {
+        GoodsInfoEntity entity = new GoodsInfoEntity();
+        entity.setId(goodsId);
+        goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
+    }
 }

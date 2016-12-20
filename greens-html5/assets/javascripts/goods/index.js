@@ -17,7 +17,7 @@ $(function () {
         title: '添加商品',
         iconCls: 'Disk',
         width: 400,
-        height: 450,
+        height: 480,
         modal: true,
         cache: false,
         href: '/goods/add_goods.html'
@@ -83,7 +83,7 @@ $(function () {
             return;
         }
 
-        $.dialog(dialogOptions, {id: row.id});
+        $.dialog(dialogOptions, {id: row.id, goodsCategoryId: row.categoryId});
     });
 
     // 删除商品

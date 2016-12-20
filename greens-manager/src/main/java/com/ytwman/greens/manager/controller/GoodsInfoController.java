@@ -48,4 +48,9 @@ public class GoodsInfoController {
     public void delete(@PathVariable("goodsId") Long goodsId) {
         goodsInfoService.delete(goodsId);
     }
+
+    @RequestMapping("/sell/{goodsId}")
+    public void sell(@PathVariable("goodsId") Long goodsId) {
+        goodsInfoService.sell(goodsId);
+    }
 }
