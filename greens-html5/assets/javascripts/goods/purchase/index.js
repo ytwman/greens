@@ -24,6 +24,14 @@ $(function () {
         method: 'get'
     });
 
+    // 查询条件初始化
+    $('#purchase-search-keywords').searchbox({
+        searcher: function (newValue) {
+            purchaseSearchParams.keywords = newValue;
+            $('#purchase-list').datagrid('load', purchaseSearchParams);
+        }
+    });
+
     // 添加采购单
     $('#purchase-add-btn').click(function () {
         $.dialog({
@@ -63,8 +71,3 @@ $(function () {
         });
     });
 });
-
-// 查询方法
-function doPurchaseSearch(value) {
-    $('#purchase-list').datagrid('load', {keywords: value});
-}

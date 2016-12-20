@@ -38,6 +38,14 @@ $(function () {
         method: 'get'
     });
 
+    // 查询条件初始化
+    $('#goods-category-search-keywords').searchbox({
+        searcher: function (newValue) {
+            goodsCategorySearchParams.keywords = newValue;
+            $('#goods-category-list').datagrid('load', goodsCategorySearchParams);
+        }
+    });
+
     // 添加商品类目
     $('#goods-category-add-btn').click(function () {
         $.dialog(dialogOptions);
@@ -80,7 +88,3 @@ $(function () {
         });
     });
 });
-
-function doCategorySearch(value) {
-    $('#goods-category-list').datagrid('load', {keywords: value});
-}

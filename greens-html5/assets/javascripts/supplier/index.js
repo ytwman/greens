@@ -38,6 +38,14 @@ $(function () {
         method: 'get'
     });
 
+    // 查询条件初始化
+    $('#supplier-search-keywords').searchbox({
+        searcher: function (newValue) {
+            supplierSearchParams.keywords = newValue;
+            $('#supplier-list').datagrid('load', supplierSearchParams);
+        }
+    });
+
     // 添加供应商
     $('#supplier-add-btn').click(function () {
         $.dialog(dialogOptions);
@@ -80,8 +88,3 @@ $(function () {
         });
     });
 });
-
-// 查询方法
-function doSupplierSearch(value) {
-    $('#supplier-list').datagrid('load', {keywords: value});
-}

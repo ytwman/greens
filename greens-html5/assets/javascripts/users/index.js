@@ -47,9 +47,13 @@ $(function () {
     });
 
     // 查询条件初始化
-    $('#user-search-keywords').textbox({
+    $('#user-search-keywords').searchbox({
         onChange: function (newValue) {
             userSearchParams.keywords = newValue;
+        },
+        searcher: function (newValue) {
+            userSearchParams.keywords = newValue;
+            $('#users-list').datagrid('load', userSearchParams);
         }
     });
 
@@ -65,18 +69,18 @@ $(function () {
         }
     });
 
-    // 搜索
-    $('#user-index-search-btn').click(function () {
-        $('#users-list').datagrid('load', userSearchParams);
+    // 查询按钮
+    $('#user-search-btn').click(function() {
+        $('#user-list').datagrid('load', userSearchParams);
     });
 
     // 打开添加用户 dialog
-    $('#user-index-add-btn').click(function () {
+    $('#user-add-btn').click(function () {
         $.dialog(dialogOptions);
     });
 
     // 打开修改用户 dialog
-    $('#user-index-edit-btn').click(function () {
+    $('#user-edit-btn').click(function () {
         var row = $('#users-list').datagrid('getSelected');
         if (!row) {
             $.messager.alert('操作提示', '请选择一条记录在执行操作!', 'error');
@@ -87,7 +91,7 @@ $(function () {
     });
 
     // 删除用户按钮
-    $('#user-index-del-btn').click(function () {
+    $('#user-del-btn').click(function () {
         // 是否选择
         var row = $('#users-list').datagrid('getSelected');
         if (!row) {
