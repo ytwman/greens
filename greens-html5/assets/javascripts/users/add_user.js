@@ -10,6 +10,20 @@ $(function () {
         $('#add-goods-category-form').form('load', projectPath + '/goods_category/' + data.id);
     }
 
+    // 设置省份数据
+    $('#province').combobox({
+        url: projectPath + '/regions/provinces',
+        method: 'get',
+        valueField: 'id',
+        textField: 'name',
+        panelHeight: 160,
+        onChange: function (newValue) {
+            $('#city').combobox('clear');
+            $('#city').combobox('reload', projectPath + '/regions/' + newValue + '/childrens');
+        }
+    });
+
+
     // 表单提交动作
     $('#add-user-form').form({
         url: '/users/save_or_update',

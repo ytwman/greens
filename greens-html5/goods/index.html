@@ -19,14 +19,13 @@
             <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="goods-add-btn">添加</a>
             <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="goods-edit-btn">修改</a>
             <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="goods-del-btn">删除</a>
-            <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="goods-lookup-btn">上下架</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Calculatoredit" plain="true" id="goods-lookup-btn">上下架</a>
         </div>
         <div class="datagrid-btn-separator"></div>
         <div>
-            <input class="easyui-searchbox" style="width:160px" prompt="商品名称、编码、缩写" searcher="doGoodsSearch">
-            <select class="easyui-combobox" style="width:120px">
-            </select>
-            <a href="#" class="easyui-linkbutton" iconCls="Magnifier">搜索</a>
+            <input class="easyui-searchbox" style="width:160px" prompt="商品名称、编码、缩写" id="goods-search-keywords">
+            <select class="easyui-combobox" style="width:120px" id="goods-search-category"></select>
+            <a href="#" class="easyui-linkbutton" iconCls="Magnifier" id="goods-search-btn">搜索</a>
         </div>
     </div>
 </div>

@@ -7,7 +7,8 @@ $(function () {
 
     // 查询条件
     var goodsSearchParams = {
-        keywords: null
+        keywords: null,
+        goodsCategoryId: null
     };
 
     // 详情 dialog 模板
@@ -37,6 +38,35 @@ $(function () {
         url: projectPath + '/goods_info',
         queryParams: goodsSearchParams,
         method: 'get'
+    });
+
+    // 查询条件初始化
+    $('#goods-search-keywords').searchbox({
+        onChange: function (newValue) {
+            goodsSearchParams.keywords = newValue;
+        },
+        searcher: function (newValue) {
+            goodsSearchParams.keywords = newValue;
+            $('#goods-list').datagrid('load', goodsSearchParams);
+        }
+    });
+
+    // 商品类目初始化数据
+    $('#goods-search-category').combobox({
+        url: projectPath + '/goods_category',
+        method: 'get',
+        valueField: 'id',
+        textField: 'name',
+        panelHeight: 120,
+        // value: '-商品分类-',
+        onChange: function (newValue) {
+            goodsSearchParams.goodsCategoryId = newValue;
+        }
+    });
+
+    // 查询按钮
+    $('#goods-search-btn').click(function() {
+        $('#goods-list').datagrid('load', goodsSearchParams);
     });
 
     // 添加商品
@@ -81,8 +111,3 @@ $(function () {
         });
     });
 });
-
-// 查询方法
-function doGoodsSearch(value) {
-    $('#goods-list').datagrid('load', {keywords: value});
-}
