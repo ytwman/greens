@@ -2,7 +2,7 @@
  * Copyright (C), 2014-2015, 杭州小卡科技有限公司
  * Author:  忽忽(huhu)
  * Date:    16/12/17 上午12:42
- * Description: 
+ * Description:
  */
 package com.ytwman.greens.commons.status;
 
