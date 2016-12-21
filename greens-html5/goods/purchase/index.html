@@ -6,11 +6,12 @@
         <th width="10%" align="center" field='id'>采购单号</th>
         <th width="12%" align="center" field='created_time'>采购日期</th>
         <th width="15%" align="left"   field='name'>批次名称</th>
-        <th width="6%"  align="right"  field='total_price'>总金额</th>
+        <th width="5%"  align="right"  field='total_price'>总金额</th>
         <th width="10%" align="left"   field='purchaser_name'>采购人</th>
         <th width="10%" align="left"   field='operator_name'>录入人</th>
-        <th width="30%" align="left"   field='description'>备注</th>
-        <th width="6%"  align="left"   field='audit'>是否核对</th>
+        <th width="18%" align="left"   field='description'>备注</th>
+        <th width="6%"  align="left"   field='audit'>核对状态</th>
+        <th width="20%"  align="right"   field='audit'>创建时间</th>
     </tr>
     </thead>
 </table>
@@ -18,6 +19,7 @@
     <div class="clearfix">
         <div style="float:left;">
             <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="purchase-add-btn">添加</a>
+            <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="purchase-edit-btn">修改</a>
             <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="purchase-del-btn">删除</a>
             <a href="#" class="easyui-linkbutton" iconCls="Printer" plain="true" onclick="">打印</a>
             <a href="#" class="easyui-linkbutton" iconCls="Lock" plain="true" onclick="">核对</a>
