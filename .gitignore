@@ -10,3 +10,4 @@ rebel.xml
 .DS_Store
 logs
 .sass-cache
+middleware
