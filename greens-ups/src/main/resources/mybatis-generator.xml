@@ -23,7 +23,7 @@
         <!-- 设置驱动 JDBC 连接 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/greens"
+                connectionURL="jdbc:mysql://139.196.101.182:3306/greens"
                 userId="root"
                 password="xiaoshuai"/>
 
