@@ -34,20 +34,20 @@
 
         <!-- Model 和 Example 位置 -->
         <javaModelGenerator targetPackage="com.ytwman.greens.commons.entity"
-                            targetProject="/Users/ytwman/Documents/开发相关/greens/greens-commons/src/main/java">
+                            targetProject="/Users/ytwman/Dropbox/Develop/workspace/greens/greens-commons/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- Mapper.xml 位置文件 -->
         <sqlMapGenerator targetPackage="mapper.base"
-                            targetProject="/Users/ytwman/Documents/开发相关/greens/greens-commons/src/main/resources">
+                            targetProject="/Users/ytwman/Dropbox/Develop/workspace/greens/greens-commons/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- Mapper 类的位置 -->
         <javaClientGenerator targetPackage="com.ytwman.greens.commons.entity.mapper.base"
-                             targetProject="/Users/ytwman/Documents/开发相关/greens/greens-commons/src/main/java"
+                             targetProject="/Users/ytwman/Dropbox/Develop/workspace/greens/greens-commons/src/main/java"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
