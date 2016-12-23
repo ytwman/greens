@@ -6,9 +6,9 @@ $(function () {
     // 注册全局事件
     $(document).bind('keydown', function (e) {
         // esc 关闭tab
-        if (e.key === 'Escape') {
-            closeCurrentTab();
-        }
+        // if (e.key === 'Escape') {
+        //     closeCurrentTab();
+        // }
 
         // F2 收银台
         if (e.key === 'F2') {

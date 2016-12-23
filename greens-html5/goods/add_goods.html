@@ -1,13 +1,15 @@
 <!-- 添加商品 -->
 <div class="form">
     <form class="easyui-form" method="post" data-options="novalidate:true" id="add-goods-form">
+        <input type="hidden" name="id">
+
         <div class="form-group">
             <label>商品名称:</label>
             <input class="easyui-textbox" style="width:100%;" required="true" name="name">
         </div>
         <div class="form-group">
             <label>拼音缩写:</label>
-            <input class="easyui-textbox" style="width:100%;" required="true" disabled="true" name="spell">
+            <input class="easyui-textbox" style="width:100%;" required="true" name="spell">
         </div>
         <!--<div class="form-group">
             <label>商品编码:</label>
@@ -15,7 +17,7 @@
         </div>-->
         <div class="form-group">
             <label>商品类目:</label>
-            <select class="easyui-combobox" style="width:100%;" required="true" name="category" id="add-goods-search-category"></select>
+            <select class="easyui-combobox" style="width:100%;" required="true" name="categoryId" id="add-goods-search-category"></select>
         </div>
         <div class="form-group">
             <label>描述:</label>

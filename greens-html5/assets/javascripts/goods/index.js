@@ -8,7 +8,7 @@ $(function () {
     // 查询条件
     var goodsSearchParams = {
         keywords: null,
-        goodsCategoryId: null
+        categoryId: null
     };
 
     // 详情 dialog 模板
@@ -17,7 +17,7 @@ $(function () {
         title: '添加商品',
         iconCls: 'Disk',
         width: 400,
-        height: 480,
+        height: 420,
         modal: true,
         cache: false,
         href: '/goods/add_goods.html'
@@ -60,7 +60,8 @@ $(function () {
         panelHeight: 120,
         // value: '-商品分类-',
         onChange: function (newValue) {
-            goodsSearchParams.goodsCategoryId = newValue;
+            goodsSearchParams.categoryId = newValue;
+            $('#goods-list').datagrid('load', goodsSearchParams);
         }
     });
 
@@ -83,7 +84,7 @@ $(function () {
             return;
         }
 
-        $.dialog(dialogOptions, {id: row.id, goodsCategoryId: row.categoryId});
+        $.dialog(dialogOptions, {id: row.id, categoryId: row.categoryId});
     });
 
     // 删除商品
@@ -120,8 +121,10 @@ $(function () {
             return;
         }
 
+        var lookup = row.lookup == 0 ? "上架" : "下架";
+
         // 提示是否需要上下架
-        $.messager.confirm('商品上下架', '您确定要操作商品上下架, “' + row.name + '”', function (r) {
+        $.messager.confirm('商品上下架', '您确定要<red style="color:red;">【' + lookup + '】商品, “' + row.name + '”</red>', function (r) {
             if (r) {
                 // 删除动作
                 $.get(projectPath + '/goods_info/lookup/' + row.id, function (result) {
@@ -139,7 +142,7 @@ $(function () {
 
 // 上下架状态格式化
 function lookupFormatter(value, row) {
-        console.log(value);
+    console.log(value);
     console.log(row);
     return value == 1 ? '是' : '否';
 }
