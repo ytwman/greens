@@ -8,10 +8,13 @@ package com.ytwman.greens.manager.service;
 
 import com.google.common.collect.Lists;
 import com.ytwman.greens.commons.core.Like;
+import com.ytwman.greens.commons.core.exception.ApiException;
+import com.ytwman.greens.commons.core.exception.BusinessExMessage;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
 import com.ytwman.greens.commons.entity.mapper.base.GoodsInfoEntityMapper;
 import com.ytwman.greens.commons.repo.GoodsInfoMapper;
+import com.ytwman.greens.commons.status.Lookup;
 import com.ytwman.greens.manager.model.param.GoodsInfoParam;
 import com.ytwman.greens.manager.model.param.GoodsInfoSearchParam;
 import com.ytwman.greens.manager.model.result.GoodsInfoSearchResult;
@@ -72,9 +75,21 @@ public class GoodsInfoService {
         goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }
 
-    public void sell(Long goodsId) {
-        GoodsInfoEntity entity = new GoodsInfoEntity();
+    public void lookup(Long goodsId) {
+
+        // 查询是否存在
+        GoodsInfoEntity entity = goodsInfoEntityMapper.selectByPrimaryKey(goodsId);
+        if (entity == null) {
+            throw new ApiException(BusinessExMessage.GoodsNotFound);
+        }
+
+        // 反转上下架状态
+        Lookup lookup = Lookup.reverse(entity.getLookup());
+
+        entity = new GoodsInfoParam();
         entity.setId(goodsId);
+        entity.setLookup(lookup.getCode());
+
         goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }
 }

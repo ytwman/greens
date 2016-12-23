@@ -13,9 +13,10 @@ public class GoodsInfoParam extends GoodsInfoEntity implements Serializable {
     @NotEmpty(message = "未填写商品名称")
     private String name;
 
-    @NotEmpty(message = "未填写商品编码")
-    private String code;
+//    @NotEmpty(message = "未填写商品编码")
+//    private String code;
 
+    @NotEmpty(message = "未填写商品拼音")
     private String spell;
 
     @Override
@@ -26,16 +27,6 @@ public class GoodsInfoParam extends GoodsInfoEntity implements Serializable {
     @Override
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public void setCode(String code) {
-        this.code = code;
     }
 
     @Override

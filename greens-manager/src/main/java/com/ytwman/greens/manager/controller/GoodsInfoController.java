@@ -49,8 +49,9 @@ public class GoodsInfoController {
         goodsInfoService.delete(goodsId);
     }
 
-    @RequestMapping("/sell/{goodsId}")
-    public void sell(@PathVariable("goodsId") Long goodsId) {
-        goodsInfoService.sell(goodsId);
+    // 商品上下架
+    @RequestMapping("/lookup/{goodsId}")
+    public void lookup(@PathVariable("goodsId") Long goodsId) {
+        goodsInfoService.lookup(goodsId);
     }
 }

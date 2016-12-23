@@ -65,7 +65,7 @@ $(function () {
     });
 
     // 查询按钮
-    $('#goods-search-btn').click(function() {
+    $('#goods-search-btn').click(function () {
         $('#goods-list').datagrid('load', goodsSearchParams);
     });
 
@@ -110,4 +110,36 @@ $(function () {
             }
         });
     });
+
+    // 上下架商品
+    $('#goods-lookup-btn').click(function () {
+        // 是否选择
+        var row = $('#goods-list').datagrid('getSelected');
+        if (!row) {
+            $.messager.alert('操作提示', '请选择一条记录在执行操作!', 'error');
+            return;
+        }
+
+        // 提示是否需要上下架
+        $.messager.confirm('商品上下架', '您确定要操作商品上下架, “' + row.name + '”', function (r) {
+            if (r) {
+                // 删除动作
+                $.get(projectPath + '/goods_info/lookup/' + row.id, function (result) {
+                    if (!!result) {
+                        $.messager.alert('商品上下架失败', result.exMessage ? result.exMessage : '系统异常', 'error');
+                        return;
+                    }
+
+                    $('#goods-list').datagrid('reload');
+                }, 'json');
+            }
+        });
+    });
 });
+
+// 上下架状态格式化
+function lookupFormatter(value, row) {
+        console.log(value);
+    console.log(row);
+    return value == 1 ? '是' : '否';
+}
