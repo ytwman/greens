@@ -13,9 +13,13 @@ public class AssetsBalanceModifyEntity implements Serializable {
 
     private BigDecimal amount;
 
+    private Integer type;
+
     private String reason;
 
     private Date createdTime;
+
+    private Integer isDelete;
 
     private static final long serialVersionUID = 1L;
 
@@ -51,6 +55,14 @@ public class AssetsBalanceModifyEntity implements Serializable {
         this.amount = amount;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public String getReason() {
         return reason;
     }
@@ -67,6 +79,14 @@ public class AssetsBalanceModifyEntity implements Serializable {
         this.createdTime = createdTime;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -77,8 +97,10 @@ public class AssetsBalanceModifyEntity implements Serializable {
         sb.append(", assetsId=").append(assetsId);
         sb.append(", userId=").append(userId);
         sb.append(", amount=").append(amount);
+        sb.append(", type=").append(type);
         sb.append(", reason=").append(reason);
         sb.append(", createdTime=").append(createdTime);
+        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

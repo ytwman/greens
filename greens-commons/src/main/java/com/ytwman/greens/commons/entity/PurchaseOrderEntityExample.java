@@ -556,6 +556,136 @@ public class PurchaseOrderEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditIsNull() {
+            addCriterion("audit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditIsNotNull() {
+            addCriterion("audit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditEqualTo(Integer value) {
+            addCriterion("audit =", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditNotEqualTo(Integer value) {
+            addCriterion("audit <>", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditGreaterThan(Integer value) {
+            addCriterion("audit >", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditGreaterThanOrEqualTo(Integer value) {
+            addCriterion("audit >=", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditLessThan(Integer value) {
+            addCriterion("audit <", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditLessThanOrEqualTo(Integer value) {
+            addCriterion("audit <=", value, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditIn(List<Integer> values) {
+            addCriterion("audit in", values, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditNotIn(List<Integer> values) {
+            addCriterion("audit not in", values, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditBetween(Integer value1, Integer value2) {
+            addCriterion("audit between", value1, value2, "audit");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditNotBetween(Integer value1, Integer value2) {
+            addCriterion("audit not between", value1, value2, "audit");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedTimeIsNull() {
             addCriterion("created_time is null");
             return (Criteria) this;
@@ -613,6 +743,66 @@ public class PurchaseOrderEntityExample {
 
         public Criteria andCreatedTimeNotBetween(Date value1, Date value2) {
             addCriterion("created_time not between", value1, value2, "createdTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeIsNull() {
+            addCriterion("updated_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeIsNotNull() {
+            addCriterion("updated_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeEqualTo(Date value) {
+            addCriterion("updated_time =", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeNotEqualTo(Date value) {
+            addCriterion("updated_time <>", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeGreaterThan(Date value) {
+            addCriterion("updated_time >", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("updated_time >=", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeLessThan(Date value) {
+            addCriterion("updated_time <", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeLessThanOrEqualTo(Date value) {
+            addCriterion("updated_time <=", value, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeIn(List<Date> values) {
+            addCriterion("updated_time in", values, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeNotIn(List<Date> values) {
+            addCriterion("updated_time not in", values, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeBetween(Date value1, Date value2) {
+            addCriterion("updated_time between", value1, value2, "updatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedTimeNotBetween(Date value1, Date value2) {
+            addCriterion("updated_time not between", value1, value2, "updatedTime");
             return (Criteria) this;
         }
 
@@ -688,6 +878,11 @@ public class PurchaseOrderEntityExample {
 
         public Criteria andOperatorNameLikeInsensitive(String value) {
             addCriterion("upper(operator_name) like", value.toUpperCase(), "operatorName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLikeInsensitive(String value) {
+            addCriterion("upper(description) like", value.toUpperCase(), "description");
             return (Criteria) this;
         }
     }

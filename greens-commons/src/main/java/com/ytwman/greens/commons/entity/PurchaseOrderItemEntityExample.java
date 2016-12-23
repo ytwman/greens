@@ -536,73 +536,143 @@ public class PurchaseOrderItemEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationIsNull() {
-            addCriterion("specification is null");
+        public Criteria andUnitIsNull() {
+            addCriterion("unit is null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationIsNotNull() {
-            addCriterion("specification is not null");
+        public Criteria andUnitIsNotNull() {
+            addCriterion("unit is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationEqualTo(String value) {
-            addCriterion("specification =", value, "specification");
+        public Criteria andUnitEqualTo(String value) {
+            addCriterion("unit =", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationNotEqualTo(String value) {
-            addCriterion("specification <>", value, "specification");
+        public Criteria andUnitNotEqualTo(String value) {
+            addCriterion("unit <>", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationGreaterThan(String value) {
-            addCriterion("specification >", value, "specification");
+        public Criteria andUnitGreaterThan(String value) {
+            addCriterion("unit >", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationGreaterThanOrEqualTo(String value) {
-            addCriterion("specification >=", value, "specification");
+        public Criteria andUnitGreaterThanOrEqualTo(String value) {
+            addCriterion("unit >=", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationLessThan(String value) {
-            addCriterion("specification <", value, "specification");
+        public Criteria andUnitLessThan(String value) {
+            addCriterion("unit <", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationLessThanOrEqualTo(String value) {
-            addCriterion("specification <=", value, "specification");
+        public Criteria andUnitLessThanOrEqualTo(String value) {
+            addCriterion("unit <=", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationLike(String value) {
-            addCriterion("specification like", value, "specification");
+        public Criteria andUnitLike(String value) {
+            addCriterion("unit like", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationNotLike(String value) {
-            addCriterion("specification not like", value, "specification");
+        public Criteria andUnitNotLike(String value) {
+            addCriterion("unit not like", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationIn(List<String> values) {
-            addCriterion("specification in", values, "specification");
+        public Criteria andUnitIn(List<String> values) {
+            addCriterion("unit in", values, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationNotIn(List<String> values) {
-            addCriterion("specification not in", values, "specification");
+        public Criteria andUnitNotIn(List<String> values) {
+            addCriterion("unit not in", values, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationBetween(String value1, String value2) {
-            addCriterion("specification between", value1, value2, "specification");
+        public Criteria andUnitBetween(String value1, String value2) {
+            addCriterion("unit between", value1, value2, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationNotBetween(String value1, String value2) {
-            addCriterion("specification not between", value1, value2, "specification");
+        public Criteria andUnitNotBetween(String value1, String value2) {
+            addCriterion("unit not between", value1, value2, "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
 
@@ -791,8 +861,13 @@ public class PurchaseOrderItemEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andSpecificationLikeInsensitive(String value) {
-            addCriterion("upper(specification) like", value.toUpperCase(), "specification");
+        public Criteria andUnitLikeInsensitive(String value) {
+            addCriterion("upper(unit) like", value.toUpperCase(), "unit");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLikeInsensitive(String value) {
+            addCriterion("upper(description) like", value.toUpperCase(), "description");
             return (Criteria) this;
         }
     }

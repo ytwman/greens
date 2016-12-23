@@ -6,6 +6,7 @@
     <result column="order_id" property="orderId" jdbcType="BIGINT" />
     <result column="payment" property="payment" jdbcType="DECIMAL" />
     <result column="payable" property="payable" jdbcType="DECIMAL" />
+    <result column="loss_profit" property="lossProfit" jdbcType="DECIMAL" />
     <result column="balance" property="balance" jdbcType="DECIMAL" />
     <result column="paid_method" property="paidMethod" jdbcType="INTEGER" />
     <result column="paid_time" property="paidTime" jdbcType="TIMESTAMP" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, order_id, payment, payable, balance, paid_method, paid_time
+    id, order_id, payment, payable, loss_profit, balance, paid_method, paid_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.OrderOfferEntityExample" >
     select
@@ -103,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.OrderOfferEntity" >
     insert into order_offer (id, order_id, payment, 
-      payable, balance, paid_method, 
-      paid_time)
+      payable, loss_profit, balance, 
+      paid_method, paid_time)
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{payment,jdbcType=DECIMAL}, 
-      #{payable,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, #{paidMethod,jdbcType=INTEGER}, 
-      #{paidTime,jdbcType=TIMESTAMP})
+      #{payable,jdbcType=DECIMAL}, #{lossProfit,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, 
+      #{paidMethod,jdbcType=INTEGER}, #{paidTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderOfferEntity" >
     insert into order_offer
@@ -123,6 +124,9 @@
       </if>
       <if test="payable != null" >
         payable,
+      </if>
+      <if test="lossProfit != null" >
+        loss_profit,
       </if>
       <if test="balance != null" >
         balance,
@@ -146,6 +150,9 @@
       </if>
       <if test="payable != null" >
         #{payable,jdbcType=DECIMAL},
+      </if>
+      <if test="lossProfit != null" >
+        #{lossProfit,jdbcType=DECIMAL},
       </if>
       <if test="balance != null" >
         #{balance,jdbcType=DECIMAL},
@@ -179,6 +186,9 @@
       <if test="record.payable != null" >
         payable = #{record.payable,jdbcType=DECIMAL},
       </if>
+      <if test="record.lossProfit != null" >
+        loss_profit = #{record.lossProfit,jdbcType=DECIMAL},
+      </if>
       <if test="record.balance != null" >
         balance = #{record.balance,jdbcType=DECIMAL},
       </if>
@@ -199,6 +209,7 @@
       order_id = #{record.orderId,jdbcType=BIGINT},
       payment = #{record.payment,jdbcType=DECIMAL},
       payable = #{record.payable,jdbcType=DECIMAL},
+      loss_profit = #{record.lossProfit,jdbcType=DECIMAL},
       balance = #{record.balance,jdbcType=DECIMAL},
       paid_method = #{record.paidMethod,jdbcType=INTEGER},
       paid_time = #{record.paidTime,jdbcType=TIMESTAMP}
@@ -218,6 +229,9 @@
       <if test="payable != null" >
         payable = #{payable,jdbcType=DECIMAL},
       </if>
+      <if test="lossProfit != null" >
+        loss_profit = #{lossProfit,jdbcType=DECIMAL},
+      </if>
       <if test="balance != null" >
         balance = #{balance,jdbcType=DECIMAL},
       </if>
@@ -235,6 +249,7 @@
     set order_id = #{orderId,jdbcType=BIGINT},
       payment = #{payment,jdbcType=DECIMAL},
       payable = #{payable,jdbcType=DECIMAL},
+      loss_profit = #{lossProfit,jdbcType=DECIMAL},
       balance = #{balance,jdbcType=DECIMAL},
       paid_method = #{paidMethod,jdbcType=INTEGER},
       paid_time = #{paidTime,jdbcType=TIMESTAMP}

@@ -1,6 +1,7 @@
 package com.ytwman.greens.commons.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class RegionEntity implements Serializable {
@@ -10,11 +11,29 @@ public class RegionEntity implements Serializable {
 
     private String name;
 
-    private Integer level;
+    private String smallName;
+
+    private String indexChar;
+
+    private String pinyin;
 
     private String code;
 
-    private Integer sortby;
+    private String weatherCode;
+
+    private Integer level;
+
+    private String zipcode;
+
+    private String diallingCode;
+
+    private BigDecimal lng;
+
+    private BigDecimal lat;
+
+    private String description;
+
+    private String sortby;
 
     private Date createdTime;
 
@@ -46,12 +65,28 @@ public class RegionEntity implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getSmallName() {
+        return smallName;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setSmallName(String smallName) {
+        this.smallName = smallName == null ? null : smallName.trim();
+    }
+
+    public String getIndexChar() {
+        return indexChar;
+    }
+
+    public void setIndexChar(String indexChar) {
+        this.indexChar = indexChar == null ? null : indexChar.trim();
+    }
+
+    public String getPinyin() {
+        return pinyin;
+    }
+
+    public void setPinyin(String pinyin) {
+        this.pinyin = pinyin == null ? null : pinyin.trim();
     }
 
     public String getCode() {
@@ -62,12 +97,68 @@ public class RegionEntity implements Serializable {
         this.code = code == null ? null : code.trim();
     }
 
-    public Integer getSortby() {
+    public String getWeatherCode() {
+        return weatherCode;
+    }
+
+    public void setWeatherCode(String weatherCode) {
+        this.weatherCode = weatherCode == null ? null : weatherCode.trim();
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode == null ? null : zipcode.trim();
+    }
+
+    public String getDiallingCode() {
+        return diallingCode;
+    }
+
+    public void setDiallingCode(String diallingCode) {
+        this.diallingCode = diallingCode == null ? null : diallingCode.trim();
+    }
+
+    public BigDecimal getLng() {
+        return lng;
+    }
+
+    public void setLng(BigDecimal lng) {
+        this.lng = lng;
+    }
+
+    public BigDecimal getLat() {
+        return lat;
+    }
+
+    public void setLat(BigDecimal lat) {
+        this.lat = lat;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public String getSortby() {
         return sortby;
     }
 
-    public void setSortby(Integer sortby) {
-        this.sortby = sortby;
+    public void setSortby(String sortby) {
+        this.sortby = sortby == null ? null : sortby.trim();
     }
 
     public Date getCreatedTime() {
@@ -95,8 +186,17 @@ public class RegionEntity implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", parentId=").append(parentId);
         sb.append(", name=").append(name);
-        sb.append(", level=").append(level);
+        sb.append(", smallName=").append(smallName);
+        sb.append(", indexChar=").append(indexChar);
+        sb.append(", pinyin=").append(pinyin);
         sb.append(", code=").append(code);
+        sb.append(", weatherCode=").append(weatherCode);
+        sb.append(", level=").append(level);
+        sb.append(", zipcode=").append(zipcode);
+        sb.append(", diallingCode=").append(diallingCode);
+        sb.append(", lng=").append(lng);
+        sb.append(", lat=").append(lat);
+        sb.append(", description=").append(description);
         sb.append(", sortby=").append(sortby);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", isDelete=").append(isDelete);

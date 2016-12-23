@@ -17,6 +17,8 @@ public class CommunityEntity implements Serializable {
 
     private BigDecimal latitude;
 
+    private String address;
+
     private Date createdTime;
 
     private Integer isDelete;
@@ -71,6 +73,14 @@ public class CommunityEntity implements Serializable {
         this.latitude = latitude;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -99,6 +109,7 @@ public class CommunityEntity implements Serializable {
         sb.append(", description=").append(description);
         sb.append(", longitude=").append(longitude);
         sb.append(", latitude=").append(latitude);
+        sb.append(", address=").append(address);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", isDelete=").append(isDelete);
         sb.append("]");

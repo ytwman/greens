@@ -3,20 +3,16 @@ package com.ytwman.greens.commons.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class GoodsAttrEntity implements Serializable {
+public class UserInfoExtEntity implements Serializable {
     private Long id;
 
-    private Long goodsId;
+    private Long userId;
 
-    private String name;
-
-    private String value;
+    private Integer vipLevel;
 
     private Date createdTime;
 
     private Date updatedTime;
-
-    private Integer isDelete;
 
     private static final long serialVersionUID = 1L;
 
@@ -28,28 +24,20 @@ public class GoodsAttrEntity implements Serializable {
         this.id = id;
     }
 
-    public Long getGoodsId() {
-        return goodsId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public Integer getVipLevel() {
+        return vipLevel;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setVipLevel(Integer vipLevel) {
+        this.vipLevel = vipLevel;
     }
 
     public Date getCreatedTime() {
@@ -68,14 +56,6 @@ public class GoodsAttrEntity implements Serializable {
         this.updatedTime = updatedTime;
     }
 
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -83,12 +63,10 @@ public class GoodsAttrEntity implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", goodsId=").append(goodsId);
-        sb.append(", name=").append(name);
-        sb.append(", value=").append(value);
+        sb.append(", userId=").append(userId);
+        sb.append(", vipLevel=").append(vipLevel);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
-        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

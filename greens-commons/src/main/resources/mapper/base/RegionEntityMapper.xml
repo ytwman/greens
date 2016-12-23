@@ -5,9 +5,18 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="small_name" property="smallName" jdbcType="VARCHAR" />
+    <result column="index_char" property="indexChar" jdbcType="VARCHAR" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="sortby" property="sortby" jdbcType="INTEGER" />
+    <result column="weather_code" property="weatherCode" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="zipcode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="dialling_code" property="diallingCode" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="DECIMAL" />
+    <result column="lat" property="lat" jdbcType="DECIMAL" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sortby" property="sortby" jdbcType="VARCHAR" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
@@ -70,7 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, parent_id, name, level, code, sortby, created_time, is_delete
+    id, parent_id, name, small_name, index_char, pinyin, code, weather_code, level, zipcode, 
+    dialling_code, lng, lat, description, sortby, created_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.RegionEntityExample" >
     select
@@ -104,10 +114,16 @@
   </delete>
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.RegionEntity" >
     insert into base_region (id, parent_id, name, 
-      level, code, sortby, 
+      small_name, index_char, pinyin, 
+      code, weather_code, level, 
+      zipcode, dialling_code, lng, 
+      lat, description, sortby, 
       created_time, is_delete)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{level,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{sortby,jdbcType=INTEGER}, 
+      #{smallName,jdbcType=VARCHAR}, #{indexChar,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{weatherCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{zipcode,jdbcType=VARCHAR}, #{diallingCode,jdbcType=VARCHAR}, #{lng,jdbcType=DECIMAL}, 
+      #{lat,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{sortby,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.RegionEntity" >
@@ -122,11 +138,38 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="level != null" >
-        level,
+      <if test="smallName != null" >
+        small_name,
+      </if>
+      <if test="indexChar != null" >
+        index_char,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
       </if>
       <if test="code != null" >
         code,
+      </if>
+      <if test="weatherCode != null" >
+        weather_code,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+      <if test="diallingCode != null" >
+        dialling_code,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
       <if test="sortby != null" >
         sortby,
@@ -148,14 +191,41 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="level != null" >
-        #{level,jdbcType=INTEGER},
+      <if test="smallName != null" >
+        #{smallName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexChar != null" >
+        #{indexChar,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
       </if>
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>
+      <if test="weatherCode != null" >
+        #{weatherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="diallingCode != null" >
+        #{diallingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
       <if test="sortby != null" >
-        #{sortby,jdbcType=INTEGER},
+        #{sortby,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -183,14 +253,41 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.level != null" >
-        level = #{record.level,jdbcType=INTEGER},
+      <if test="record.smallName != null" >
+        small_name = #{record.smallName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexChar != null" >
+        index_char = #{record.indexChar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pinyin != null" >
+        pinyin = #{record.pinyin,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null" >
         code = #{record.code,jdbcType=VARCHAR},
       </if>
+      <if test="record.weatherCode != null" >
+        weather_code = #{record.weatherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.zipcode != null" >
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diallingCode != null" >
+        dialling_code = #{record.diallingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null" >
+        lng = #{record.lng,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lat != null" >
+        lat = #{record.lat,jdbcType=DECIMAL},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
       <if test="record.sortby != null" >
-        sortby = #{record.sortby,jdbcType=INTEGER},
+        sortby = #{record.sortby,jdbcType=VARCHAR},
       </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -208,9 +305,18 @@
     set id = #{record.id,jdbcType=BIGINT},
       parent_id = #{record.parentId,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      level = #{record.level,jdbcType=INTEGER},
+      small_name = #{record.smallName,jdbcType=VARCHAR},
+      index_char = #{record.indexChar,jdbcType=VARCHAR},
+      pinyin = #{record.pinyin,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      sortby = #{record.sortby,jdbcType=INTEGER},
+      weather_code = #{record.weatherCode,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      dialling_code = #{record.diallingCode,jdbcType=VARCHAR},
+      lng = #{record.lng,jdbcType=DECIMAL},
+      lat = #{record.lat,jdbcType=DECIMAL},
+      description = #{record.description,jdbcType=VARCHAR},
+      sortby = #{record.sortby,jdbcType=VARCHAR},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -226,14 +332,41 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="level != null" >
-        level = #{level,jdbcType=INTEGER},
+      <if test="smallName != null" >
+        small_name = #{smallName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexChar != null" >
+        index_char = #{indexChar,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
       </if>
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
       </if>
+      <if test="weatherCode != null" >
+        weather_code = #{weatherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="zipcode != null" >
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="diallingCode != null" >
+        dialling_code = #{diallingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=DECIMAL},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
       <if test="sortby != null" >
-        sortby = #{sortby,jdbcType=INTEGER},
+        sortby = #{sortby,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -248,9 +381,18 @@
     update base_region
     set parent_id = #{parentId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
-      level = #{level,jdbcType=INTEGER},
+      small_name = #{smallName,jdbcType=VARCHAR},
+      index_char = #{indexChar,jdbcType=VARCHAR},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      sortby = #{sortby,jdbcType=INTEGER},
+      weather_code = #{weatherCode,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      dialling_code = #{diallingCode,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=DECIMAL},
+      lat = #{lat,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      sortby = #{sortby,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

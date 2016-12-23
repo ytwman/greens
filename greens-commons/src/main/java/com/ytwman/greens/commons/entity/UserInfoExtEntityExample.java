@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AssetsCouponEntityExample {
+public class UserInfoExtEntityExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public AssetsCouponEntityExample() {
+    public UserInfoExtEntityExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -225,313 +225,63 @@ public class AssetsCouponEntityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIsNull() {
-            addCriterion("coupon_id is null");
+        public Criteria andVipLevelIsNull() {
+            addCriterion("vip_level is null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIsNotNull() {
-            addCriterion("coupon_id is not null");
+        public Criteria andVipLevelIsNotNull() {
+            addCriterion("vip_level is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdEqualTo(Long value) {
-            addCriterion("coupon_id =", value, "couponId");
+        public Criteria andVipLevelEqualTo(Integer value) {
+            addCriterion("vip_level =", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotEqualTo(Long value) {
-            addCriterion("coupon_id <>", value, "couponId");
+        public Criteria andVipLevelNotEqualTo(Integer value) {
+            addCriterion("vip_level <>", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdGreaterThan(Long value) {
-            addCriterion("coupon_id >", value, "couponId");
+        public Criteria andVipLevelGreaterThan(Integer value) {
+            addCriterion("vip_level >", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("coupon_id >=", value, "couponId");
+        public Criteria andVipLevelGreaterThanOrEqualTo(Integer value) {
+            addCriterion("vip_level >=", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdLessThan(Long value) {
-            addCriterion("coupon_id <", value, "couponId");
+        public Criteria andVipLevelLessThan(Integer value) {
+            addCriterion("vip_level <", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdLessThanOrEqualTo(Long value) {
-            addCriterion("coupon_id <=", value, "couponId");
+        public Criteria andVipLevelLessThanOrEqualTo(Integer value) {
+            addCriterion("vip_level <=", value, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIn(List<Long> values) {
-            addCriterion("coupon_id in", values, "couponId");
+        public Criteria andVipLevelIn(List<Integer> values) {
+            addCriterion("vip_level in", values, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotIn(List<Long> values) {
-            addCriterion("coupon_id not in", values, "couponId");
+        public Criteria andVipLevelNotIn(List<Integer> values) {
+            addCriterion("vip_level not in", values, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdBetween(Long value1, Long value2) {
-            addCriterion("coupon_id between", value1, value2, "couponId");
+        public Criteria andVipLevelBetween(Integer value1, Integer value2) {
+            addCriterion("vip_level between", value1, value2, "vipLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotBetween(Long value1, Long value2) {
-            addCriterion("coupon_id not between", value1, value2, "couponId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameIsNull() {
-            addCriterion("coupon_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameIsNotNull() {
-            addCriterion("coupon_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameEqualTo(String value) {
-            addCriterion("coupon_name =", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameNotEqualTo(String value) {
-            addCriterion("coupon_name <>", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameGreaterThan(String value) {
-            addCriterion("coupon_name >", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameGreaterThanOrEqualTo(String value) {
-            addCriterion("coupon_name >=", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameLessThan(String value) {
-            addCriterion("coupon_name <", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameLessThanOrEqualTo(String value) {
-            addCriterion("coupon_name <=", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameLike(String value) {
-            addCriterion("coupon_name like", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameNotLike(String value) {
-            addCriterion("coupon_name not like", value, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameIn(List<String> values) {
-            addCriterion("coupon_name in", values, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameNotIn(List<String> values) {
-            addCriterion("coupon_name not in", values, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameBetween(String value1, String value2) {
-            addCriterion("coupon_name between", value1, value2, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameNotBetween(String value1, String value2) {
-            addCriterion("coupon_name not between", value1, value2, "couponName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeIsNull() {
-            addCriterion("coupon_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeIsNotNull() {
-            addCriterion("coupon_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeEqualTo(Integer value) {
-            addCriterion("coupon_type =", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeNotEqualTo(Integer value) {
-            addCriterion("coupon_type <>", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeGreaterThan(Integer value) {
-            addCriterion("coupon_type >", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("coupon_type >=", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeLessThan(Integer value) {
-            addCriterion("coupon_type <", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("coupon_type <=", value, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeIn(List<Integer> values) {
-            addCriterion("coupon_type in", values, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeNotIn(List<Integer> values) {
-            addCriterion("coupon_type not in", values, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeBetween(Integer value1, Integer value2) {
-            addCriterion("coupon_type between", value1, value2, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("coupon_type not between", value1, value2, "couponType");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeIsNull() {
-            addCriterion("expired_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeIsNotNull() {
-            addCriterion("expired_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeEqualTo(Date value) {
-            addCriterion("expired_time =", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeNotEqualTo(Date value) {
-            addCriterion("expired_time <>", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeGreaterThan(Date value) {
-            addCriterion("expired_time >", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("expired_time >=", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeLessThan(Date value) {
-            addCriterion("expired_time <", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeLessThanOrEqualTo(Date value) {
-            addCriterion("expired_time <=", value, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeIn(List<Date> values) {
-            addCriterion("expired_time in", values, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeNotIn(List<Date> values) {
-            addCriterion("expired_time not in", values, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeBetween(Date value1, Date value2) {
-            addCriterion("expired_time between", value1, value2, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andExpiredTimeNotBetween(Date value1, Date value2) {
-            addCriterion("expired_time not between", value1, value2, "expiredTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusIsNull() {
-            addCriterion("used_status is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusIsNotNull() {
-            addCriterion("used_status is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusEqualTo(Integer value) {
-            addCriterion("used_status =", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusNotEqualTo(Integer value) {
-            addCriterion("used_status <>", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusGreaterThan(Integer value) {
-            addCriterion("used_status >", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("used_status >=", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusLessThan(Integer value) {
-            addCriterion("used_status <", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("used_status <=", value, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusIn(List<Integer> values) {
-            addCriterion("used_status in", values, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusNotIn(List<Integer> values) {
-            addCriterion("used_status not in", values, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusBetween(Integer value1, Integer value2) {
-            addCriterion("used_status between", value1, value2, "usedStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsedStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("used_status not between", value1, value2, "usedStatus");
+        public Criteria andVipLevelNotBetween(Integer value1, Integer value2) {
+            addCriterion("vip_level not between", value1, value2, "vipLevel");
             return (Criteria) this;
         }
 
@@ -652,71 +402,6 @@ public class AssetsCouponEntityExample {
 
         public Criteria andUpdatedTimeNotBetween(Date value1, Date value2) {
             addCriterion("updated_time not between", value1, value2, "updatedTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteIsNull() {
-            addCriterion("is_delete is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteIsNotNull() {
-            addCriterion("is_delete is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteEqualTo(Integer value) {
-            addCriterion("is_delete =", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotEqualTo(Integer value) {
-            addCriterion("is_delete <>", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteGreaterThan(Integer value) {
-            addCriterion("is_delete >", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_delete >=", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteLessThan(Integer value) {
-            addCriterion("is_delete <", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteLessThanOrEqualTo(Integer value) {
-            addCriterion("is_delete <=", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteIn(List<Integer> values) {
-            addCriterion("is_delete in", values, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotIn(List<Integer> values) {
-            addCriterion("is_delete not in", values, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete between", value1, value2, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete not between", value1, value2, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponNameLikeInsensitive(String value) {
-            addCriterion("upper(coupon_name) like", value.toUpperCase(), "couponName");
             return (Criteria) this;
         }
     }

@@ -346,6 +346,66 @@ public class OrderOfferEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andLossProfitIsNull() {
+            addCriterion("loss_profit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitIsNotNull() {
+            addCriterion("loss_profit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitEqualTo(BigDecimal value) {
+            addCriterion("loss_profit =", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitNotEqualTo(BigDecimal value) {
+            addCriterion("loss_profit <>", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitGreaterThan(BigDecimal value) {
+            addCriterion("loss_profit >", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("loss_profit >=", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitLessThan(BigDecimal value) {
+            addCriterion("loss_profit <", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("loss_profit <=", value, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitIn(List<BigDecimal> values) {
+            addCriterion("loss_profit in", values, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitNotIn(List<BigDecimal> values) {
+            addCriterion("loss_profit not in", values, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("loss_profit between", value1, value2, "lossProfit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossProfitNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("loss_profit not between", value1, value2, "lossProfit");
+            return (Criteria) this;
+        }
+
         public Criteria andBalanceIsNull() {
             addCriterion("balance is null");
             return (Criteria) this;

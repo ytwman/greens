@@ -18,6 +18,8 @@ public class AssetsPointModifyEntity implements Serializable {
 
     private Date createdTime;
 
+    private Integer isDelete;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -76,6 +78,14 @@ public class AssetsPointModifyEntity implements Serializable {
         this.createdTime = createdTime;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -89,6 +99,7 @@ public class AssetsPointModifyEntity implements Serializable {
         sb.append(", ruleName=").append(ruleName);
         sb.append(", amount=").append(amount);
         sb.append(", createdTime=").append(createdTime);
+        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

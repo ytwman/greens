@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ytwman.greens.commons.entity.mapper.base.AssetsPointModifyEntityMapper" >
-  <resultMap id="BaseResultMap" type="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
+<mapper namespace="com.ytwman.greens.commons.entity.mapper.base.GoodsUnitEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="assets_id" property="assetsId" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="rule_id" property="ruleId" jdbcType="BIGINT" />
-    <result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
-    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
@@ -70,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, assets_id, user_id, rule_id, rule_name, amount, created_time, is_delete
+    id, unit, created_time, is_delete
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntityExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from assets_point_modify
+    from goods_unit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,47 +85,33 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from assets_point_modify
+    from goods_unit
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from assets_point_modify
+    delete from goods_unit
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntityExample" >
-    delete from assets_point_modify
+  <delete id="deleteByExample" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntityExample" >
+    delete from goods_unit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
-    insert into assets_point_modify (id, assets_id, user_id, 
-      rule_id, rule_name, amount, 
-      created_time, is_delete)
-    values (#{id,jdbcType=BIGINT}, #{assetsId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{ruleId,jdbcType=BIGINT}, #{ruleName,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
+    insert into goods_unit (id, unit, created_time, 
+      is_delete)
+    values (#{id,jdbcType=BIGINT}, #{unit,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
-    insert into assets_point_modify
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
+    insert into goods_unit
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="assetsId != null" >
-        assets_id,
-      </if>
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="ruleId != null" >
-        rule_id,
-      </if>
-      <if test="ruleName != null" >
-        rule_name,
-      </if>
-      <if test="amount != null" >
-        amount,
+      <if test="unit != null" >
+        unit,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -142,20 +124,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="assetsId != null" >
-        #{assetsId,jdbcType=BIGINT},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="ruleId != null" >
-        #{ruleId,jdbcType=BIGINT},
-      </if>
-      <if test="ruleName != null" >
-        #{ruleName,jdbcType=VARCHAR},
-      </if>
-      <if test="amount != null" >
-        #{amount,jdbcType=INTEGER},
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -165,32 +135,20 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntityExample" resultType="java.lang.Integer" >
-    select count(*) from assets_point_modify
+  <select id="countByExample" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntityExample" resultType="java.lang.Integer" >
+    select count(*) from goods_unit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update assets_point_modify
+    update goods_unit
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.assetsId != null" >
-        assets_id = #{record.assetsId,jdbcType=BIGINT},
-      </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
-      <if test="record.ruleId != null" >
-        rule_id = #{record.ruleId,jdbcType=BIGINT},
-      </if>
-      <if test="record.ruleName != null" >
-        rule_name = #{record.ruleName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.amount != null" >
-        amount = #{record.amount,jdbcType=INTEGER},
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
       </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -204,36 +162,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update assets_point_modify
+    update goods_unit
     set id = #{record.id,jdbcType=BIGINT},
-      assets_id = #{record.assetsId,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=BIGINT},
-      rule_id = #{record.ruleId,jdbcType=BIGINT},
-      rule_name = #{record.ruleName,jdbcType=VARCHAR},
-      amount = #{record.amount,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=VARCHAR},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
-    update assets_point_modify
+  <update id="updateByPrimaryKeySelective" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
+    update goods_unit
     <set >
-      <if test="assetsId != null" >
-        assets_id = #{assetsId,jdbcType=BIGINT},
-      </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="ruleId != null" >
-        rule_id = #{ruleId,jdbcType=BIGINT},
-      </if>
-      <if test="ruleName != null" >
-        rule_name = #{ruleName,jdbcType=VARCHAR},
-      </if>
-      <if test="amount != null" >
-        amount = #{amount,jdbcType=INTEGER},
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -244,13 +186,9 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
-    update assets_point_modify
-    set assets_id = #{assetsId,jdbcType=BIGINT},
-      user_id = #{userId,jdbcType=BIGINT},
-      rule_id = #{ruleId,jdbcType=BIGINT},
-      rule_name = #{ruleName,jdbcType=VARCHAR},
-      amount = #{amount,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
+    update goods_unit
+    set unit = #{unit,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

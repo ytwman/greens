@@ -20,6 +20,8 @@ public class OrderItemEntity implements Serializable {
 
     private Integer status;
 
+    private Integer isDelete;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -86,6 +88,14 @@ public class OrderItemEntity implements Serializable {
         this.status = status;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -100,6 +110,7 @@ public class OrderItemEntity implements Serializable {
         sb.append(", amount=").append(amount);
         sb.append(", unit=").append(unit);
         sb.append(", status=").append(status);
+        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

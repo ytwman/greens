@@ -19,7 +19,9 @@ public class PurchaseOrderItemEntity implements Serializable {
 
     private Integer amount;
 
-    private String specification;
+    private String unit;
+
+    private String description;
 
     private Date createdTime;
 
@@ -85,12 +87,20 @@ public class PurchaseOrderItemEntity implements Serializable {
         this.amount = amount;
     }
 
-    public String getSpecification() {
-        return specification;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setSpecification(String specification) {
-        this.specification = specification == null ? null : specification.trim();
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreatedTime() {
@@ -130,7 +140,8 @@ public class PurchaseOrderItemEntity implements Serializable {
         sb.append(", goodsName=").append(goodsName);
         sb.append(", price=").append(price);
         sb.append(", amount=").append(amount);
-        sb.append(", specification=").append(specification);
+        sb.append(", unit=").append(unit);
+        sb.append(", description=").append(description);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);

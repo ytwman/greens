@@ -19,7 +19,13 @@ public class PurchaseOrderEntity implements Serializable {
 
     private String operatorName;
 
+    private String description;
+
+    private Integer audit;
+
     private Date createdTime;
+
+    private Date updatedTime;
 
     private Integer isDelete;
 
@@ -81,12 +87,36 @@ public class PurchaseOrderEntity implements Serializable {
         this.operatorName = operatorName == null ? null : operatorName.trim();
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Integer audit) {
+        this.audit = audit;
+    }
+
     public Date getCreatedTime() {
         return createdTime;
     }
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     public Integer getIsDelete() {
@@ -110,7 +140,10 @@ public class PurchaseOrderEntity implements Serializable {
         sb.append(", purchaserName=").append(purchaserName);
         sb.append(", operatorId=").append(operatorId);
         sb.append(", operatorName=").append(operatorName);
+        sb.append(", description=").append(description);
+        sb.append(", audit=").append(audit);
         sb.append(", createdTime=").append(createdTime);
+        sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();

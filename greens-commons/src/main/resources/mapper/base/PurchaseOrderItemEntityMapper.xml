@@ -9,7 +9,8 @@
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="amount" property="amount" jdbcType="INTEGER" />
-    <result column="specification" property="specification" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, purchase_id, supplier_id, goods_id, goods_name, price, amount, specification, 
+    id, purchase_id, supplier_id, goods_id, goods_name, price, amount, unit, description, 
     created_time, updated_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderItemEntityExample" >
@@ -109,12 +110,14 @@
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderItemEntity" >
     insert into purchase_order_item (id, purchase_id, supplier_id, 
       goods_id, goods_name, price, 
-      amount, specification, created_time, 
-      updated_time, is_delete)
+      amount, unit, description, 
+      created_time, updated_time, is_delete
+      )
     values (#{id,jdbcType=BIGINT}, #{purchaseId,jdbcType=BIGINT}, #{supplierId,jdbcType=BIGINT}, 
       #{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{amount,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+      #{amount,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderItemEntity" >
     insert into purchase_order_item
@@ -140,8 +143,11 @@
       <if test="amount != null" >
         amount,
       </if>
-      <if test="specification != null" >
-        specification,
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -175,8 +181,11 @@
       <if test="amount != null" >
         #{amount,jdbcType=INTEGER},
       </if>
-      <if test="specification != null" >
-        #{specification,jdbcType=VARCHAR},
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -219,8 +228,11 @@
       <if test="record.amount != null" >
         amount = #{record.amount,jdbcType=INTEGER},
       </if>
-      <if test="record.specification != null" >
-        specification = #{record.specification,jdbcType=VARCHAR},
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -245,7 +257,8 @@
       goods_name = #{record.goodsName,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       amount = #{record.amount,jdbcType=INTEGER},
-      specification = #{record.specification,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
@@ -274,8 +287,11 @@
       <if test="amount != null" >
         amount = #{amount,jdbcType=INTEGER},
       </if>
-      <if test="specification != null" >
-        specification = #{specification,jdbcType=VARCHAR},
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -297,7 +313,8 @@
       goods_name = #{goodsName,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       amount = #{amount,jdbcType=INTEGER},
-      specification = #{specification,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}

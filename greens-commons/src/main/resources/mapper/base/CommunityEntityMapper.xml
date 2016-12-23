@@ -8,6 +8,7 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="longitude" property="longitude" jdbcType="DECIMAL" />
     <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, region_id, name, description, longitude, latitude, created_time, is_delete
+    id, region_id, name, description, longitude, latitude, address, created_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.CommunityEntityExample" >
     select
@@ -105,10 +106,12 @@
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.CommunityEntity" >
     insert into base_community (id, region_id, name, 
       description, longitude, latitude, 
-      created_time, is_delete)
+      address, created_time, is_delete
+      )
     values (#{id,jdbcType=BIGINT}, #{regionId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+      #{address,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.CommunityEntity" >
     insert into base_community
@@ -130,6 +133,9 @@
       </if>
       <if test="latitude != null" >
         latitude,
+      </if>
+      <if test="address != null" >
+        address,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -156,6 +162,9 @@
       </if>
       <if test="latitude != null" >
         #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -192,6 +201,9 @@
       <if test="record.latitude != null" >
         latitude = #{record.latitude,jdbcType=DECIMAL},
       </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
@@ -211,6 +223,7 @@
       description = #{record.description,jdbcType=VARCHAR},
       longitude = #{record.longitude,jdbcType=DECIMAL},
       latitude = #{record.latitude,jdbcType=DECIMAL},
+      address = #{record.address,jdbcType=VARCHAR},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
@@ -235,6 +248,9 @@
       <if test="latitude != null" >
         latitude = #{latitude,jdbcType=DECIMAL},
       </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
@@ -251,6 +267,7 @@
       description = #{description,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=DECIMAL},
       latitude = #{latitude,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

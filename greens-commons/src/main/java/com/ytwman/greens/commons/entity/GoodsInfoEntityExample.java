@@ -575,6 +575,66 @@ public class GoodsInfoEntityExample {
             return (Criteria) this;
         }
 
+        public Criteria andLookupIsNull() {
+            addCriterion("lookup is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupIsNotNull() {
+            addCriterion("lookup is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupEqualTo(Integer value) {
+            addCriterion("lookup =", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupNotEqualTo(Integer value) {
+            addCriterion("lookup <>", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupGreaterThan(Integer value) {
+            addCriterion("lookup >", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupGreaterThanOrEqualTo(Integer value) {
+            addCriterion("lookup >=", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupLessThan(Integer value) {
+            addCriterion("lookup <", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupLessThanOrEqualTo(Integer value) {
+            addCriterion("lookup <=", value, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupIn(List<Integer> values) {
+            addCriterion("lookup in", values, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupNotIn(List<Integer> values) {
+            addCriterion("lookup not in", values, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupBetween(Integer value1, Integer value2) {
+            addCriterion("lookup between", value1, value2, "lookup");
+            return (Criteria) this;
+        }
+
+        public Criteria andLookupNotBetween(Integer value1, Integer value2) {
+            addCriterion("lookup not between", value1, value2, "lookup");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedTimeIsNull() {
             addCriterion("created_time is null");
             return (Criteria) this;

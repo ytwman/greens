@@ -22,6 +22,8 @@ public class AssetsCouponEntity implements Serializable {
 
     private Date updatedTime;
 
+    private Integer isDelete;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -96,6 +98,14 @@ public class AssetsCouponEntity implements Serializable {
         this.updatedTime = updatedTime;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -111,6 +121,7 @@ public class AssetsCouponEntity implements Serializable {
         sb.append(", usedStatus=").append(usedStatus);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
+        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

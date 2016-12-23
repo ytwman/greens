@@ -9,7 +9,10 @@
     <result column="purchaser_name" property="purchaserName" jdbcType="VARCHAR" />
     <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
     <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="audit" property="audit" jdbcType="INTEGER" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, total_price, purchaser_id, purchaser_name, operator_id, operator_name, 
-    created_time, is_delete
+    description, audit, created_time, updated_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntityExample" >
     select
@@ -107,11 +110,13 @@
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
     insert into purchase_order (id, name, total_price, 
       purchaser_id, purchaser_name, operator_id, 
-      operator_name, created_time, is_delete
+      operator_name, description, audit, 
+      created_time, updated_time, is_delete
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, 
       #{purchaserId,jdbcType=BIGINT}, #{purchaserName,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, 
-      #{operatorName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
+      #{operatorName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{audit,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
@@ -138,8 +143,17 @@
       <if test="operatorName != null" >
         operator_name,
       </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="audit != null" >
+        audit,
+      </if>
       <if test="createdTime != null" >
         created_time,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
       </if>
       <if test="isDelete != null" >
         is_delete,
@@ -167,8 +181,17 @@
       <if test="operatorName != null" >
         #{operatorName,jdbcType=VARCHAR},
       </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=INTEGER},
+      </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -205,8 +228,17 @@
       <if test="record.operatorName != null" >
         operator_name = #{record.operatorName,jdbcType=VARCHAR},
       </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audit != null" >
+        audit = #{record.audit,jdbcType=INTEGER},
+      </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null" >
+        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -225,7 +257,10 @@
       purchaser_name = #{record.purchaserName,jdbcType=VARCHAR},
       operator_id = #{record.operatorId,jdbcType=BIGINT},
       operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      audit = #{record.audit,jdbcType=INTEGER},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -252,8 +287,17 @@
       <if test="operatorName != null" >
         operator_name = #{operatorName,jdbcType=VARCHAR},
       </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        audit = #{audit,jdbcType=INTEGER},
+      </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -269,7 +313,10 @@
       purchaser_name = #{purchaserName,jdbcType=VARCHAR},
       operator_id = #{operatorId,jdbcType=BIGINT},
       operator_name = #{operatorName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      audit = #{audit,jdbcType=INTEGER},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

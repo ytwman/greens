@@ -9,6 +9,7 @@
     <result column="spell" property="spell" jdbcType="VARCHAR" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="lookup" property="lookup" jdbcType="INTEGER" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, category_id, name, code, spell, image, description, created_time, updated_time, 
+    id, category_id, name, code, spell, image, description, lookup, created_time, updated_time, 
     is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.GoodsInfoEntityExample" >
@@ -108,12 +109,12 @@
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.GoodsInfoEntity" >
     insert into goods_info (id, category_id, name, 
       code, spell, image, 
-      description, created_time, updated_time, 
-      is_delete)
+      description, lookup, created_time, 
+      updated_time, is_delete)
     values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{code,jdbcType=VARCHAR}, #{spell,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=INTEGER})
+      #{description,jdbcType=VARCHAR}, #{lookup,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsInfoEntity" >
     insert into goods_info
@@ -138,6 +139,9 @@
       </if>
       <if test="description != null" >
         description,
+      </if>
+      <if test="lookup != null" >
+        lookup,
       </if>
       <if test="createdTime != null" >
         created_time,
@@ -170,6 +174,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lookup != null" >
+        #{lookup,jdbcType=INTEGER},
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
@@ -212,6 +219,9 @@
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
+      <if test="record.lookup != null" >
+        lookup = #{record.lookup,jdbcType=INTEGER},
+      </if>
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
@@ -235,6 +245,7 @@
       spell = #{record.spell,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
+      lookup = #{record.lookup,jdbcType=INTEGER},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
@@ -263,6 +274,9 @@
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="lookup != null" >
+        lookup = #{lookup,jdbcType=INTEGER},
+      </if>
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
@@ -283,6 +297,7 @@
       spell = #{spell,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
+      lookup = #{lookup,jdbcType=INTEGER},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}

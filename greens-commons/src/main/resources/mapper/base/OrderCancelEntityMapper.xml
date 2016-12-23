@@ -8,6 +8,7 @@
     <result column="reason" property="reason" jdbcType="VARCHAR" />
     <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, order_id, type, reason, operator_id, created_time
+    id, order_id, type, reason, operator_id, created_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.OrderCancelEntityExample" >
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.OrderCancelEntity" >
     insert into order_cancel (id, order_id, type, 
-      reason, operator_id, created_time
-      )
+      reason, operator_id, created_time, 
+      is_delete)
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
-      #{reason,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}
-      )
+      #{reason,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderCancelEntity" >
     insert into order_cancel
@@ -129,6 +130,9 @@
       <if test="createdTime != null" >
         created_time,
       </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -148,6 +152,9 @@
       </if>
       <if test="createdTime != null" >
         #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.createdTime != null" >
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +200,8 @@
       type = #{record.type,jdbcType=INTEGER},
       reason = #{record.reason,jdbcType=VARCHAR},
       operator_id = #{record.operatorId,jdbcType=BIGINT},
-      created_time = #{record.createdTime,jdbcType=TIMESTAMP}
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +224,9 @@
       <if test="createdTime != null" >
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -222,7 +236,8 @@
       type = #{type,jdbcType=INTEGER},
       reason = #{reason,jdbcType=VARCHAR},
       operator_id = #{operatorId,jdbcType=BIGINT},
-      created_time = #{createdTime,jdbcType=TIMESTAMP}
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

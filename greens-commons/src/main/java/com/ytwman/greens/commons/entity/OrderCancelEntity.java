@@ -16,6 +16,8 @@ public class OrderCancelEntity implements Serializable {
 
     private Date createdTime;
 
+    private Integer isDelete;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -66,6 +68,14 @@ public class OrderCancelEntity implements Serializable {
         this.createdTime = createdTime;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -78,6 +88,7 @@ public class OrderCancelEntity implements Serializable {
         sb.append(", reason=").append(reason);
         sb.append(", operatorId=").append(operatorId);
         sb.append(", createdTime=").append(createdTime);
+        sb.append(", isDelete=").append(isDelete);
         sb.append("]");
         return sb.toString();
     }

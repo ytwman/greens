@@ -18,6 +18,8 @@ public class GoodsInfoEntity implements Serializable {
 
     private String description;
 
+    private Integer lookup;
+
     private Date createdTime;
 
     private Date updatedTime;
@@ -82,6 +84,14 @@ public class GoodsInfoEntity implements Serializable {
         this.description = description == null ? null : description.trim();
     }
 
+    public Integer getLookup() {
+        return lookup;
+    }
+
+    public void setLookup(Integer lookup) {
+        this.lookup = lookup;
+    }
+
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -119,6 +129,7 @@ public class GoodsInfoEntity implements Serializable {
         sb.append(", spell=").append(spell);
         sb.append(", image=").append(image);
         sb.append(", description=").append(description);
+        sb.append(", lookup=").append(lookup);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", isDelete=").append(isDelete);

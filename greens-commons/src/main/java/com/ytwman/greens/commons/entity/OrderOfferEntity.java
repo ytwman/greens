@@ -13,6 +13,8 @@ public class OrderOfferEntity implements Serializable {
 
     private BigDecimal payable;
 
+    private BigDecimal lossProfit;
+
     private BigDecimal balance;
 
     private Integer paidMethod;
@@ -53,6 +55,14 @@ public class OrderOfferEntity implements Serializable {
         this.payable = payable;
     }
 
+    public BigDecimal getLossProfit() {
+        return lossProfit;
+    }
+
+    public void setLossProfit(BigDecimal lossProfit) {
+        this.lossProfit = lossProfit;
+    }
+
     public BigDecimal getBalance() {
         return balance;
     }
@@ -87,6 +97,7 @@ public class OrderOfferEntity implements Serializable {
         sb.append(", orderId=").append(orderId);
         sb.append(", payment=").append(payment);
         sb.append(", payable=").append(payable);
+        sb.append(", lossProfit=").append(lossProfit);
         sb.append(", balance=").append(balance);
         sb.append(", paidMethod=").append(paidMethod);
         sb.append(", paidTime=").append(paidTime);
