@@ -81,9 +81,9 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
 
         // 获取请求方法的权限拦截器, 如果没有注解则默认规则
-        Permission permission = (Permission) handlerMethod.getMethodAnnotation(Permission.class);
+        Permission permission = handlerMethod.getMethodAnnotation(Permission.class);
         if (permission == null) {
-            permission = (Permission) handlerMethod.getBeanType().getAnnotation(Permission.class);
+            permission = handlerMethod.getBeanType().getAnnotation(Permission.class);
         }
 
         // 未设置或者不需要登录直接跳过
@@ -161,7 +161,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     public boolean doPermission(HttpServletRequest request) {
 
         // 默认跳过的一些请求
-        if (doFilter(request.getServletPath())) {
+        if (doSkipFilter(request.getServletPath())) {
             return true;
         }
 
@@ -210,7 +210,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      * @param path
      * @return
      */
-    public boolean doFilter(String path) {
+    public boolean doSkipFilter(String path) {
         return filterPath.contains(path);
     }
 
