@@ -7,6 +7,8 @@ import java.util.Date;
 public class PurchaseOrderEntity implements Serializable {
     private Long id;
 
+    private Date purchaseDate;
+
     private String name;
 
     private BigDecimal totalPrice;
@@ -37,6 +39,14 @@ public class PurchaseOrderEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
     public String getName() {
@@ -134,6 +144,7 @@ public class PurchaseOrderEntity implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", purchaseDate=").append(purchaseDate);
         sb.append(", name=").append(name);
         sb.append(", totalPrice=").append(totalPrice);
         sb.append(", purchaserId=").append(purchaserId);

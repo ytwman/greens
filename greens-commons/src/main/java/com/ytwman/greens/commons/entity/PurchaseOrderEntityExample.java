@@ -3,6 +3,7 @@ package com.ytwman.greens.commons.entity;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class PurchaseOrderEntityExample {
@@ -106,6 +107,32 @@ public class PurchaseOrderEntityExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
+        }
+
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;
@@ -163,6 +190,66 @@ public class PurchaseOrderEntityExample {
 
         public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateIsNull() {
+            addCriterion("purchase_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateIsNotNull() {
+            addCriterion("purchase_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateEqualTo(Date value) {
+            addCriterionForJDBCDate("purchase_date =", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("purchase_date <>", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("purchase_date >", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("purchase_date >=", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateLessThan(Date value) {
+            addCriterionForJDBCDate("purchase_date <", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("purchase_date <=", value, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateIn(List<Date> values) {
+            addCriterionForJDBCDate("purchase_date in", values, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("purchase_date not in", values, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("purchase_date between", value1, value2, "purchaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("purchase_date not between", value1, value2, "purchaseDate");
             return (Criteria) this;
         }
 

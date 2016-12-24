@@ -3,6 +3,7 @@
 <mapper namespace="com.ytwman.greens.commons.entity.mapper.base.PurchaseOrderEntityMapper" >
   <resultMap id="BaseResultMap" type="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="purchase_date" property="purchaseDate" jdbcType="DATE" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
     <result column="purchaser_id" property="purchaserId" jdbcType="BIGINT" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, total_price, purchaser_id, purchaser_name, operator_id, operator_name, 
-    description, audit, created_time, updated_time, is_delete
+    id, purchase_date, name, total_price, purchaser_id, purchaser_name, operator_id, 
+    operator_name, description, audit, created_time, updated_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntityExample" >
     select
@@ -108,22 +109,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
-    insert into purchase_order (id, name, total_price, 
-      purchaser_id, purchaser_name, operator_id, 
-      operator_name, description, audit, 
-      created_time, updated_time, is_delete
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, 
-      #{purchaserId,jdbcType=BIGINT}, #{purchaserName,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, 
-      #{operatorName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{audit,jdbcType=INTEGER}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
-      )
+    insert into purchase_order (id, purchase_date, name, 
+      total_price, purchaser_id, purchaser_name, 
+      operator_id, operator_name, description, 
+      audit, created_time, updated_time, 
+      is_delete)
+    values (#{id,jdbcType=BIGINT}, #{purchaseDate,jdbcType=DATE}, #{name,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{purchaserId,jdbcType=BIGINT}, #{purchaserName,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=BIGINT}, #{operatorName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{audit,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
     insert into purchase_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="purchaseDate != null" >
+        purchase_date,
       </if>
       <if test="name != null" >
         name,
@@ -162,6 +166,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseDate != null" >
+        #{purchaseDate,jdbcType=DATE},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -210,6 +217,9 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.purchaseDate != null" >
+        purchase_date = #{record.purchaseDate,jdbcType=DATE},
+      </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -251,6 +261,7 @@
   <update id="updateByExample" parameterType="map" >
     update purchase_order
     set id = #{record.id,jdbcType=BIGINT},
+      purchase_date = #{record.purchaseDate,jdbcType=DATE},
       name = #{record.name,jdbcType=VARCHAR},
       total_price = #{record.totalPrice,jdbcType=DECIMAL},
       purchaser_id = #{record.purchaserId,jdbcType=BIGINT},
@@ -269,6 +280,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
     update purchase_order
     <set >
+      <if test="purchaseDate != null" >
+        purchase_date = #{purchaseDate,jdbcType=DATE},
+      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -307,7 +321,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
     update purchase_order
-    set name = #{name,jdbcType=VARCHAR},
+    set purchase_date = #{purchaseDate,jdbcType=DATE},
+      name = #{name,jdbcType=VARCHAR},
       total_price = #{totalPrice,jdbcType=DECIMAL},
       purchaser_id = #{purchaserId,jdbcType=BIGINT},
       purchaser_name = #{purchaserName,jdbcType=VARCHAR},
