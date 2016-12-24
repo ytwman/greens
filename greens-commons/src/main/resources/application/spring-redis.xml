@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:redis="http://www.springframework.org/schema/redis"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd
-       ">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 连接池 -->
     <bean id="redisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
@@ -12,7 +9,6 @@
         <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
         <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
     </bean>
-
 
     <!-- 连接工厂 -->
     <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
@@ -27,11 +23,11 @@
 
 
     <!-- spring redis 模板 -->
-    <bean id="jsonRedisSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+    <bean id="redisSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="redisConnectionFactory"/>
-        <property name="valueSerializer" ref="jsonRedisSerializer"/>
-        <property name="hashValueSerializer" ref="jsonRedisSerializer"/>
+        <property name="valueSerializer" ref="redisSerializer"/>
+        <property name="hashValueSerializer" ref="redisSerializer"/>
     </bean>
 
     <!-- 添加RedisHttpSessionConfiguration用于session共享 -->
