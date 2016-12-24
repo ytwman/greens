@@ -15,8 +15,6 @@
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
-        <mybatis.generator.artifactId>greens-commons</mybatis.generator.artifactId>
-        <mybatis.generator.version>1.0-SNAPSHOT</mybatis.generator.version>
     </properties>
 
     <dependencies>

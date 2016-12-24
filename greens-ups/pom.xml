@@ -14,8 +14,6 @@
     <packaging>jar</packaging>
 
     <properties>
-        <mybatis.generator.artifactId>greens-ups</mybatis.generator.artifactId>
-        <mybatis.generator.version>1.0-SNAPSHOT</mybatis.generator.version>
     </properties>
 
     <dependencies>
