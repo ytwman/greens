@@ -372,6 +372,50 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
 
+        <!-- filtering为True时的资源处理顺序一定是后于 false 的情况 -->
+        <!-- 多个filtering=false的顺序：放在前面的后执行，即前面覆盖后面 -->
+        <!-- 多个filtering=true的顺序：放在后面的后执行，即后面覆盖前面 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources/env/${build.env}</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>conf/*</include>
+                    <include>logback.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources/env/${build.env}</directory>
+                <includes>
+                    <include>conf/*</include>
+                    <include>logback.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>conf/*</include>
+                    <include>logback.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+            </testResource>
+        </testResources>
+
         <plugins>
             <!-- 编译插件,默认JVM 编译版本1.8 -->
             <plugin>

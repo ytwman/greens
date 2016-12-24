@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration debug="false">
+
+    <!-- JMX管理，logback支持使用JMX随时重载logback.xml或者单独设置某个package的level -->
     <jmxConfigurator/>
+
+    <!-- 加载配置文件 -->
+    <property resource="container.properties"/>
 
     <!-- 日志输出方式 -->
     <appender name="STD" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %level %logger{10} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %level %logger{5} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>../logs/greens-manager.log</File>
+        <File>${logger.file.path}/${container.app.name}.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>../logs/greens-manager.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${logger.file.path}/${container.app.name}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <maxHistory>10</maxHistory>
             <!-- 日志文件rolling触发策略 -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

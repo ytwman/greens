@@ -8,6 +8,7 @@
     <artifactId>greens</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>greens-pom</module>
         <module>greens-commons</module>
@@ -15,5 +16,10 @@
         <module>greens-ups</module>
         <module>greens-wechat</module>
     </modules>
+
+    <properties>
+        <build.env>dev</build.env>
+        <logger.file.path>../logs</logger.file.path>
+    </properties>
 
 </project>
