@@ -142,7 +142,5 @@ $(function () {
 
 // 上下架状态格式化
 function lookupFormatter(value, row) {
-    console.log(value);
-    console.log(row);
     return value == 1 ? '是' : '否';
 }
