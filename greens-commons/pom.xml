@@ -97,6 +97,8 @@
 
 
     <build>
+        <finalName>greens-commons</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

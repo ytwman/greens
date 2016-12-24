@@ -48,6 +48,8 @@
     </dependencies>
 
     <build>
+        <finalName>greens-ups</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

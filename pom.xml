@@ -13,6 +13,7 @@
         <module>greens-commons</module>
         <module>greens-manager</module>
         <module>greens-ups</module>
+        <module>greens-wechat</module>
     </modules>
 
 </project>
