@@ -33,6 +33,11 @@
 
     <build>
         <finalName>greens-wechat</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
