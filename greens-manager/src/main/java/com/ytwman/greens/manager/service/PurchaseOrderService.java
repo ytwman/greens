@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
  * Created by ytwman on 16/12/23.
  */
 @Service
-public class PurchaseService {
+public class PurchaseOrderService {
 
 
 }

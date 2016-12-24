@@ -1,8 +1,7 @@
 package com.ytwman.greens.manager.controller;
 
 import com.ytwman.greens.commons.entity.PurchaseSupplierEntity;
-import com.ytwman.greens.manager.service.PurchaseService;
-import com.ytwman.greens.manager.service.PurchaseSupplierService;
+import com.ytwman.greens.manager.service.PurchaseOrderService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +16,10 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/purchase")
-public class PurchaseController {
+public class PurchaseOrderController {
 
     @Resource
-    PurchaseService purchaseService;
+    PurchaseOrderService purchaseOrderService;
 
     @RequestMapping(method = RequestMethod.GET)
     public Object index(String keywords) {
