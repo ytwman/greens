@@ -20,6 +20,7 @@
         <hibernate.version>5.1.0.Final</hibernate.version>
         <aspectj.version>1.8.9</aspectj.version>
         <maven.deploy.skip>false</maven.deploy.skip>
+        <mybatis.version>3.4.0</mybatis.version>
         <mybatis.generator.artifactId>greens-commons</mybatis.generator.artifactId>
         <mybatis.generator.version>1.0-SNAPSHOT</mybatis.generator.version>
         <mail.version>1.4.7</mail.version>
@@ -27,7 +28,29 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 数据库操作 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.14</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.34</version>
+            </dependency>
+
             <!-- spring web -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
@@ -49,13 +72,42 @@
                 <artifactId>spring-orm</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <!-- 高级特性 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
-            <!-- spring data -->
+            <!-- spring data redis -->
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
                 <version>1.7.1.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.8.1</version>
+            </dependency>
+
+            <!-- spring data mongodb -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>1.7.2.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>2.14.0</version>
+            </dependency>
+
             <!-- spring session -->
             <dependency>
                 <groupId>org.springframework.session</groupId>
@@ -67,6 +119,13 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.3.1</version>
+            </dependency>
+
+            <!-- memcached -->
+            <dependency>
+                <groupId>net.spy</groupId>
+                <artifactId>spymemcached</artifactId>
+                <version>2.11.4</version>
             </dependency>
 
             <!-- hibernate -->
@@ -95,7 +154,7 @@
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
-                <version>3.4.0</version>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -179,11 +238,6 @@
                 <artifactId>javassist</artifactId>
                 <version>3.20.0-GA</version>
             </dependency>
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>2.8.1</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -198,6 +252,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -310,6 +369,54 @@
 
 
     <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+
+        <plugins>
+            <!-- 编译插件,默认JVM 编译版本1.8 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 部署插件,默认不忽略部署操作 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip>
+                </configuration>
+            </plugin>
+            <!-- 打 jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                        <index>true</index>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 打 war 包 -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <warName>${project.name}</warName>
+                    <warSourceDirectory>webapp</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -330,48 +437,6 @@
                             <version>${mybatis.generator.version}</version>
                         </dependency>
                     </dependencies>
-                </plugin>
-                <!-- 编译插件,默认JVM 编译版本1.8 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
-                        <encoding>UTF-8</encoding>
-                    </configuration>
-                </plugin>
-                <!-- 部署插件,默认不忽略部署操作 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <configuration>
-                        <skip>${maven.deploy.skip}</skip>
-                    </configuration>
-                </plugin>
-                <!-- 打 jar -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <addMavenDescriptor>true</addMavenDescriptor>
-                            <index>true</index>
-                            <manifest>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <!-- 打 war 包 -->
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.5</version>
-                    <configuration>
-                        <warName>${project.name}</warName>
-                        <warSourceDirectory>webapp</warSourceDirectory>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
