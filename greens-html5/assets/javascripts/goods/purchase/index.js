@@ -38,7 +38,7 @@ $(function () {
             id: 'add-purchase-dialog',
             title: '添加商品采购单',
             iconCls: 'Disk',
-            width: 600,
+            width: 640,
             height: 520,
             modal: true,
             cache: false,
