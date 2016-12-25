@@ -1,6 +1,7 @@
 package com.ytwman.greens.manager.controller;
 
-import com.ytwman.greens.commons.entity.PurchaseSupplierEntity;
+import com.ytwman.greens.manager.model.param.PurchaseOrderParam;
+import com.ytwman.greens.manager.model.param.PurchaseOrderSearchParam;
 import com.ytwman.greens.manager.service.PurchaseOrderService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +16,17 @@ import javax.validation.Valid;
  * Created by ytwman on 16/12/23.
  */
 @RestController
-@RequestMapping("/purchase")
+@RequestMapping("/purchase_order")
 public class PurchaseOrderController {
 
     @Resource
     PurchaseOrderService purchaseOrderService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object index(String keywords) {
+    public Object index(PurchaseOrderSearchParam param) {
+        // 查询条件 采购单号，采购人，审核状态，采购日期
+
+
         return null;
     }
 
@@ -32,12 +36,14 @@ public class PurchaseOrderController {
     }
 
     @RequestMapping("/save_or_update")
-    public void saveOrUpdate(@Valid PurchaseSupplierEntity entity) {
+    public void saveOrUpdate(@Valid PurchaseOrderParam param) {
 
     }
 
     @RequestMapping("/delete/{purchaseId}")
     public void delete(@PathVariable("purchaseId") Long purchaseId) {
-
+        // 删除前，确定采购单是否已审核，审核过的采购单不允许删除
     }
+
+
 }
