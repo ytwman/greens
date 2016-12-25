@@ -4,7 +4,8 @@
 
 $(function () {
     var purchaseSearchParams = {
-        keywords: null
+        keywords: null,
+        purchaseDate: null,
     };
 
     // 商品采购单
@@ -19,7 +20,7 @@ $(function () {
         pagination: true, // 是否开启分页组件
         fitColumns: true, // 自动设置表格宽度，方式横向滚动
         toolbar: '#purchase-toolbar',
-        url: projectPath + '/purchase',
+        url: projectPath + '/purchase_order',
         queryParams: purchaseSearchParams,
         method: 'get'
     });
@@ -32,14 +33,33 @@ $(function () {
         }
     });
 
+    // 采购日期控件初始化
+    $('#purchase-search-purchase-date').datebox().datebox('calendar').calendar({
+        validator: function (date) {
+            var now = new Date();
+            var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
+            var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            return d1 <= date && date <= d2;
+        },
+        onSelect: function (newValue) {
+            purchaseSearchParams.purchaseDate = newValue.getTime();
+            $('#purchase-list').datagrid('load', purchaseSearchParams);
+        },
+    });
+
+    // 查询按钮
+    $('#purchase-search-btn').click(function () {
+        $('#purchase-list').datagrid('load', purchaseSearchParams);
+    });
+
     // 添加采购单
     $('#purchase-add-btn').click(function () {
         $.dialog({
             id: 'add-purchase-dialog',
             title: '添加商品采购单',
             iconCls: 'Disk',
-            width: 640,
-            height: 520,
+            width: 720,
+            height: 640,
             modal: true,
             cache: false,
             href: '/goods/purchase/add_purchase.html'
@@ -59,7 +79,7 @@ $(function () {
         $.messager.confirm('删除采购单', '您确定要删除采购单, “' + row.name + '”', function (r) {
             if (r) {
                 // 删除动作
-                $.get(projectPath + '/purchase/delete/' + row.id, function (result) {
+                $.get(projectPath + '/purchase_order/delete/' + row.id, function (result) {
                     if (!!result) {
                         $.messager.alert('删除采购单失败', result.exMessage ? result.exMessage : '系统异常', 'error');
                         return;
@@ -71,3 +91,8 @@ $(function () {
         });
     });
 });
+
+// 采购日期格式化
+function purchaseDateFormatter(value) {
+    return $.fn.datebox.defaults.formatter(value);
+}
