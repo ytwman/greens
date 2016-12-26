@@ -377,7 +377,7 @@
         <!-- 多个filtering=true的顺序：放在后面的后执行，即后面覆盖前面 -->
         <resources>
             <resource>
-                <directory>src/main/resources/env/${build.env}</directory>
+                <directory>src/main/resources/conf/env/${build.env}</directory>
                 <filtering>false</filtering>
             </resource>
             <resource>
@@ -393,7 +393,7 @@
                 <filtering>true</filtering>
             </resource>
             <resource>
-                <directory>src/main/resources/env/${build.env}</directory>
+                <directory>src/main/resources/conf/env/${build.env}</directory>
                 <includes>
                     <include>conf/*</include>
                     <include>logback.xml</include>
