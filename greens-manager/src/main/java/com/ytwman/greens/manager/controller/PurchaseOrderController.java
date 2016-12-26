@@ -25,9 +25,7 @@ public class PurchaseOrderController {
     @RequestMapping(method = RequestMethod.GET)
     public Object index(PurchaseOrderSearchParam param) {
         // 查询条件 采购单号，采购人，审核状态，采购日期
-
-
-        return null;
+        return purchaseOrderService.getAll(param);
     }
 
     @RequestMapping("/{purchaseId}")

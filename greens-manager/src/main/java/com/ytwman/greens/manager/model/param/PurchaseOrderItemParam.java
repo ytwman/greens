@@ -2,6 +2,8 @@ package com.ytwman.greens.manager.model.param;
 
 import com.ytwman.greens.commons.entity.PurchaseOrderItemEntity;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,8 +11,11 @@ import java.io.Serializable;
  */
 public class PurchaseOrderItemParam extends PurchaseOrderItemEntity implements Serializable {
 
+    @NotNull(message = "商品主键为填写")
     private Long goodsId;
 
+    @Min(value = 1, message = "下单数量不能小于1")
+    @NotNull(message = "")
     private Integer amount;
 
     @Override

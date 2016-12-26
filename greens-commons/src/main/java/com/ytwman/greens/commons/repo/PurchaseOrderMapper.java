@@ -27,7 +27,5 @@ public interface PurchaseOrderMapper {
      * @param purchaserDate 采购时间
      * @return
      */
-    List<PurchaseOrderEntity> findAll(@Param("keywords") String keywords,
-                                      @Param("purchaserId") Long purchaserId,
-                                      @Param("purchaserDate") Date purchaserDate);
+    List<PurchaseOrderEntity> findAll();
 }
