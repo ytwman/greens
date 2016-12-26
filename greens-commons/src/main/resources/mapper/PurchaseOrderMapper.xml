@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ytwman.greens.commons.repo.PurchaseOrderMapper">
+
+    <select id="findAll" resultType="com.ytwman.greens.commons.entity.PurchaseOrderEntity">
+        SELECT * FROM greens.purchase_order
+        WHERE is_delete = 0
+        <if test="keywords != null and keyword != ''">
+            AND id = #{keywords}
+        </if>
+        <if test="purchaserId != null">
+            AND purchaser_id = #{purchaserId}
+        </if>
+        <if test="purchaserDate != null">
+            AND purchaser_id = #{purchaserDate}
+        </if>
+        ORDER BY id DESC;
+    </select>
+
+    <select id="findById" resultType="com.ytwman.greens.commons.entity.PurchaseOrderEntity">
+        SELECT * FROM greens.purchase_order WHERE is_delete = 0 AND id = #{id} limit 1;
+    </select>
+
 </mapper>
