@@ -7,7 +7,6 @@
 package com.ytwman.greens.manager.service;
 
 import com.google.common.collect.Lists;
-import com.ytwman.greens.commons.core.Like;
 import com.ytwman.greens.commons.core.exception.ApiException;
 import com.ytwman.greens.commons.core.exception.BusinessExMessage;
 import com.ytwman.greens.commons.entity.GoodsCategoryEntity;
@@ -42,8 +41,7 @@ public class GoodsInfoService {
     GoodsCategoryService goodsCategoryService;
 
     public List<GoodsInfoSearchResult> getAll(GoodsInfoSearchParam searchParam) {
-        List<GoodsInfoEntity> entities = goodsInfoMapper.selectByPagination(
-                Like.right(searchParam.getKeywords()), searchParam.getCategoryId(), searchParam);
+        List<GoodsInfoEntity> entities = goodsInfoMapper.selectByPagination(searchParam);
         return Lists.transform(entities, entity -> transform(entity));
     }
 

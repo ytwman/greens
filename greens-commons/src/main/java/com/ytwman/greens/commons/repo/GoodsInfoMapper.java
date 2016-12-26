@@ -6,9 +6,8 @@
  */
 package com.ytwman.greens.commons.repo;
 
-import com.ytwman.greens.commons.core.web.Pagination;
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
-import org.apache.ibatis.annotations.Param;
+import com.ytwman.greens.commons.model.GoodsInfoSearch;
 
 import java.util.List;
 
@@ -22,13 +21,9 @@ public interface GoodsInfoMapper {
     /**
      * 查询分页商品
      *
-     * @param keywords   关键字（商品名称、编码、拼音缩写）
-     * @param categoryId 商品类目主键
-     * @param pagination 分页信息
+     * @param search
      * @return
      */
-    List<GoodsInfoEntity> selectByPagination(@Param("keywords") String keywords,
-                                             @Param("categoryId") Long categoryId,
-                                             @Param("page") Pagination pagination);
+    List<GoodsInfoEntity> selectByPagination(GoodsInfoSearch search);
 
 }
