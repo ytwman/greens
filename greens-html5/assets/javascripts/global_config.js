@@ -39,6 +39,10 @@ $(function () {
             return $.map(window._data, function (val, key) {
                 return key == id ? val : null;
             })[0];
+        },
+        formatter: function (date) {
+            console.log($.fn.datebox.defaults.formatter(date) + " 0:00:00");
+            return $.fn.datebox.defaults.formatter(date) + " 00:00:01";
         }
     })
 

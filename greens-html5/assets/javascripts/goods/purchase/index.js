@@ -6,6 +6,8 @@ $(function () {
     var purchaseSearchParams = {
         keywords: null,
         purchaseDate: null,
+        purchaserId: null,
+        audit: null,
     };
 
     // 商品采购单
@@ -42,7 +44,7 @@ $(function () {
             return d1 <= date && date <= d2;
         },
         onSelect: function (newValue) {
-            purchaseSearchParams.purchaseDate = newValue.getTime();
+            purchaseSearchParams.purchaseDate = $.formatter(newValue);
             $('#purchase-list').datagrid('load', purchaseSearchParams);
         },
     });
@@ -90,6 +92,11 @@ $(function () {
             }
         });
     });
+
+    // 打印采购单
+    $('#purchase-print-btn').click(function() {
+        $('body').printPreview();
+    })
 });
 
 // 采购日期格式化

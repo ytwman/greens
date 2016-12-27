@@ -23,6 +23,20 @@ $(function () {
         onEndEdit: onEndEdit
     });
 
+    // 采购日期控件初始化
+    $('#add-purchaseDate').datebox().datebox('calendar').calendar({
+        validator: function (date) {
+            var now = new Date();
+            var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
+            var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            return d1 <= date && date <= d2;
+        },
+        onSelect: function (newValue) {
+            console.log(newValue);
+            purchaseSearchParams.purchaseDate = newValue;
+        },
+    });
+
     // 加载采购人清单
     $('#add-purchaser').combobox({
         url: projectPath + '/purchase_order/person',
