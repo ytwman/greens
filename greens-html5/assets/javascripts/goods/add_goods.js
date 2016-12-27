@@ -34,7 +34,7 @@ $(function () {
     });
 
     // 加载商品类目
-    $('#add-goods-search-category').combobox({
+    $('#add-goods-category').combobox({
         url: projectPath + '/goods_category',
         method: 'get',
         valueField: 'id',
