@@ -16,7 +16,7 @@ public class PurchaseOrderSearch extends Pagination implements Serializable {
     private Date purchaseDate;
 
     // 采购人主键
-    private Long purchaseId;
+    private Long purchaserId;
 
     // 核对状态
     private Integer audit;
@@ -37,12 +37,12 @@ public class PurchaseOrderSearch extends Pagination implements Serializable {
         this.purchaseDate = purchaseDate;
     }
 
-    public Long getPurchaseId() {
-        return purchaseId;
+    public Long getPurchaserId() {
+        return purchaserId;
     }
 
-    public void setPurchaseId(Long purchaseId) {
-        this.purchaseId = purchaseId;
+    public void setPurchaserId(Long purchaserId) {
+        this.purchaserId = purchaserId;
     }
 
     public Integer getAudit() {

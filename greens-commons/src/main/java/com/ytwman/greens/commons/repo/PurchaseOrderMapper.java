@@ -1,9 +1,9 @@
 package com.ytwman.greens.commons.repo;
 
 import com.ytwman.greens.commons.entity.PurchaseOrderEntity;
+import com.ytwman.greens.commons.model.PurchaseOrderSearch;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,10 +22,8 @@ public interface PurchaseOrderMapper {
     /**
      * 根据关键字模糊查询
      *
-     * @param keywords      采购单号
-     * @param purchaserId   采购人
-     * @param purchaserDate 采购时间
+     * @param search
      * @return
      */
-    List<PurchaseOrderEntity> findAll();
+    List<PurchaseOrderEntity> findAll(PurchaseOrderSearch search);
 }

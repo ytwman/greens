@@ -19,7 +19,7 @@ public class PurchaseOrderService {
     PurchaseOrderMapper purchaseOrderMapper;
 
     public List<PurchaseOrderEntity> getAll(PurchaseOrderSearchParam param) {
-        return purchaseOrderMapper.findAll();
+        return purchaseOrderMapper.findAll(param);
     }
 
     public void saveOrUpdate(PurchaseOrderParam param) {

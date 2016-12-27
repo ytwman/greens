@@ -12,7 +12,10 @@
             AND purchaser_id = #{purchaserId}
         </if>
         <if test="purchaserDate != null">
-            AND purchaser_id = #{purchaserDate}
+            AND purchase_date = #{purchaseDate}
+        </if>
+        <if test="audit != null">
+            AND audit = #{audit}
         </if>
         ORDER BY id DESC;
     </select>
