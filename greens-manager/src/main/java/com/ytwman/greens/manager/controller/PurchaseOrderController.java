@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 采购单
@@ -43,5 +47,20 @@ public class PurchaseOrderController {
         // 删除前，确定采购单是否已审核，审核过的采购单不允许删除
     }
 
+    @RequestMapping("/person")
+    public Object person() {
+        List<Map<String, Object>> results = new ArrayList<>();
 
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("id", 1);
+        resultMap.put("name", "忽忽");
+        results.add(resultMap);
+
+        resultMap = new HashMap<>();
+        resultMap.put("id", 2);
+        resultMap.put("name", "韩小帅");
+        results.add(resultMap);
+
+        return results;
+    }
 }

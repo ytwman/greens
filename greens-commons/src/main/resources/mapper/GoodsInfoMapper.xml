@@ -11,7 +11,7 @@
             AND ( name LIKE #{keywords} OR spell LIKE upper(#{keywords}) OR code LIKE upper(#{keywords}) )
         </if>
         ORDER BY id DESC
-        LIMIT #{page.offset}, #{page.limit};
+        LIMIT #{offset}, #{limit};
     </select>
 
 </mapper>

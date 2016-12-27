@@ -17,6 +17,7 @@ public class Pagination {
     private int total;
     private int rows;
     private int offset;
+    private int limit;
 
     private static final int defaultPageSize = 20;
 
