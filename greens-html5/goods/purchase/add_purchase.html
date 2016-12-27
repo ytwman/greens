@@ -12,7 +12,7 @@
                     </td>
                     <td width="14%">采购人</td>
                     <td width="36%">
-                        <input class="easyui-textbox" required="true" style="width:100%;" name="name">
+                        <select class="easyui-combobox" required="true" style="width: 100%" name="name" id="add-purchaser"></select>
                     </td>
                 </tr>
                 <tr>
@@ -41,12 +41,12 @@
             <table id="purchase-order-list" class="easyui-datagrid">
                 <thead>
                 <tr>
-                    <th data-options="field:'ck',checkbox:true">#</th>
-                    <th width="20%" align="left" field="goods_code" >商品编码</th>
-                    <th width="24%" align="left" field="goods_name">商品名称</th>
-                    <th width="20%" align="left" field="supplier_name" editor>供应商名称</th>
+                    <!--<th data-options="field:'ck',checkbox:true">#</th>-->
+                    <th width="24%" align="left" field="supplier_name">供应商名称</th>
+                    <th width="20%" align="left" field="goods_code">商品编码</th>
+                    <th width="24%" align="left" field="goods_name" editor="textbox">商品名称</th>
                     <th width="10%" align="right" field="price">单价</th>
-                    <th width="10%" align="right" field="amount">数量</th>
+                    <th width="10%" align="right" field="amount" editor="numberbox">数量</th>
                     <th width="12%" align="left" field="unit">总价</th>
                 </tr>
                 </thead>

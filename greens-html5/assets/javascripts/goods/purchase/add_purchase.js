@@ -16,22 +16,33 @@ $(function () {
         // pagination: true, // 是否开启分页组件
         fitColumns: true, // 自动设置表格宽度，方式横向滚动
         toolbar: '#purchase-order-toolbar',
-        url: projectPath + '/purchase',
+        url: projectPath + '/purchase_order',
         method: 'get',
         // 双击编辑行记录
         onClickCell: onDblClickCell,
         onEndEdit: onEndEdit
     });
 
+    // 加载采购人清单
+    $('#add-purchaser').combobox({
+        url: projectPath + '/purchase_order/person',
+        method: 'get',
+        valueField: 'id',
+        textField: 'name',
+        panelHeight: 120
+    });
+
+
     // 编辑行索引
+    //====================================================
     var editIndex = undefined;
 
     function endEditing() {
         if (editIndex == undefined) {
             return true
         }
-        if ($('#dg').datagrid('validateRow', editIndex)) {
-            $('#dg').datagrid('endEdit', editIndex);
+        if ($('#purchase-order-list').datagrid('validateRow', editIndex)) {
+            $('#purchase-order-list').datagrid('endEdit', editIndex);
             editIndex = undefined;
             return true;
         } else {
@@ -42,16 +53,16 @@ $(function () {
     function onDblClickCell(index, field) {
         if (editIndex != index) {
             if (endEditing()) {
-                $('#dg').datagrid('selectRow', index)
+                $('#purchase-order-list').datagrid('selectRow', index)
                     .datagrid('beginEdit', index);
-                var ed = $('#dg').datagrid('getEditor', {index: index, field: field});
+                var ed = $('#purchase-order-list').datagrid('getEditor', {index: index, field: field});
                 if (ed) {
                     ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
                 }
                 editIndex = index;
             } else {
                 setTimeout(function () {
-                    $('#dg').datagrid('selectRow', editIndex);
+                    $('#purchase-order-list').datagrid('selectRow', editIndex);
                 }, 0);
             }
         }
@@ -64,4 +75,17 @@ $(function () {
         });
         row.productname = $(ed.target).combobox('getText');
     }
+
+    function append() {
+        if (endEditing()) {
+            $('#purchase-order-list').datagrid('appendRow', {status: 'P'});
+            editIndex = $('#purchase-order-list').datagrid('getRows').length - 1;
+            $('#purchase-order-list').datagrid('selectRow', editIndex).datagrid('beginEdit', editIndex);
+        }
+    }
+
+    // 添加行
+    $('#add-purchase-item-btn').click(function() {
+        append();
+    })
 });
