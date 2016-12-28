@@ -20,7 +20,7 @@
     </context:component-scan>
 
     <!-- 开启注解功能 -->
-    <mvc:annotation-driven validator="validator">
+    <mvc:annotation-driven validator="validator" conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
             <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
@@ -69,6 +69,14 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
+    <!-- long parse date -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.ytwman.greens.commons.core.web.StringToDateConverter"/>
+            </set>
+        </property>
+    </bean>
 
     <!-- 设置 freeMarker 的配置文件路径 -->
     <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
