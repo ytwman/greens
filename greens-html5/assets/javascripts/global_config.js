@@ -41,8 +41,7 @@ $(function () {
             })[0];
         },
         formatter: function (date) {
-            console.log($.fn.datebox.defaults.formatter(date) + " 0:00:00");
-            return $.fn.datebox.defaults.formatter(date) + " 00:00:01";
+            return $.fn.datebox.defaults.formatter(date);
         }
     })
 

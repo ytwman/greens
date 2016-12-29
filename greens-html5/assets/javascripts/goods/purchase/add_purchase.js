@@ -30,11 +30,14 @@ $(function () {
             var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
             var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             return d1 <= date && date <= d2;
-        },
+        }
+    });
+
+    // 采购日期控件改变事件
+    $('#add-purchaseDate').datebox({
         onSelect: function (newValue) {
-            console.log(newValue);
-            purchaseSearchParams.purchaseDate = newValue;
-        },
+            purchaseSearchParams.purchaseDate = newValue.getTime();
+        }
     });
 
     // 加载采购人清单
@@ -99,7 +102,7 @@ $(function () {
     }
 
     // 添加行
-    $('#add-purchase-item-btn').click(function() {
+    $('#add-purchase-item-btn').click(function () {
         append();
     })
 });

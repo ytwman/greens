@@ -42,11 +42,15 @@ $(function () {
             var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
             var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             return d1 <= date && date <= d2;
-        },
+        }
+    });
+
+    // 采购日期控件改变事件
+    $('#purchase-search-purchase-date').datebox({
         onSelect: function (newValue) {
-            purchaseSearchParams.purchaseDate = $.formatter(newValue);
+            purchaseSearchParams.purchaseDate = newValue.getTime();
             $('#purchase-list').datagrid('load', purchaseSearchParams);
-        },
+        }
     });
 
     // 查询按钮
