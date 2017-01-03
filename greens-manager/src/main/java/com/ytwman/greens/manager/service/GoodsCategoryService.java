@@ -12,6 +12,7 @@ import com.ytwman.greens.commons.entity.mapper.base.GoodsCategoryEntityMapper;
 import com.ytwman.greens.commons.core.exception.ApiException;
 import com.ytwman.greens.commons.core.exception.BusinessExMessage;
 import com.ytwman.greens.commons.repo.GoodsCategoryMapper;
+import com.ytwman.greens.manager.model.param.GoodsCategoryParam;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -40,25 +41,18 @@ public class GoodsCategoryService {
         return goodsCategoryMapper.findById(categoryId);
     }
 
-    public void saveOrUpdate(GoodsCategoryEntity entity) {
-        // 编码转换大写
-        entity.setCode(entity.getCode().toUpperCase());
-        // 验证商品类目编码是否存在
-        GoodsCategoryEntity goodsCategoryEntity = goodsCategoryMapper.findByCode(entity.getCode(), true);
+    public void saveOrUpdate(GoodsCategoryParam param) {
 
-        if (entity.getId() == null) {
-            if (goodsCategoryEntity != null) {
-                throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
-            }
+        if (param.getId() == null) {
+            // 商品编码
+            String goodsCategoryCode = String.format("%02d", param.getId());
+            param.setCode(goodsCategoryCode);
 
-            goodsCategoryEntityMapper.insertSelective(entity);
+            goodsCategoryEntityMapper.insertSelective(param);
         } else {
-            // 如果ID 不同但编码相同,提示编码已经存在
-            if (goodsCategoryEntity != null && !goodsCategoryEntity.getId().equals(entity.getId())) {
-                throw new ApiException(BusinessExMessage.GoodsCategoryCodeExistChild);
-            }
-
-            goodsCategoryEntityMapper.updateByPrimaryKeySelective(entity);
+            // 防止更新编码
+            param.setCode(null);
+            goodsCategoryEntityMapper.updateByPrimaryKeySelective(param);
         }
     }
 

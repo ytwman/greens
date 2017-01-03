@@ -58,11 +58,21 @@ public class GoodsInfoService {
         return goodsInfoEntityMapper.selectByPrimaryKey(goodsId);
     }
 
-    public void saveOrUpdate(GoodsInfoParam param) {
-        if (param.getId() == null) {
-            goodsInfoEntityMapper.insertSelective(param);
+    public void saveOrUpdate(GoodsInfoEntity entity) {
+        // 商品编码根据类目主键补位加上商品主键补位两部分组成
+        // 每级类目预留两位，从左至右排列组合，例如水产（1）-鱼类（2），那么应该是0102
+        // 商品补位3位，例如小黄鱼（5），那么商品编码应该是01020005
+
+        if (entity.getId() == null) {
+            // 商品编码
+            String goodsCode = String.format("%02d%03d", entity.getCategoryId(), entity.getId());
+            entity.setCode(goodsCode);
+
+            goodsInfoEntityMapper.insertSelective(entity);
         } else {
-            goodsInfoEntityMapper.updateByPrimaryKeySelective(param);
+            // 防止修改编码
+            entity.setCode(null);
+            goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
         }
     }
 
