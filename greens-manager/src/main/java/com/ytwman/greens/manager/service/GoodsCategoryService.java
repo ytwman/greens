@@ -44,16 +44,17 @@ public class GoodsCategoryService {
     public void saveOrUpdate(GoodsCategoryParam param) {
 
         if (param.getId() == null) {
+            goodsCategoryEntityMapper.insertSelective(param);
+
             // 商品编码
             String goodsCategoryCode = String.format("%02d", param.getId());
             param.setCode(goodsCategoryCode);
-
-            goodsCategoryEntityMapper.insertSelective(param);
         } else {
             // 防止更新编码
             param.setCode(null);
-            goodsCategoryEntityMapper.updateByPrimaryKeySelective(param);
         }
+
+        goodsCategoryEntityMapper.updateByPrimaryKeySelective(param);
     }
 
     public void delete(Long categoryId) {

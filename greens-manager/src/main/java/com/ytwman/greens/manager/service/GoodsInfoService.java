@@ -64,16 +64,17 @@ public class GoodsInfoService {
         // 商品补位3位，例如小黄鱼（5），那么商品编码应该是01020005
 
         if (entity.getId() == null) {
+            goodsInfoEntityMapper.insertSelective(entity);
+
             // 商品编码
             String goodsCode = String.format("%02d%03d", entity.getCategoryId(), entity.getId());
             entity.setCode(goodsCode);
-
-            goodsInfoEntityMapper.insertSelective(entity);
         } else {
             // 防止修改编码
             entity.setCode(null);
-            goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
         }
+
+        goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
     }
 
     public void delete(Long goodsId) {
