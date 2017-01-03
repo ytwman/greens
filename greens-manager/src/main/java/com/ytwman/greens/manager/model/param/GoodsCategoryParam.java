@@ -18,21 +18,8 @@ import java.io.Serializable;
  */
 public class GoodsCategoryParam extends GoodsCategoryEntity implements Serializable {
 
-    @NotEmpty(message = "商品类目编码不能为空")
-    private String code;
-
     @NotEmpty(message = "商品类目名称不能为空")
     private String name;
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     @Override
     public String getName() {
