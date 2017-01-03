@@ -18,7 +18,7 @@
     </modules>
 
     <properties>
-        <build.env>dev</build.env>
+        <build.env>develop</build.env>
         <logger.file.path>../logs</logger.file.path>
     </properties>
 
