@@ -110,7 +110,7 @@
       #{payable,jdbcType=DECIMAL}, #{lossProfit,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, 
       #{paidMethod,jdbcType=INTEGER}, #{paidTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderOfferEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderOfferEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into order_offer
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

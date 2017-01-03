@@ -110,7 +110,7 @@
       #{ruleId,jdbcType=BIGINT}, #{ruleName,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.AssetsPointModifyEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into assets_point_modify
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

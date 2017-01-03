@@ -113,7 +113,7 @@
       #{unit,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderItemEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderItemEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -126,7 +126,7 @@
       #{lat,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{sortby,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.RegionEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.RegionEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into base_region
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

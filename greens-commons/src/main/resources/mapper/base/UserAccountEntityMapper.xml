@@ -108,7 +108,7 @@
       #{account,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.UserAccountEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.UserAccountEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into user_account
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

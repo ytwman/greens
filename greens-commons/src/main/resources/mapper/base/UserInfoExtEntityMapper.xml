@@ -105,7 +105,7 @@
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{vipLevel,jdbcType=INTEGER}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.UserInfoExtEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.UserInfoExtEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into user_info_ext
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

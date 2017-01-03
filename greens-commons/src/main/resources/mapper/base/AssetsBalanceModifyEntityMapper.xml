@@ -110,7 +110,7 @@
       #{amount,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.AssetsBalanceModifyEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.AssetsBalanceModifyEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into assets_balance_modify
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

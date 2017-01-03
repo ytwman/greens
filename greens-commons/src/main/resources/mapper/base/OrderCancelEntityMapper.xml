@@ -109,7 +109,7 @@
       #{reason,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderCancelEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderCancelEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into order_cancel
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

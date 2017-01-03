@@ -110,7 +110,7 @@
       #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsCategoryEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsCategoryEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into goods_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

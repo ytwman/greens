@@ -104,7 +104,7 @@
     values (#{id,jdbcType=BIGINT}, #{unit,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.GoodsUnitEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into goods_unit
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

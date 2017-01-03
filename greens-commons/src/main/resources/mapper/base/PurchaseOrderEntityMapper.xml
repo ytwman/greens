@@ -120,7 +120,7 @@
       #{audit,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.PurchaseOrderEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into purchase_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

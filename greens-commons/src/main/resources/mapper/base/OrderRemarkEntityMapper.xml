@@ -109,7 +109,7 @@
       #{operatorId,jdbcType=BIGINT}, #{operatorName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderRemarkEntity" >
+  <insert id="insertSelective" parameterType="com.ytwman.greens.commons.entity.OrderRemarkEntity" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
     insert into order_remark
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
