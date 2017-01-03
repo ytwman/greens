@@ -15,7 +15,7 @@ $(function () {
         title: '添加商品类目',
         iconCls: 'Disk',
         width: 400,
-        height: 330,
+        height: 280,
         modal: true,
         cache: false,
         href: '/goods/category/add_goods_category.html'
