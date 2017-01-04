@@ -3,7 +3,7 @@
         <!-- 采购单基础信息 -->
         <fieldset style="margin-bottom: 10px;">
             <legend>基础信息</legend>
-            <table width="100%">
+            <table class="table" width="100%">
                 <tbody>
                 <tr>
                     <td width="14%">采购日期</td>
@@ -43,22 +43,41 @@
                 <tr>
                     <!--<th data-options="field:'ck',checkbox:true">#</th>-->
                     <th width="24%" align="left" field="supplier_name">供应商名称</th>
-                    <th width="20%" align="left" field="goods_code">商品编码</th>
-                    <th width="24%" align="left" field="goods_name" editor="textbox">商品名称</th>
+                    <th width="20%" align="left" field="goods_code" editor="{type: 'combogrid', options:{
+                        idField: 'id',
+                        textField: 'name',
+                        mode: 'remote',
+                        loader: goodsloader,
+                        fitColumns: true,
+                        panelWidth: 360,
+                        columns: [[
+                            {field: 'name', title: '商品名称', width: 120},
+                            {field: 'code', title: '商品编码', width: 100, align:'center'},
+                            {field: 'spell', title: '拼音缩写', width: 100, align:'center'},
+                            {field: 'categoryName', title: '商品类目', width: 100, align:'center'}
+                        ]]
+                    }}">商品编码
+                    </th>
+                    <th width="24%" align="left" field="goods_name">商品名称</th>
                     <th width="10%" align="right" field="price">单价</th>
-                    <th width="10%" align="right" field="amount" editor="numberbox">数量</th>
+                    <th width="10%" align="right" field="amount" editor="{
+                        type: 'numberbox',
+                        options: {
+                            value: 1,
+                            min: 1,
+                            max: 100,
+                            precision: 0
+                        }
+                    }">数量
+                    </th>
                     <th width="12%" align="left" field="unit">总价</th>
                 </tr>
                 </thead>
             </table>
             <div id="purchase-order-toolbar">
-                <div class="clearfix">
-                    <div style="float:left;">
-                        <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="add-purchase-item-btn">添加</a>
-                        <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="mod-purchase-item-btn">保存</a>
-                        <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="del-purchase-item-btn">删除</a>
-                    </div>
-                </div>
+                <a href="#" class="easyui-linkbutton" iconCls="Add" plain="true" id="add-purchase-item-btn">添加</a>
+                <a href="#" class="easyui-linkbutton" iconCls="Delete" plain="true" id="del-purchase-item-btn">删除</a>
+                <a href="#" class="easyui-linkbutton" iconCls="Accept" plain="true" id="mod-purchase-item-btn">保存</a>
             </div>
         </fieldset>
     </form>

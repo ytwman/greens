@@ -46,12 +46,12 @@ body {
     margin-bottom: 15px;
 }
 
-table .textbox {
+.table .textbox {
     margin: 5px 0;
     padding: 2px !important;
 }
 
-.easyui-validatebox, .form-group .textbox, table .textbox {
+.easyui-validatebox, .form-group .textbox, .table .textbox {
     padding: 3px;
     margin-top: 5px;
     box-sizing: border-box;
