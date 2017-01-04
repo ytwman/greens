@@ -33,6 +33,18 @@ $(function () {
         $('#add-goods-form').form('submit');
     });
 
+    // 商品名称输入，拼音
+    $('#goods-name').textbox({
+        onChange: function (newValue) {
+            var pinyin = window['pinyin'];
+
+            var output = pinyin(newValue, {style: pinyin["STYLE_NORMAL"]}).join("");
+
+            $('#goods-spell').textbox('setText', output);
+
+        }
+    })
+
     // 加载商品类目
     $('#add-goods-category').combobox({
         url: projectPath + '/goods_category',
