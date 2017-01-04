@@ -13,9 +13,6 @@ public class GoodsInfoParam extends GoodsInfoEntity implements Serializable {
     @NotEmpty(message = "未填写商品名称")
     private String name;
 
-//    @NotEmpty(message = "未填写商品编码")
-//    private String code;
-
     @NotEmpty(message = "未填写商品拼音")
     private String spell;
 
