@@ -40,7 +40,7 @@ $(function () {
                 return key == id ? val : null;
             })[0];
         },
-        formatter: function (date) {
+        dateformat: function (date) {
             return $.fn.datebox.defaults.formatter(date);
         }
     })
