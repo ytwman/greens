@@ -33,13 +33,6 @@ $(function () {
         }
     });
 
-    // 采购日期控件改变事件
-    $('#add-purchaseDate').datebox({
-        onSelect: function (newValue) {
-            purchaseSearchParams.purchaseDate = newValue.getTime();
-        }
-    });
-
     // 加载采购人清单
     $('#add-purchaser').combobox({
         url: projectPath + '/purchase_order/person',
@@ -49,14 +42,14 @@ $(function () {
         panelHeight: 120
     });
 
-
     // 编辑行索引
     //====================================================
     var editIndex = undefined;
 
+    // 获取 datagrid 当前的编辑状态
     function endEditing() {
         if (editIndex == undefined) {
-            return true
+            return true;
         }
         if ($('#purchase-order-list').datagrid('validateRow', editIndex)) {
             $('#purchase-order-list').datagrid('endEdit', editIndex);
@@ -70,8 +63,7 @@ $(function () {
     function onDblClickCell(index, field) {
         if (editIndex != index) {
             if (endEditing()) {
-                $('#purchase-order-list').datagrid('selectRow', index)
-                    .datagrid('beginEdit', index);
+                $('#purchase-order-list').datagrid('selectRow', index).datagrid('beginEdit', index);
                 var ed = $('#purchase-order-list').datagrid('getEditor', {index: index, field: field});
                 if (ed) {
                     ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
@@ -85,17 +77,38 @@ $(function () {
         }
     }
 
+    // 结束编辑状态
     function onEndEdit(index, row) {
-        var ed = $(this).datagrid('getEditor', {
+        // 获取指定的编辑行
+
+        // 供应商
+
+        // 商品
+        var goods = $(this).datagrid('getEditor', {
             index: index,
-            field: 'productid'
+            field: 'goodsCode'
         });
-        row.productname = $(ed.target).combobox('getText');
+
+        // 获取编辑项目
+        var g = $(goods.target).combogrid('grid');
+        var r = g.datagrid('getSelected');
+
+        // 数量
+
+        // 设置行记录数据
+        row.goodsCode = r.code;
+        row.goodsName = r.name;
+        row.price = 10;
+        row.total = 2110;
     }
 
+    // 点击添加按钮或者回车添加行记录
     function append() {
         if (endEditing()) {
-            $('#purchase-order-list').datagrid('appendRow', {status: 'P'});
+            // 添加一行
+            $('#purchase-order-list').datagrid('appendRow', {amount: 1});
+
+            // 选择最后一行进行编辑
             editIndex = $('#purchase-order-list').datagrid('getRows').length - 1;
             $('#purchase-order-list').datagrid('selectRow', editIndex).datagrid('beginEdit', editIndex);
         }
@@ -104,5 +117,44 @@ $(function () {
     // 添加行
     $('#add-purchase-item-btn').click(function () {
         append();
-    })
+    });
+
+    // 删除行
+    $('#del-purchase-item-btn').click(function () {
+        if (editIndex == undefined) {
+            return;
+        }
+        $('#purchase-order-list').datagrid('cancelEdit', editIndex).datagrid('deleteRow', editIndex);
+        editIndex = undefined;
+    });
+
+    // 提交记录
+    $('#mod-purchase-item-btn').click(function () {
+
+    });
 });
+
+// 自动加载商品编码
+function goodsLoader(param, success, error) {
+    var q = param.q || '';
+    if (q.length <= 1) {
+        return false;
+    }
+
+    $.ajax({
+        url: projectPath + '/goods_info',
+        dataType: 'json',
+        data: {
+            keywords: q
+        },
+        success: success,
+        error: function () {
+            error.apply(this, arguments);
+        }
+    });
+}
+
+// 格式化
+function formatter() {
+
+}

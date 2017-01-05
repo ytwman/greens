@@ -41,7 +41,11 @@ $(function () {
             })[0];
         },
         dateformat: function (date) {
-            return $.fn.datebox.defaults.formatter(date);
+            return !!date ? $.fn.datebox.defaults.formatter(date) : date;
+        },
+        currencyformat: function(data) {
+            console.log(data);
+            return !!data ? accounting.formatMoney(data, "￥ ") : data;
         }
     })
 

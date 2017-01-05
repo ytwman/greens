@@ -46,11 +46,11 @@
                 <tr>
                     <!--<th data-options="field:'ck',checkbox:true">#</th>-->
                     <th width="24%" align="left" field="supplierName">供应商名称</th>
-                    <th width="20%" align="left" field="goodsCode" formatter="$.formatter" editor="{type: 'combogrid', options:{
-                        idField: 'code',
+                    <th width="20%" align="left" field="goodsCode" editor="{type: 'combogrid', options:{
+                        idField: 'id',
                         textField: 'code',
                         mode: 'remote',
-                        loader: goodsloader,
+                        loader: goodsLoader,
                         fitColumns: true,
                         panelWidth: 360,
                         required: true,
@@ -63,7 +63,7 @@
                     }}">商品编码
                     </th>
                     <th width="24%" align="left" field="goodsName">商品名称</th>
-                    <th width="10%" align="right" field="price">单价</th>
+                    <th width="10%" align="right" field="price" formatter="$.currencyformat">单价</th>
                     <th width="10%" align="right" field="amount" editor="{
                         type: 'numberbox',
                         options: {
@@ -75,7 +75,7 @@
                         }
                     }">数量
                     </th>
-                    <th width="12%" align="right" field="unit">总价</th>
+                    <th width="12%" align="right" field="total" formatter="$.currencyformat">总价</th>
                 </tr>
                 </thead>
             </table>
