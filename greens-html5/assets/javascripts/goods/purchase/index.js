@@ -102,8 +102,3 @@ $(function () {
         $('body').printPreview();
     })
 });
-
-// 采购日期格式化
-function purchaseDateFormatter(value) {
-    return $.fn.datebox.defaults.formatter(value);
-}
