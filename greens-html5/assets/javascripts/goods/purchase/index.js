@@ -50,6 +50,11 @@ $(function () {
         onSelect: function (newValue) {
             purchaseSearchParams.purchaseDate = newValue.getTime();
             $('#purchase-list').datagrid('load', purchaseSearchParams);
+        },
+        onChange: function (newValue) {
+            if (newValue == '') {
+                purchaseSearchParams.purchaseDate = null;
+            }
         }
     });
 
@@ -98,7 +103,7 @@ $(function () {
     });
 
     // 打印采购单
-    $('#purchase-print-btn').click(function() {
+    $('#purchase-print-btn').click(function () {
         $('body').printPreview();
     })
 });
