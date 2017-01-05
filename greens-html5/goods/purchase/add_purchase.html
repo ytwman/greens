@@ -42,8 +42,8 @@
                 <thead>
                 <tr>
                     <!--<th data-options="field:'ck',checkbox:true">#</th>-->
-                    <th width="24%" align="left" field="supplier_name">供应商名称</th>
-                    <th width="20%" align="left" field="goods_code" editor="{type: 'combogrid', options:{
+                    <th width="24%" align="left" field="supplierName">供应商名称</th>
+                    <th width="20%" align="left" field="goodsCode" editor="{type: 'combogrid', options:{
                         idField: 'id',
                         textField: 'name',
                         mode: 'remote',
@@ -58,12 +58,12 @@
                         ]]
                     }}">商品编码
                     </th>
-                    <th width="24%" align="left" field="goods_name">商品名称</th>
+                    <th width="24%" align="left" field="goodsName">商品名称</th>
                     <th width="10%" align="right" field="price">单价</th>
                     <th width="10%" align="right" field="amount" editor="{
                         type: 'numberbox',
                         options: {
-                            value: 1,
+                            value: 1, //默认值
                             min: 1,
                             max: 100,
                             precision: 0
