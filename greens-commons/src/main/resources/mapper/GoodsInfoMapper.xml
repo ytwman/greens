@@ -14,4 +14,8 @@
         LIMIT #{offset}, #{limit};
     </select>
 
+    <select id="selectFirstByCode" resultType="com.ytwman.greens.commons.entity.GoodsInfoEntity">
+        SELECT * FROM greens.goods_info WHERE is_delete = 0 AND code = #{code} limit 1;
+    </select>
+
 </mapper>

@@ -54,4 +54,9 @@ public class GoodsInfoController {
     public void lookup(@PathVariable("goodsId") Long goodsId) {
         goodsInfoService.lookup(goodsId);
     }
+
+    @RequestMapping("/validate")
+    public Object validateCode(String code) {
+        return goodsInfoService.validateCode(code);
+    }
 }

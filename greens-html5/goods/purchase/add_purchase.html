@@ -1,3 +1,4 @@
+<!-- http://www.cnblogs.com/lansy/p/4627649.html -->
 <div style="padding:10px;">
     <form class="easyui-form" method="post" data-options="novalidate:true" id="add-purchase-form">
         <!-- 采购单基础信息 -->
@@ -45,7 +46,15 @@
                 <thead>
                 <tr>
                     <!--<th data-options="field:'ck',checkbox:true">#</th>-->
-                    <th width="24%" align="left" field="supplierName">供应商名称</th>
+                    <th width="20%" align="left" field="supplierName" editor="{type: 'combobox', options:{
+                        valueField: 'id',
+                        textField: 'code',
+                        panelHeight: 'auto',
+                        required: true,
+                        method: 'get',
+                        url: projectPath + '/suppliers'
+                    }}">供应商名称
+                    </th>
                     <th width="20%" align="left" field="goodsCode" editor="{type: 'combogrid', options:{
                         idField: 'id',
                         textField: 'code',
@@ -59,11 +68,15 @@
                             {field: 'code', title: '商品编码', width: 100, align:'center'},
                             {field: 'spell', title: '拼音缩写', width: 100, align:'center'},
                             {field: 'categoryName', title: '商品类目', width: 100, align:'center'}
-                        ]]
+                        ]],
+                        validType: {
+                            length: [5,10],
+                            remote: [projectPath + '/goods_info/validate', ]
+                        }
                     }}">商品编码
                     </th>
-                    <th width="24%" align="left" field="goodsName">商品名称</th>
-                    <th width="10%" align="right" field="price" formatter="$.currencyformat">单价</th>
+                    <th width="20%" align="left" field="goodsName">商品名称</th>
+                    <th width="15%" align="right" field="price" formatter="$.currencyformat">单价</th>
                     <th width="10%" align="right" field="amount" editor="{
                         type: 'numberbox',
                         options: {
@@ -75,7 +88,7 @@
                         }
                     }">数量
                     </th>
-                    <th width="12%" align="right" field="total" formatter="$.currencyformat">总价</th>
+                    <th width="15%" align="right" field="total" formatter="$.currencyformat">总价</th>
                 </tr>
                 </thead>
             </table>

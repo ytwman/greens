@@ -17,6 +17,7 @@ import com.ytwman.greens.commons.status.Lookup;
 import com.ytwman.greens.manager.model.param.GoodsInfoParam;
 import com.ytwman.greens.manager.model.param.GoodsInfoSearchParam;
 import com.ytwman.greens.manager.model.result.GoodsInfoSearchResult;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -100,5 +101,15 @@ public class GoodsInfoService {
         entity.setLookup(lookup.getCode());
 
         goodsInfoEntityMapper.updateByPrimaryKeySelective(entity);
+    }
+
+    public boolean validateCode(String code) {
+        GoodsInfoEntity goodsInfoEntity = null;
+
+        if (StringUtils.isNotEmpty(code)) {
+            goodsInfoEntity = goodsInfoMapper.selectFirstByCode(code);
+        }
+
+        return goodsInfoEntity == null;
     }
 }

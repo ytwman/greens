@@ -8,6 +8,7 @@ package com.ytwman.greens.commons.repo;
 
 import com.ytwman.greens.commons.entity.GoodsInfoEntity;
 import com.ytwman.greens.commons.model.GoodsInfoSearch;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,5 +26,12 @@ public interface GoodsInfoMapper {
      * @return
      */
     List<GoodsInfoEntity> selectByPagination(GoodsInfoSearch search);
+
+    /**
+     * 根据编码查询商品
+     * @param code
+     * @return
+     */
+    GoodsInfoEntity selectFirstByCode(@Param("code") String code);
 
 }

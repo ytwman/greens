@@ -19,7 +19,7 @@ $(function () {
         url: projectPath + '/purchase_order',
         method: 'get',
         // 双击编辑行记录
-        onClickCell: onDblClickCell,
+        onDblClickCell: onDblClickCell,
         onEndEdit: onEndEdit
     });
 
@@ -79,8 +79,11 @@ $(function () {
 
     // 结束编辑状态
     function onEndEdit(index, row) {
-        // 获取指定的编辑行
+        // 如果是第一次编辑允许添加下一行，如果是重新编辑按回车之后不允许添加下一行
+        // 商品编码回车默认是1，商品编码和数量都可以按回车添加下一个编辑行
 
+
+        // 获取指定的编辑行
         // 供应商
 
         // 商品
@@ -93,13 +96,25 @@ $(function () {
         var g = $(goods.target).combogrid('grid');
         var r = g.datagrid('getSelected');
 
+
+        console.log(r);
+        if (!r) {
+            return;
+        }
+
         // 数量
+        var amount = $(this).datagrid('getEditor', {
+            index: index,
+            field: 'amount'
+        });
+        var a = $(amount.target).numberbox('getText');
 
         // 设置行记录数据
         row.goodsCode = r.code;
         row.goodsName = r.name;
-        row.price = 10;
-        row.total = 2110;
+        row.price = 10.20;
+        row.amount = a;
+        row.total = row.price * row.amount;
     }
 
     // 点击添加按钮或者回车添加行记录
