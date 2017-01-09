@@ -45,17 +45,9 @@
             <table id="purchase-order-list" class="easyui-datagrid">
                 <thead>
                 <tr>
-                    <!--<th data-options="field:'ck',checkbox:true">#</th>-->
-                    <th width="20%" align="left" field="supplierName" editor="{type: 'combobox', options:{
-                        valueField: 'id',
-                        textField: 'code',
-                        panelHeight: 'auto',
-                        required: true,
-                        method: 'get',
-                        url: projectPath + '/suppliers'
-                    }}">供应商名称
-                    </th>
-                    <th width="20%" align="left" field="goodsCode" editor="{type: 'combogrid', options:{
+                    <!-- <th data-options="field:'ck',checkbox:true">#</th> -->
+                    <th width="20%" align="left" field="goodsName">商品名称</th>
+                    <th width="16%" align="left" field="goodsCode" editor="{type: 'combogrid', options:{
                         idField: 'id',
                         textField: 'code',
                         mode: 'remote',
@@ -75,8 +67,29 @@
                         }
                     }}">商品编码
                     </th>
-                    <th width="20%" align="left" field="goodsName">商品名称</th>
-                    <th width="15%" align="right" field="price" formatter="$.currencyformat">单价</th>
+                    <th width="20%" align="left" field="supplierName" editor="{type: 'combobox', options:{
+                        valueField: 'id',
+                        textField: 'code',
+                        panelHeight: 'auto',
+                        required: true,
+                        method: 'get',
+                        url: projectPath + '/suppliers'
+                    }}">供应商名称
+                    </th>
+                    <th width="10%" align="right" field="price" formatter="$.currencyformat" editor="{type: 'numberbox', options:{
+                            value: 0, //默认值
+                            min: 0,
+                            max: 100,
+                            precision: 2,
+                            required: true
+                    }}">进价</th>
+                    <th width="10%" align="right" field="price" formatter="$.currencyformat" editor="{type: 'numberbox', options:{
+                            value: 0, //默认值
+                            min: 0,
+                            max: 100,
+                            precision: 2,
+                            required: true
+                    }}">售价</th>
                     <th width="10%" align="right" field="amount" editor="{
                         type: 'numberbox',
                         options: {
@@ -86,9 +99,9 @@
                             precision: 0,
                             required: true
                         }
-                    }">数量
+                    }">数量(斤)
                     </th>
-                    <th width="15%" align="right" field="total" formatter="$.currencyformat">总价</th>
+                    <th width="14%" align="right" field="total" formatter="$.currencyformat">总价</th>
                 </tr>
                 </thead>
             </table>

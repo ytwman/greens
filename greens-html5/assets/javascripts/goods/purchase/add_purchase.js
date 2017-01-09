@@ -27,8 +27,8 @@ $(function () {
     $('#add-purchaseDate').datebox().datebox('calendar').calendar({
         validator: function (date) {
             var now = new Date();
-            var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 10);
-            var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            var d1 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 3);
+            var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3);
             return d1 <= date && date <= d2;
         }
     });
