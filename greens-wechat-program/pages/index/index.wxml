@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view id="root">
+
+    <!-- 左边类目导航 -->
+    <scroll-view scroll-y="true" class="sidebar" scroll-top="-100" scroll-left="-100">
+
+        <!-- 首页类目 ICON 按钮 -->
+        <block wx:for="{{categories}}">
+            <view class="category-item {{ categoryIconActive == item.id ? 'active' : '' }}" data-row-id="{{item.id}}"
+                  bindtap="onChangeCategory">
+                <image class="icon" src="{{ item.image }}"/>
+            </view>
+        </block>
+
+    </scroll-view>
+
+    <!-- 中间内容区域 -->
+    <scroll-view scroll-y="true" class="content">
+
+
+        <!-- 商品项目 -->
+        <block wx:for="{{commodities}}">
+            <view class="commodity-item" data-row-id="{{ item.id }}">
+                <image src="{{ item.image }}" mode="aspectFit"/>
+                <view class="commodity-body">
+                    <view class="commodity-name">
+                        {{ item.name }}
+                    </view>
+                    <view class="commodity-description">
+                        {{ item.description }}
+                    </view>
+                    <view class="commodity-salePrice">
+                        <text>￥{{ item.salePrice }}</text>
+                    </view>
+
+                    <view class="commodity-operator">
+                        <text class="operator lowerAmount" bindtap="lowerAmount">-</text>
+                        <text>0</text>
+                        <text class="operator upperAmount" bindtap="upperAmount">+</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+
+    </scroll-view>
+
+
+</view>

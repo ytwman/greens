@@ -1,0 +1,17 @@
+<view id="aboutme">
+
+    <!-- 个人信息 -->
+    <view class="profile">
+        <image class="avatar" src=""/>
+        <view>
+            <view class="nickname">忽忽</view>
+            <view class="phone">1333***6322</view>
+        </view>
+    </view>
+
+    <!-- 功能列表 -->
+    <view>
+
+    </view>
+
+</view>

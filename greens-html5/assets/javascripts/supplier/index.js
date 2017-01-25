@@ -15,7 +15,7 @@ $(function () {
         title: '添加供应商',
         iconCls: 'Disk',
         width: 400,
-        height: 450,
+        height: 520,
         modal: true,
         cache: false,
         href: '/supplier/add_supplier.html'
