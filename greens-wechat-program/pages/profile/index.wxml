@@ -1,9 +1,9 @@
-<view id="aboutme">
+<view>
 
     <!-- 个人信息 -->
     <view class="profile">
-        <image class="avatar" src=""/>
-        <view>
+        <image class="avatar" src="/images/avatar.png"/>
+        <view class="information">
             <view class="nickname">忽忽</view>
             <view class="phone">1333***6322</view>
         </view>

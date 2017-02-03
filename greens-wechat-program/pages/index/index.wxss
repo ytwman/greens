@@ -7,13 +7,13 @@
 .sidebar {
     width: auto;
     height: 100%;
-    background: #F6F8F9;
     position: fixed;
+    background: #f5f5f5;
 }
 
 .content {
     position: fixed;
-    left: 73px;
+    left: 140rpx;
     top: 0;
     right: 0;
     bottom: 0;
@@ -23,24 +23,22 @@
 /** 类目 */
 /** ===================================== */
 .category-item {
-    border-left: 3px solid transparent;
-    border-top: 1px solid #eee;
+    border-top:  1rpx solid #eee;
+    border-left: 10rpx solid transparent;
+    box-sizing: border-box;
 }
-
 .category-item:first-child {
-    border-top-width: 0px;
+    border-top-width: 0;
 }
-
-.category-item .icon {
-    width: 40px;
-    height: 40px;
-    padding: 15px;
-}
-
 .category-item.active {
-    border-left-color: #8AC007;
     background-color: white;
-    border-right-width: 0px;
+    border-left-color: #8AC007;
+    border-right-width: 0;
+}
+.category-item .icon {
+    width:  70rpx;
+    height: 70rpx;
+    padding: 30rpx;
 }
 
 /** 商品项目 */
@@ -48,37 +46,37 @@
 .commodity-item {
     display: flex;
     flex-direction: row;
-    margin-left: 10px;
-    padding: 10px 10px 10px 0;
+    margin-left: 10rpx;
+    padding: 10rpx 10rpx 10rpx 0;
     box-sizing: border-box;
-    border-top: 1px solid #eee;
+    border-top: 1rpx solid #eee;
 }
 
 .commodity-item:first-child {
-    border-top-width: 0px;
+    border-top-width: 0rpx;
 }
 
 .commodity-item image {
-    width: 60px;
-    max-height: 50px;
+    width: 60rpx;
+    max-height: 50rpx;
 }
 
 .commodity-item .commodity-body {
     flex: 1;
-    margin-left: 10px;
+    margin-left: 10rpx;
     position: relative;
 }
 
 .commodity-item .commodity-name {
-    font-size: 16px;
+    font-size: 16rpx;
     font-weight: bold;
 }
 
 .commodity-item .commodity-description {
     color: #888;
-    font-size: 12px;
-    margin: 4px 0;
-    line-height: 14px;
+    font-size: 12rpx;
+    margin: 4rpx 0;
+    line-height: 14rpx;
 }
 
 .commodity-item .commodity-salePrice {
@@ -88,21 +86,22 @@
 
 .commodity-operator {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 0rpx;
+    bottom: 0rpx;
 }
 
 .commodity-operator .operator {
     display: inline-block;
-    border: 1px solid #eee;
+    border: 1rpx solid #eee;
     text-align: center;
-    margin: 0 10px;
-    width: 20px;
-    height: 20px;
-    padding:0px;
-    line-height: 24px;
+    margin: 0 10rpx;
+    width: 20rpx;
+    height: 20rpx;
+    padding: 0rpx;
+    line-height: 24rpx;
     border-radius: 50%;
 }
+
 .upperAmount {
     color: #fff;
     background: #8AC007;

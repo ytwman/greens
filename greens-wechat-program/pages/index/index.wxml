@@ -16,10 +16,10 @@
 
     <!-- 中间内容区域 -->
     <scroll-view scroll-y="true" class="content">
-
+1
 
         <!-- 商品项目 -->
-        <block wx:for="{{commodities}}">
+        <!--<block wx:for="{{commodities}}">
             <view class="commodity-item" data-row-id="{{ item.id }}">
                 <image src="{{ item.image }}" mode="aspectFit"/>
                 <view class="commodity-body">
@@ -40,7 +40,7 @@
                     </view>
                 </view>
             </view>
-        </block>
+        </block>-->
 
     </scroll-view>
 
